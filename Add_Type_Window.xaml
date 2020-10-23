@@ -1,0 +1,18 @@
+﻿<Window x:Class="Card_Creator.Add_Type_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Card_Creator"
+        mc:Ignorable="d"
+        Title="Add Type" Height="202" Width="294">
+    <Grid Margin="0,0,2,4">
+        <Button x:Name="Type_Add_Button" Content="Add" HorizontalAlignment="Left" Margin="199,142,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="name_textbox" HorizontalAlignment="Left" Height="23" Margin="10,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+        <TextBox x:Name="maxStat_textbox" PreviewTextInput="maxStat_textbox_PreviewTextInput" HorizontalAlignment="Left" Height="23" Margin="10,138,0,0"  VerticalAlignment="Top" Width="150"/>
+        <TextBox x:Name="minStat_textbox" PreviewTextInput="minStat_textbox_PreviewTextInput" HorizontalAlignment="Left" Height="23" Margin="10,79,0,0"  VerticalAlignment="Top" Width="150"/>
+        <Label x:Name="Type_Name_Label" Content="Name:" HorizontalAlignment="Left" Margin="5,-1,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Type_Min_Stat_Label" Content="Min Stat:" HorizontalAlignment="Left" Margin="3,53,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Type_Max_Stat_Label" Content="Max Stat:" HorizontalAlignment="Left" Margin="3,112,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
