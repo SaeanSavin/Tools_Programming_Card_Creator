@@ -28,5 +28,10 @@ namespace Card_Creator
             Add_Type_Window add_Type_Window = new Add_Type_Window();
             add_Type_Window.ShowDialog();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

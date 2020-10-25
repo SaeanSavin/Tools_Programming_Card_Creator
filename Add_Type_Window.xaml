@@ -9,11 +9,9 @@
     <Grid Margin="0,0,2,4">
         <Button x:Name="Type_Add_Button" Content="Add" HorizontalAlignment="Left" Margin="315,158,0,0" VerticalAlignment="Top" Width="75"/>
         <TextBox x:Name="name_textbox" HorizontalAlignment="Left" Height="23" Margin="10,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
-        <TextBox x:Name="minStat_textbox" PreviewTextInput="minStat_textbox_PreviewTextInput" HorizontalAlignment="Left" Height="23" Margin="10,79,0,0"  VerticalAlignment="Top" Width="150"/>
-        <TextBox x:Name="maxStat_textbox" PreviewTextInput="maxStat_textbox_PreviewTextInput" HorizontalAlignment="Left" Height="23" Margin="10,138,0,0"  VerticalAlignment="Top" Width="150"/>
-        <Label x:Name="Type_Name_Label" Content="Name:" HorizontalAlignment="Left" Margin="5,-1,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Type_Min_Stat_Label" Content="Min Stat:" HorizontalAlignment="Left" Margin="3,53,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Type_Max_Stat_Label" Content="Max Stat:" HorizontalAlignment="Left" Margin="3,112,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Type_Name_Label" Content="Name:" HorizontalAlignment="Left" Margin="10,-1,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Type_Min_Stat_Label" Content="Strength:" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Type_Max_Stat_Label" Content="Weakness:" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="color_combobox" HorizontalAlignment="Left" Margin="235,25,0,0" VerticalAlignment="Top" Width="120" Height="23" SelectionChanged="comboBox_SelectionChanged">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -25,5 +23,7 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <Label x:Name="label" Content="Color:" HorizontalAlignment="Left" Margin="180,22,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" Width="150" Height="23"/>
+        <ComboBox HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top" Width="150" Height="23"/>
     </Grid>
 </Window>
