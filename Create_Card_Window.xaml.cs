@@ -22,5 +22,11 @@ namespace Card_Creator
         {
             InitializeComponent();
         }
+
+        private void Add_type_button_Click(object sender, RoutedEventArgs e)
+        {
+            Add_Type_Window add_Type_Window = new Add_Type_Window();
+            add_Type_Window.ShowDialog();
+        }
     }
 }

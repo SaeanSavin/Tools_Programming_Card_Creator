@@ -6,13 +6,14 @@
         xmlns:local="clr-namespace:Card_Creator"
         xmlns:Classes="clr-namespace:Card_Creator.Classes" x:Name="Create_Window" x:Class="Card_Creator.Create_Card_Window"
         mc:Ignorable="d"
-        Title="Create_Card_Window" Height="142" Width="444">
+        Title="Create_Card_Window" Height="412" Width="644">
     <Grid Background="#FF746F6F">
         <TextBox x:Name="name_textBox" HorizontalAlignment="Left" Height="23" Margin="10,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label" Content="Name:" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Width="90"/>
         <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="190,27,0,0" VerticalAlignment="Top" Width="120">
         </ComboBox>
         <Label x:Name="label1" Content="Type:" HorizontalAlignment="Left" Margin="185,5,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="button" Content="Add" HorizontalAlignment="Left" Margin="315,27,0,0" VerticalAlignment="Top" Width="50" Height="23"/>
+        <Button x:Name="add_type_button" Content="Add" HorizontalAlignment="Left" Margin="315,27,0,0" VerticalAlignment="Top" Width="50" Height="23" Click="Add_type_button_Click"/>
+        <Button x:Name="button" Content="Generate random card" HorizontalAlignment="Left" Margin="465,328,0,0" VerticalAlignment="Top" Width="161" Height="43"/>
     </Grid>
 </Window>

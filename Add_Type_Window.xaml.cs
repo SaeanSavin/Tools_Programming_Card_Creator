@@ -21,6 +21,7 @@ namespace Card_Creator
         public Add_Type_Window()
         {
             InitializeComponent();
+            color_combobox.ItemsSource = typeof(Colors).GetProperties();
         }
 
         private void minStat_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -33,6 +34,11 @@ namespace Card_Creator
         {
             Regex reg = new Regex("[^0-9]+");
             e.Handled = reg.IsMatch(e.Text);
+        }
+
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
