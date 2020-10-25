@@ -24,7 +24,6 @@ namespace Card_Creator
         public MainWindow()
         {
             InitializeComponent();
-            comboBox_01.ItemsSource = typeof(Colors).GetProperties();
         }
 
         private void ComboBox_01_SelectionChanged(object sender, SelectionChangedEventArgs e)

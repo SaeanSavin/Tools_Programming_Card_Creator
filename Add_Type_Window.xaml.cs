@@ -36,9 +36,6 @@ namespace Card_Creator
             e.Handled = reg.IsMatch(e.Text);
         }
 
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e){}
     }
 }

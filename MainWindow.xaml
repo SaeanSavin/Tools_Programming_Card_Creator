@@ -5,18 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Card_Creator"
         mc:Ignorable="d"
-        Title="Menu" Height="96" Width="400" ResizeMode="CanMinimize">
+        Title="Menu" Height="356" Width="458" ResizeMode="CanMinimize">
     <Grid>
-        <ComboBox x:Name="comboBox_01" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Width="160" SelectionChanged="ComboBox_01_SelectionChanged" Height="22" SelectedIndex="0">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2"/>
-                        <TextBlock Text="{Binding Name}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+        <ComboBox x:Name="comboBox_01" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Width="160" SelectionChanged="ComboBox_01_SelectionChanged" Height="22" SelectedIndex="0"></ComboBox>
         <Button x:Name="Create_Card_Button" Content="Create" HorizontalAlignment="Left" Margin="190,25,0,0" VerticalAlignment="Top" Width="80" Height="22" Click="Create_Card_Button_Click" Grid.ColumnSpan="2"/>
         <Button x:Name="Load_Card_Button" Content="Load" HorizontalAlignment="Left" Margin="285,25,0,0" VerticalAlignment="Top" Width="80" Height="22" Click="Load_Card_Button_Click"/>
         <Label x:Name="label" Content="Card:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="85" Height="26" Margin="5,0,0,0"/>
