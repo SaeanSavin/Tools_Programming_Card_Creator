@@ -15,7 +15,7 @@
         <Label x:Name="label1" Content="Type:" HorizontalAlignment="Left" Margin="185,5,0,0" VerticalAlignment="Top"/>
         <Button x:Name="add_type_button" Content="new type" HorizontalAlignment="Left" Margin="315,27,0,0" VerticalAlignment="Top" Width="71" Height="23" Click="Add_type_button_Click"/>
         <Button x:Name="button" Content="Generate random card" HorizontalAlignment="Left" Margin="465,328,0,0" VerticalAlignment="Top" Width="161" Height="43"/>
-        <Button Content="select image" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top" Width="121" Click="Button_Click"/>
+        <Button x:Name="Select_Image" Content="select image" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top" Width="121" Click="Button_Click"/>
         <Image HorizontalAlignment="Left" Height="121" Margin="10,80,0,0" VerticalAlignment="Top" Width="121" Source="https://cohenwoodworking.com/wp-content/uploads/2016/09/image-placeholder-500x500.jpg"/>
     </Grid>
 </Window>

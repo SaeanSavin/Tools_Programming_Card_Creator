@@ -19,6 +19,6 @@ namespace Card_Creator.Classes
 
         public Type Weakness { get; set; }
 
-        public Type Strength { get; set; }
+        
     }
 }

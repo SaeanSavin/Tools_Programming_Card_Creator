@@ -1,5 +1,4 @@
 ﻿using SQLite;
-using System.Runtime.InteropServices;
 
 namespace Card_Creator.Classes
 {
@@ -10,6 +9,8 @@ namespace Card_Creator.Classes
         public int ID { get; set; }
 
         public string name { get; set; }
+
+        public Type type { get; set; }
 
     }
 }
