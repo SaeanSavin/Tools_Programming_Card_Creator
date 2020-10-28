@@ -8,7 +8,7 @@ using SQLite;
 
 namespace Card_Creator.Classes
 {
-    public class Type
+    public class CardType
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
@@ -17,8 +17,6 @@ namespace Card_Creator.Classes
 
         public Color Color { get; set; }
 
-        public Type Weakness { get; set; }
-
-        
+        public CardType Weakness { get; set; }
     }
 }

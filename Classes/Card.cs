@@ -10,7 +10,7 @@ namespace Card_Creator.Classes
 
         public string name { get; set; }
 
-        public Type type { get; set; }
+        //public CardType type { get; set; }
 
     }
 }

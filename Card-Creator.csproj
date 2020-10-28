@@ -108,7 +108,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Card.cs" />
-    <Compile Include="Classes\Type.cs" />
+    <Compile Include="Classes\CardType.cs" />
     <Compile Include="Create_Card_Window.xaml.cs">
       <DependentUpon>Create_Card_Window.xaml</DependentUpon>
     </Compile>

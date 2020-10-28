@@ -27,7 +27,7 @@ namespace Card_Creator
         {
             InitializeComponent();
 
-            //ReadDataBase();
+            ReadDataBase();
 
         }
 
@@ -45,8 +45,6 @@ namespace Card_Creator
         {
             Create_Card_Window create_Card_Window = new Create_Card_Window();
             create_Card_Window.ShowDialog();
-
-            
         }
 
         void ReadDataBase()
