@@ -2,7 +2,6 @@
 
 namespace Card_Creator.Classes
 {
-    
     public class Card
     {
         [PrimaryKey, AutoIncrement]
@@ -11,6 +10,8 @@ namespace Card_Creator.Classes
         public string name { get; set; }
 
         //public CardType type { get; set; }
+
+        public int CardTypeID { get; set; }
 
     }
 }

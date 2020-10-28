@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Card_Creator"
         mc:Ignorable="d"
-        Title="Add Type" Height="221" Width="408" ResizeMode="NoResize">
+        Title="Add Type" Height="221" Width="408" ResizeMode="NoResize" Background="White">
     <Grid Margin="0,0,2,4">
         <Button x:Name="Type_Add_Button" Content="Add" HorizontalAlignment="Left" Margin="315,158,0,0" VerticalAlignment="Top" Width="75"/>
         <TextBox x:Name="name_textbox" HorizontalAlignment="Left" Height="23" Margin="10,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>

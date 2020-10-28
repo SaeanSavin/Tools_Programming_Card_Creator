@@ -27,7 +27,7 @@ namespace Card_Creator
         {
             InitializeComponent();
 
-            ReadDataBase();
+            ReadDatabase();
 
         }
 
@@ -47,10 +47,12 @@ namespace Card_Creator
             create_Card_Window.ShowDialog();
         }
 
-        void ReadDataBase()
+        void ReadDatabase()
         {
             using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.databasePath))
             {
+
+                connection.CreateTable<CardType>();
                 connection.CreateTable<Card>();
                 cards = connection.Table<Card>().ToList();
 
@@ -63,8 +65,6 @@ namespace Card_Creator
                     cards_box.ItemsSource = cards;
                 }
             }
-
         }
-
     }
 }
