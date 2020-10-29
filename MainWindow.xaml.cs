@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Card_Creator.Classes;
 using Card_Creator.Classes.Db;
+using Card_Creator.Properties;
 
 namespace Card_Creator
 {
@@ -28,8 +29,11 @@ namespace Card_Creator
         public MainWindow()
         {
             InitializeComponent();
+            System.Drawing.Color bgColor = Properties.Settings.Default.background;
+            System.Windows.Media.Color bgColorMedia = System.Windows.Media.Color.FromArgb(bgColor.A, bgColor.R, bgColor.G, bgColor.B);
+            this.Background = new SolidColorBrush(bgColorMedia);
 
-            using(CardContext context = new CardContext())
+            using (CardContext context = new CardContext())
             {
                 cards = context.Cards.ToList();
                 main_window_cards_box.ItemsSource = cards;
@@ -50,6 +54,12 @@ namespace Card_Creator
         {
             Create_Card_Window create_Card_Window = new Create_Card_Window();
             create_Card_Window.ShowDialog();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Settings_Window settings_Window = new Settings_Window();
+            settings_Window.ShowDialog();
         }
     }
 }
