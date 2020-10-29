@@ -15,8 +15,10 @@ namespace Card_Creator.Classes
 
         public string Name { get; set; }
 
-        public Color Color { get; set; }
+        public string Cardcolor { get; set; }
 
-        public CardType Weakness { get; set; }
+        //public CardType Weakness { get; set; }
+
+        //public CardType Resistance { get; set; }
     }
 }

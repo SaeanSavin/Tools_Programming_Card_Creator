@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="Add Type" Height="221" Width="408" ResizeMode="NoResize">
     <Grid Margin="0,0,2,4">
-        <Button x:Name="Type_Add_Button" Content="Add" HorizontalAlignment="Left" Margin="315,158,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="name_textbox" HorizontalAlignment="Left" Height="23" Margin="10,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+        <Button x:Name="Type_Add_Button" Content="Add" HorizontalAlignment="Left" Margin="315,158,0,0" VerticalAlignment="Top" Width="75" Click="Type_Add_Button_Click"/>
+        <TextBox x:Name="add_type_name_textbox" HorizontalAlignment="Left" Height="23" Margin="10,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
         <Label x:Name="Type_Name_Label" Content="Name:" HorizontalAlignment="Left" Margin="10,-1,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Type_Min_Stat_Label" Content="Strength:" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Type_Min_Stat_Label" Content="Resistance:" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top"/>
         <Label x:Name="Type_Max_Stat_Label" Content="Weakness:" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="color_combobox" HorizontalAlignment="Left" Margin="235,25,0,0" VerticalAlignment="Top" Width="120" Height="23" SelectionChanged="comboBox_SelectionChanged">
+        <ComboBox x:Name="add_type_color_combobox" HorizontalAlignment="Left" Margin="235,25,0,0" VerticalAlignment="Top" Width="120" Height="23" SelectionChanged="comboBox_SelectionChanged">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

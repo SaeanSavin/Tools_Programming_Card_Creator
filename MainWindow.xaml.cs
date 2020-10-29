@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Card_Creator.Classes;
+using Card_Creator.Classes.Db;
 
 namespace Card_Creator
 {
@@ -22,13 +24,16 @@ namespace Card_Creator
     public partial class MainWindow : Window
     {
         List<Card> cards;
-
+        
         public MainWindow()
         {
             InitializeComponent();
 
-            ReadDataBase();
-
+            using(CardContext context = new CardContext())
+            {
+                cards = context.Cards.ToList();
+                main_window_cards_box.ItemsSource = cards;
+            }
         }
 
         private void ComboBox_01_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -46,25 +51,5 @@ namespace Card_Creator
             Create_Card_Window create_Card_Window = new Create_Card_Window();
             create_Card_Window.ShowDialog();
         }
-
-        void ReadDataBase()
-        {
-            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.databasePath))
-            {
-                connection.CreateTable<Card>();
-                cards = connection.Table<Card>().ToList();
-
-            }
-
-            if(cards != null)
-            {
-                foreach (Card c in cards)
-                {
-                    cards_box.ItemsSource = cards;
-                }
-            }
-
-        }
-
     }
 }

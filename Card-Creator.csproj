@@ -223,6 +223,18 @@
     <Compile Include="Migrations\20201028203654_CreateCardCreator.designer.cs">
       <DependentUpon>20201028203654_CreateCardCreator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20201029150738_CreateCard-Andreas.cs" />
+    <Compile Include="Migrations\20201029150738_CreateCard-Andreas.designer.cs">
+      <DependentUpon>20201029150738_CreateCard-Andreas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20201029163750_UpdateCardInfo-Andreas.cs" />
+    <Compile Include="Migrations\20201029163750_UpdateCardInfo-Andreas.designer.cs">
+      <DependentUpon>20201029163750_UpdateCardInfo-Andreas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20201029173242_UpdateCardInfo_2-Andreas.cs" />
+    <Compile Include="Migrations\20201029173242_UpdateCardInfo_2-Andreas.designer.cs">
+      <DependentUpon>20201029173242_UpdateCardInfo_2-Andreas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CardContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
