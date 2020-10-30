@@ -24,19 +24,11 @@ namespace Card_Creator
 
     public partial class MainWindow : Window
     {
-        List<Card> cards;
         
         public MainWindow()
         {
             InitializeComponent();
             UpdateSettings.UpdateDarkMode(this);
-
-
-            using (CardContext context = new CardContext())
-            {
-                cards = context.Cards.ToList();
-                main_window_cards_box.ItemsSource = cards;
-            }
         }
 
         private void ComboBox_01_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -61,5 +53,9 @@ namespace Card_Creator
             settings_Window.ShowDialog();
         }
 
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

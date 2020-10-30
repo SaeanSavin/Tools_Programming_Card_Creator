@@ -6,11 +6,33 @@
         xmlns:local="clr-namespace:Card_Creator"
         mc:Ignorable="d"
         Title="Menu" Height="356" Width="458" ResizeMode="CanMinimize">
+
+
     <Grid Margin="0,0,4,1">
-        <ComboBox x:Name="main_window_cards_box" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Width="160" SelectionChanged="ComboBox_01_SelectionChanged" Height="22" SelectedIndex="0"></ComboBox>
-        <Button x:Name="Create_Card_Button" Content="Create" HorizontalAlignment="Left" Margin="190,25,0,0" VerticalAlignment="Top" Width="80" Height="22" Click="Create_Card_Button_Click" Grid.ColumnSpan="2"/>
-        <Button x:Name="Load_Card_Button" Content="Load" HorizontalAlignment="Left" Margin="285,25,0,0" VerticalAlignment="Top" Width="80" Height="22" Click="Load_Card_Button_Click"/>
-        <Label x:Name="label" Content="Card:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="85" Height="26" Margin="5,0,0,0"/>
-        <Button Content="Settings" HorizontalAlignment="Left" Margin="10,290,0,0" VerticalAlignment="Top" Width="75" Click="Settings_Button_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="103*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="203*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Margin="0,0,-4,80" Grid.ColumnSpan="2" RenderTransformOrigin="0.487,2.152">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Card">
+                    <MenuItem Header="New card" Click="Create_Card_Button_Click" />
+                    <MenuItem Header="Edit card" Click="Load_Card_Button_Click"/>
+                    <MenuItem Header="Save" />
+                </MenuItem>
+                <MenuItem Header="External">
+                    <MenuItem Header="Import from JSON" />
+                    <MenuItem Header="Export from JSON" />
+                    <MenuItem Header="Save" />
+                </MenuItem>
+            </Menu>
+            
+        </DockPanel>
+        <Button Content="Settings" HorizontalAlignment="Left" Margin="10,167,0,0" VerticalAlignment="Top" Width="75" Click="Settings_Button_Click" Grid.Row="2"/>
     </Grid>
 </Window>
