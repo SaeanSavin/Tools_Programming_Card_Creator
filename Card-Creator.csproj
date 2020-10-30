@@ -200,9 +200,6 @@
     <Compile Include="Migrations\20201030104716_UpdateDbFelixStationary.designer.cs">
       <DependentUpon>20201030104716_UpdateDbFelixStationary.cs</DependentUpon>
     </Compile>
-    <Compile Include="Settings_Window.xaml.cs">
-      <DependentUpon>Settings_Window.xaml</DependentUpon>
-    </Compile>
     <Page Include="Add_Type_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -229,10 +226,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Settings_Window.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Migrations\20201028203654_CreateCardCreator.cs" />

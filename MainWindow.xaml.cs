@@ -28,7 +28,13 @@ namespace Card_Creator
         public MainWindow()
         {
             InitializeComponent();
+            
+            
             UpdateSettings.UpdateDarkMode(this);
+            if (Properties.Settings.Default.darkmode)
+            {
+                darkMode.IsChecked = true;
+            }
         }
 
         private void ComboBox_01_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -47,15 +53,32 @@ namespace Card_Creator
             create_Card_Window.ShowDialog();
         }
 
-        private void Settings_Button_Click(object sender, RoutedEventArgs e)
-        {
-            Settings_Window settings_Window = new Settings_Window();
-            settings_Window.ShowDialog();
-        }
-
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void darkMode_Checked(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.darkmode = true;
+            Properties.Settings.Default.Save();
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                window.Background = new SolidColorBrush(Colors.Gray);
+            }
+
+        }
+
+        public void darkMode_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.darkmode = false;
+            Properties.Settings.Default.Save();
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                window.Background = new SolidColorBrush(Colors.White);
+            }
         }
     }
 }

@@ -19,20 +19,25 @@
             <RowDefinition Height="203*"/>
         </Grid.RowDefinitions>
         <DockPanel Margin="0,0,-4,80" Grid.ColumnSpan="2" RenderTransformOrigin="0.487,2.152">
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="Card">
+            <Menu Width="Auto" Height="22"  DockPanel.Dock="Top">
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <DockPanel HorizontalAlignment="Stretch"/>
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
+                <MenuItem Header="Card">
                     <MenuItem Header="New card" Click="Create_Card_Button_Click" />
                     <MenuItem Header="Edit card" Click="Load_Card_Button_Click"/>
-                    <MenuItem Header="Save" />
                 </MenuItem>
                 <MenuItem Header="External">
                     <MenuItem Header="Import from JSON" />
                     <MenuItem Header="Export from JSON" />
-                    <MenuItem Header="Save" />
+                </MenuItem>
+                <MenuItem Header="Settings" HorizontalAlignment="Right" Width="73">
+                    <MenuItem Header="Dark Mode" Name="darkMode" IsCheckable="True" Checked="darkMode_Checked" Unchecked="darkMode_Unchecked"/>
                 </MenuItem>
             </Menu>
             
         </DockPanel>
-        <Button Content="Settings" HorizontalAlignment="Left" Margin="10,167,0,0" VerticalAlignment="Top" Width="75" Click="Settings_Button_Click" Grid.Row="2"/>
     </Grid>
 </Window>
