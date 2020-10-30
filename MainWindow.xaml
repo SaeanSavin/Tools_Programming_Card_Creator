@@ -30,14 +30,14 @@
                     <MenuItem Header="Edit card" Click="Load_Card_Button_Click"/>
                 </MenuItem>
                 <MenuItem Header="External">
-                    <MenuItem Header="Import from JSON" />
+                    <MenuItem Header="Import from JSON"/>
                     <MenuItem Header="Export from JSON" />
                 </MenuItem>
                 <MenuItem Header="Settings" HorizontalAlignment="Right" Width="73">
                     <MenuItem Header="Dark Mode" Name="darkMode" IsCheckable="True" Checked="darkMode_Checked" Unchecked="darkMode_Unchecked"/>
                 </MenuItem>
             </Menu>
-            
+
         </DockPanel>
     </Grid>
 </Window>
