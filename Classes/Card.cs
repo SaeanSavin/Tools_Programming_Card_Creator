@@ -1,7 +1,6 @@
 ﻿
 namespace Card_Creator.Classes
 {
-    
     public class Card
     {
         public int ID { get; set; }
@@ -9,6 +8,8 @@ namespace Card_Creator.Classes
         public string Name { get; set; }
 
         public CardType CardType { get; set; }
+
+        public int CardTypeID { get; set; }
 
     }
 }
