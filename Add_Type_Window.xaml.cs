@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Card_Creator.Classes;
 using Card_Creator.Classes.Db;
-using Card_Creator.Migrations;
+
 
 namespace Card_Creator
 {
@@ -24,6 +24,7 @@ namespace Card_Creator
     public partial class Add_Type_Window : Window
     {
         CardType currentType;
+        bool editType = false;
 
         public Add_Type_Window(bool editMode, CardType type)
         {
@@ -34,6 +35,7 @@ namespace Card_Creator
 
             if(editMode)
             {
+                editType = true;
                 Type_Window.Title = "Edit type";
                 Type_Save_Button.Content = "Save";
                 delete_type_button.Visibility = Visibility.Visible;
@@ -43,7 +45,15 @@ namespace Card_Creator
             {
                 currentType = type;
                 type_name_textbox.Text = type.Name;
-                type_color_combobox.SelectedItem = type.Cardcolor; 
+                
+                foreach(var c in type_color_combobox.ItemsSource)
+                {
+                    if((c as PropertyInfo).Name == type.Cardcolor)
+                    {
+                        type_color_combobox.SelectedItem = c;
+                        break;
+                    }
+                }
             }
         }
 
@@ -65,18 +75,27 @@ namespace Card_Creator
         {
            using(CardContext context = new CardContext())
            {
-                CardType newType = new CardType()
+                if(editType)
                 {
-                    Name = type_name_textbox.Text,
-                    Cardcolor = (type_color_combobox.SelectedItem as PropertyInfo).Name
-                };
 
-                context.CardTypes.Add(newType);
-                context.SaveChanges();
+                    CardType updatedType = context.CardTypes.Find(currentType.ID);
+
+                    updatedType.Name = type_name_textbox.Text;
+                    updatedType.Cardcolor = (type_color_combobox.SelectedItem as PropertyInfo).Name;
+
+                    context.SaveChanges();
+                } else {
+                    CardType newType = new CardType()
+                    {
+                        Name = type_name_textbox.Text,
+                        Cardcolor = (type_color_combobox.SelectedItem as PropertyInfo).Name
+                    };
+
+                    context.CardTypes.Add(newType);
+                    context.SaveChanges();
+                }
            }
-
            Close();
-
         }
 
         private void Cancel_button_Click(object sender, RoutedEventArgs e)
@@ -88,7 +107,6 @@ namespace Card_Creator
         {
             using(CardContext context = new CardContext())
             {
-                //CardType tmpType = context.CardTypes.Where()
                 context.CardTypes.Remove(context.CardTypes.Find(currentType.ID));
                 context.SaveChanges();
             }
