@@ -28,6 +28,8 @@ namespace Card_Creator
         public Add_Type_Window(bool editMode, CardType type)
         {
             InitializeComponent();
+            UpdateSettings.UpdateDarkMode(this);
+
             type_color_combobox.ItemsSource = typeof(Colors).GetProperties();
 
             if(editMode)
