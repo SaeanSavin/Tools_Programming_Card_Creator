@@ -1,0 +1,18 @@
+{
+  "Name": "Fireman",
+  "IMG": "./images/Fireman.jpg",
+  "Type": "Fire",
+  "HP": "100",
+  "Attacks": [
+    {
+      "name": "BONK",
+      "damage": 100,
+      "type": "Fire"
+    },
+    {
+      "name": "Yeet",
+      "damage": 1000,
+      "type": "Water"
+    }
+  ]
+}
