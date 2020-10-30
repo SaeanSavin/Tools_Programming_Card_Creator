@@ -29,10 +29,8 @@ namespace Card_Creator
         public MainWindow()
         {
             InitializeComponent();
+            UpdateSettings.UpdateDarkMode(this);
 
-            System.Drawing.Color bgColor = Properties.Settings.Default.background;
-            Color bgColorMedia = Color.FromArgb(bgColor.A, bgColor.R, bgColor.G, bgColor.B);
-            Background = new SolidColorBrush(bgColorMedia);
 
             using (CardContext context = new CardContext())
             {
@@ -57,10 +55,11 @@ namespace Card_Creator
             create_Card_Window.ShowDialog();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Settings_Button_Click(object sender, RoutedEventArgs e)
         {
             Settings_Window settings_Window = new Settings_Window();
             settings_Window.ShowDialog();
         }
+
     }
 }

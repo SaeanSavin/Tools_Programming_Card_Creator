@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Card_Creator.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -20,21 +21,35 @@ namespace Card_Creator
         public Settings_Window()
         {
             InitializeComponent();
-            add_type_color_combobox.ItemsSource = typeof(Colors).GetProperties();
-        }
+            UpdateSettings.UpdateDarkMode(this);
 
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Color selectedColor = (Color)(add_type_color_combobox.SelectedItem as PropertyInfo).GetValue(null, null);
-            this.Background = new SolidColorBrush(selectedColor);
-            System.Drawing.Color drawColor = System.Drawing.Color.FromArgb(selectedColor.A, selectedColor.R, selectedColor.G, selectedColor.B);
-            Properties.Settings.Default.background = drawColor;
-            Properties.Settings.Default.Save();
+            if (Properties.Settings.Default.darkmode)
+            {
+                darkMode.IsChecked = true;
+            }
         }
 
         private void darkMode_Checked(object sender, RoutedEventArgs e)
         {
+            Properties.Settings.Default.darkmode = true;
+            Properties.Settings.Default.Save();
 
+            foreach (Window window in Application.Current.Windows)
+            {
+                window.Background = new SolidColorBrush(Colors.Gray);
+            }
+
+        }
+
+        public void darkMode_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.darkmode = false;
+            Properties.Settings.Default.Save();
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                window.Background = new SolidColorBrush(Colors.White);
+            }
         }
     }
 }

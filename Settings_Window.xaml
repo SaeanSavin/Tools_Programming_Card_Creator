@@ -7,17 +7,6 @@
         mc:Ignorable="d"
         Title="Settings_Window" Height="202" Width="469">
     <Grid>
-        <ComboBox x:Name="add_type_color_combobox" HorizontalAlignment="Left" Margin="130,18,0,0" VerticalAlignment="Top" Width="170" Height="23" SelectionChanged="comboBox_SelectionChanged">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2"/>
-                        <TextBlock Text="{Binding Name}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <Label Content="Background color" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="darkMode" Content="Darkmode" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Checked="darkMode_Checked"/>
+        <CheckBox x:Name="darkMode" Content="Darkmode" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Checked="darkMode_Checked" Unchecked="darkMode_Unchecked"/>
     </Grid>
 </Window>

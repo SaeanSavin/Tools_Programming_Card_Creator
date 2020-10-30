@@ -11,6 +11,6 @@ namespace Card_Creator
 
     public partial class App : Application
     {
-        public static bool darkMode = false;
+
     }
 }

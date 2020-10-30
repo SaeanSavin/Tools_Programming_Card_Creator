@@ -191,9 +191,14 @@
     <Compile Include="Add_Type_Window.xaml.cs">
       <DependentUpon>Add_Type_Window.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\UpdateSettings.cs" />
     <Compile Include="Migrations\20201029064444_addedDBtoLatopFelix.cs" />
     <Compile Include="Migrations\20201029064444_addedDBtoLatopFelix.designer.cs">
       <DependentUpon>20201029064444_addedDBtoLatopFelix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20201030104716_UpdateDbFelixStationary.cs" />
+    <Compile Include="Migrations\20201030104716_UpdateDbFelixStationary.designer.cs">
+      <DependentUpon>20201030104716_UpdateDbFelixStationary.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings_Window.xaml.cs">
       <DependentUpon>Settings_Window.xaml</DependentUpon>

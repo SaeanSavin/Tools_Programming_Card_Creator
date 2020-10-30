@@ -1,4 +1,5 @@
-﻿using Card_Creator.Classes.Db;
+﻿using Card_Creator.Classes;
+using Card_Creator.Classes.Db;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,8 @@ namespace Card_Creator
         public Create_Card_Window()
         {
             InitializeComponent();
+
+            UpdateSettings.UpdateDarkMode(this);
 
             ReadDatabase();
 

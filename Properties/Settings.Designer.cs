@@ -25,13 +25,13 @@ namespace Card_Creator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("White")]
-        public global::System.Drawing.Color background {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool darkmode {
             get {
-                return ((global::System.Drawing.Color)(this["background"]));
+                return ((bool)(this["darkmode"]));
             }
             set {
-                this["background"] = value;
+                this["darkmode"] = value;
             }
         }
     }

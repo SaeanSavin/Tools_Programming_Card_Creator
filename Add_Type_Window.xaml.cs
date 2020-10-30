@@ -24,6 +24,8 @@ namespace Card_Creator
         public Add_Type_Window()
         {
             InitializeComponent();
+            UpdateSettings.UpdateDarkMode(this);
+
             add_type_color_combobox.ItemsSource = typeof(Colors).GetProperties();
         }
 
