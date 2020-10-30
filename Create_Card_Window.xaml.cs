@@ -25,6 +25,11 @@ namespace Card_Creator
 
             ReadDatabase();
 
+            if(create_card_comboBox_type.ItemsSource != null)
+            {
+                create_card_comboBox_type.SelectedIndex = 0;
+            }
+
         }
 
         private void Add_type_button_Click(object sender, RoutedEventArgs e)

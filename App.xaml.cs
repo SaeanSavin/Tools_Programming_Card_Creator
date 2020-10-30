@@ -11,8 +11,6 @@ namespace Card_Creator
 
     public partial class App : Application
     {
-        public static string databaseName = "Cards.db";
-        static string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        public static string databasePath = System.IO.Path.Combine(folderPath, databaseName);
+        public static bool darkMode = false;
     }
 }

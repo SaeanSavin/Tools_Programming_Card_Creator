@@ -39,9 +39,9 @@ namespace Card_Creator
             e.Handled = reg.IsMatch(e.Text);
         }
 
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e){
-            Color selectedColor = (Color)(add_type_color_combobox.SelectedItem as PropertyInfo).GetValue(null, null);
-            this.Background = new SolidColorBrush(selectedColor);
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e){
+            //Color selectedColor = (Color)(add_type_color_combobox.SelectedItem as PropertyInfo).GetValue(null, null);
+            //this.Background = new SolidColorBrush(selectedColor);
         }
 
         private void Type_Add_Button_Click(object sender, RoutedEventArgs e)

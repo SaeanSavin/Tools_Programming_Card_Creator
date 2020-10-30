@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace Card_Creator
 {
-    /// <summary>
-    /// Interaction logic for Settings_Window.xaml
-    /// </summary>
     public partial class Settings_Window : Window
     {
         public Settings_Window()
@@ -33,6 +30,11 @@ namespace Card_Creator
             System.Drawing.Color drawColor = System.Drawing.Color.FromArgb(selectedColor.A, selectedColor.R, selectedColor.G, selectedColor.B);
             Properties.Settings.Default.background = drawColor;
             Properties.Settings.Default.Save();
+        }
+
+        private void darkMode_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

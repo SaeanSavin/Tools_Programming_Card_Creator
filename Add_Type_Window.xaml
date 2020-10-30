@@ -12,7 +12,7 @@
         <Label x:Name="Type_Name_Label" Content="Name:" HorizontalAlignment="Left" Margin="10,-1,0,0" VerticalAlignment="Top"/>
         <Label x:Name="Type_Min_Stat_Label" Content="Resistance:" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top"/>
         <Label x:Name="Type_Max_Stat_Label" Content="Weakness:" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="add_type_color_combobox" HorizontalAlignment="Left" Margin="235,25,0,0" VerticalAlignment="Top" Width="120" Height="23" SelectionChanged="comboBox_SelectionChanged">
+        <ComboBox x:Name="add_type_color_combobox" HorizontalAlignment="Left" Margin="235,25,0,0" VerticalAlignment="Top" Width="120" Height="23" SelectionChanged="ComboBox_SelectionChanged">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

@@ -29,9 +29,10 @@ namespace Card_Creator
         public MainWindow()
         {
             InitializeComponent();
+
             System.Drawing.Color bgColor = Properties.Settings.Default.background;
-            System.Windows.Media.Color bgColorMedia = System.Windows.Media.Color.FromArgb(bgColor.A, bgColor.R, bgColor.G, bgColor.B);
-            this.Background = new SolidColorBrush(bgColorMedia);
+            Color bgColorMedia = Color.FromArgb(bgColor.A, bgColor.R, bgColor.G, bgColor.B);
+            Background = new SolidColorBrush(bgColorMedia);
 
             using (CardContext context = new CardContext())
             {
