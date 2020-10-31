@@ -191,6 +191,7 @@
     <Compile Include="Add_Type_Window.xaml.cs">
       <DependentUpon>Add_Type_Window.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Attack.cs" />
     <Compile Include="Classes\UpdateSettings.cs" />
     <Compile Include="Migrations\20201029064444_addedDBtoLatopFelix.cs" />
     <Compile Include="Migrations\20201029064444_addedDBtoLatopFelix.designer.cs">

@@ -4,22 +4,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Card_Creator.UC"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid HorizontalAlignment="Left" Height="250" Margin="408,51,0,0" VerticalAlignment="Top" Width="175">
+             mc:Ignorable="d" Width="190" Height="275">
+    <Grid Margin="0,0,0,15">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0*"/>
+        </Grid.RowDefinitions>
+        <Grid HorizontalAlignment="Left" Height="250" Margin="10,8,0,0" VerticalAlignment="Top" Width="175">
             <Rectangle Name="bgColor" Height="250" Width="175" Fill="LightYellow"/>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="250"  VerticalAlignment="Top" Width="175">
             </Border>
             <Border Name="borderColor" BorderBrush="Yellow" BorderThickness="5" HorizontalAlignment="Left" Height="248"  VerticalAlignment="Top" Width="173" Margin="1,1,0,0">
             </Border>
-            <Label Name="name" Content="Pikachu" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="70"/>
-            <Label Name="hp" Content="HP: 100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="114,10,0,0"/>
+            <Label Name="name" Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="70"/>
+            <Label Name="hp" Content="HP" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="114,10,0,0"/>
             <Image Name="img" Source="https://i.redd.it/nw7viyk8jlg01.jpg" Margin="10,36,10,118"></Image>
             <Label Name="attack1" Content="Thunderbolt: 20DMG" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,137,0,0"/>
-            <Label Name="attack2" Content="Bonk: 1000DMG" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,163,0,0"/>
+            <Label Name="attack2" Content="Bonk: 1000DMG" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,168,0,0"/>
             <Label Name="type" Content="Type: Electric" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,214,0,0"/>
-
         </Grid>
     </Grid>
 </UserControl>

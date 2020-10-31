@@ -3,6 +3,7 @@ using Card_Creator.Classes.Db;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Documents.DocumentStructures;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -39,7 +41,6 @@ namespace Card_Creator
             {
                 edit_type_button.IsEnabled = false;
             }
-
         }
 
         private void Add_type_button_Click(object sender, RoutedEventArgs e)
@@ -47,8 +48,6 @@ namespace Card_Creator
             Add_Type_Window add_Type_Window = new Add_Type_Window(false, null);
             add_Type_Window.ShowDialog();
             ReadDatabase();
-
-            Console.WriteLine("Current index: " + create_card_comboBox_type.SelectedIndex);
         }
 
         private void Edit_type_button_Click(object sender, RoutedEventArgs e)
@@ -76,6 +75,13 @@ namespace Card_Creator
             {
                 edit_type_button.IsEnabled = true;
             }
+
+            if(currentType != null)
+            {
+                Card_Preview.type.Content = "Type: " + currentType.Name;
+                Card_Preview.borderColor.BorderBrush = (Brush)new BrushConverter().ConvertFromString(currentType.Cardcolor);
+            }
+
 
         }
 
@@ -105,6 +111,11 @@ namespace Card_Creator
                     edit_type_button.IsEnabled = false;
                 }
             }
+        }
+
+        private void Name_textBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Card_Preview.name.Content = name_textBox.Text;
         }
     }
 }
