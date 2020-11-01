@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="Create_Card_Window" Height="562" Width="539">
     <Grid>
-        <TextBox x:Name="name_textBox" MaxLength="12" HorizontalAlignment="Left" Height="23" Margin="10,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TextChanged="Name_textBox_TextChanged">
+        <TextBox x:Name="name_textBox" MaxLength="12" HorizontalAlignment="Left" Height="23" Margin="10,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" PreviewTextInput="Name_textBox_PreviewTextInput" TextChanged="Name_textBox_TextChanged">
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -32,8 +32,8 @@
         <Button x:Name="Select_Image" Content="select image" HorizontalAlignment="Left" Margin="394,65,0,0" VerticalAlignment="Top" Width="121" Click="Select_Image_Click" Visibility="Hidden"/>
         <Image HorizontalAlignment="Left" Height="121" Margin="10,80,0,0" VerticalAlignment="Top" Width="121" Source="https://cohenwoodworking.com/wp-content/uploads/2016/09/image-placeholder-500x500.jpg" Visibility="Hidden"/>
         <Button x:Name="edit_type_button" Content="Edit" HorizontalAlignment="Left" Margin="440,27,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Edit_type_button_Click"/>
-        <uc:Card_UC x:Name="Card_Preview" Margin="323,247,18,9"/>
-        <Label x:Name="label1" Content="Preview:" HorizontalAlignment="Left" Margin="330,205,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <uc:Card_UC x:Name="Card_Preview" Margin="293,245,39,11"/>
+        <Label x:Name="label1" Content="Preview:" HorizontalAlignment="Left" Margin="300,203,0,0" VerticalAlignment="Top" FontSize="20"/>
         <TextBox x:Name="hp_textBox" PreviewTextInput="Hp_textBox_PreviewTextInput" MaxLength="3" HorizontalAlignment="Left" Height="23" Margin="10,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" TextChanged="Hp_textBox_TextChanged">
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
@@ -42,5 +42,6 @@
             </TextBox.Resources>
         </TextBox>
         <Label x:Name="hp_label" Content="HP:" HorizontalAlignment="Left" Margin="5,67,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="create_card_button" Content="Create Card" HorizontalAlignment="Left" Margin="10,470,0,0" VerticalAlignment="Top" Width="90" Height="51" Click="Create_card_button_Click"/>
     </Grid>
 </Window>

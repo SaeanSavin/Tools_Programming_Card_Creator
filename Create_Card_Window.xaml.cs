@@ -118,6 +118,12 @@ namespace Card_Creator
             Card_Preview.name.Content = name_textBox.Text;
         }
 
+        private void Name_textBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex reg = new Regex("[^A-Za-z]+");
+            e.Handled = reg.IsMatch(e.Text);
+        }
+
         private void Hp_textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             Card_Preview.hp.Content = "HP: " + hp_textBox.Text;
@@ -127,6 +133,11 @@ namespace Card_Creator
         {
             Regex reg = new Regex("[^0-9]+");
             e.Handled = reg.IsMatch(e.Text);
+        }
+
+        private void Create_card_button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
