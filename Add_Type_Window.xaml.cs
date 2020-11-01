@@ -57,13 +57,13 @@ namespace Card_Creator
             }
         }
 
-        private void MinStat_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void Type_min_stat_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex reg = new Regex("[^0-9]+");
             e.Handled = reg.IsMatch(e.Text);
         }
 
-        private void MaxStat_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void Type_max_stat_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex reg = new Regex("[^0-9]+");
             e.Handled = reg.IsMatch(e.Text);
@@ -111,6 +111,11 @@ namespace Card_Creator
                 context.SaveChanges();
             }
             Close();
+        }
+
+        private void type_max_stat_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
         }
     }
 }
