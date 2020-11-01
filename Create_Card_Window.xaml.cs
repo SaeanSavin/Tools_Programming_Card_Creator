@@ -1,7 +1,9 @@
 ﻿using Card_Creator.Classes;
 using Card_Creator.Classes.Db;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -14,8 +16,6 @@ using System.Windows.Documents;
 using System.Windows.Documents.DocumentStructures;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Card_Creator
 {
@@ -64,6 +64,16 @@ namespace Card_Creator
 
         private void Select_Image_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog openImage = new OpenFileDialog();
+
+            openImage.Filter = "Image files (*.png;*.jpg)|*.png;*.jpg";
+
+            if(openImage.ShowDialog() == true)
+            {
+                string fullpath = openImage.FileName;
+                ImageSourceConverter converter = new ImageSourceConverter();
+                Card_Preview.img.Source = (ImageSource)converter.ConvertFromString(fullpath);
+            }
 
         }
 
@@ -79,10 +89,8 @@ namespace Card_Creator
             if(currentType != null)
             {
                 Card_Preview.type.Content = "Type: " + currentType.Name;
-                Card_Preview.borderColor.BorderBrush = (Brush)new BrushConverter().ConvertFromString(currentType.Cardcolor);
+                Card_Preview.borderColor.BorderBrush = (System.Windows.Media.Brush)new BrushConverter().ConvertFromString(currentType.Cardcolor);
             }
-
-
         }
 
         void ReadDatabase()

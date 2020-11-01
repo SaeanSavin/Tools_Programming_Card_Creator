@@ -29,7 +29,7 @@
         <Label x:Name="type_label" Content="Type:" HorizontalAlignment="Left" Margin="185,5,0,0" VerticalAlignment="Top"/>
         <Button x:Name="add_type_button" Content="New" HorizontalAlignment="Left" Margin="364,27,0,0" VerticalAlignment="Top" Width="71" Height="23" Click="Add_type_button_Click"/>
         <Button x:Name="generate_card_button" Content="Generate random card" HorizontalAlignment="Left" Margin="465,328,0,0" VerticalAlignment="Top" Width="161" Height="43" Click="Generate_card_button_Click" IsEnabled="False" Visibility="Hidden"/>
-        <Button x:Name="Select_Image" Content="select image" HorizontalAlignment="Left" Margin="394,65,0,0" VerticalAlignment="Top" Width="121" Click="Select_Image_Click" Visibility="Hidden"/>
+        <Button x:Name="Select_Image" Content="select image" HorizontalAlignment="Left" Margin="10,245,0,0" VerticalAlignment="Top" Width="121" Click="Select_Image_Click"/>
         <Image HorizontalAlignment="Left" Height="121" Margin="10,80,0,0" VerticalAlignment="Top" Width="121" Source="https://cohenwoodworking.com/wp-content/uploads/2016/09/image-placeholder-500x500.jpg" Visibility="Hidden"/>
         <Button x:Name="edit_type_button" Content="Edit" HorizontalAlignment="Left" Margin="440,27,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Edit_type_button_Click"/>
         <uc:Card_UC x:Name="Card_Preview" Margin="293,245,39,11"/>
