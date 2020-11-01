@@ -25,13 +25,19 @@ namespace Card_Creator
         CardType currentType;
         List<CardType> cardTypes;
 
-        public Create_Card_Window()
+        Card currentCard;
+        bool editCard;
+
+        public Create_Card_Window(bool editCard, Card card)
         {
             InitializeComponent();
 
             UpdateSettings.UpdateDarkMode(this);
 
             ReadDatabase();
+
+            this.editCard = editCard;
+            this.currentCard = card;
 
             if(cardTypes.Count > 0)
             {
@@ -40,6 +46,27 @@ namespace Card_Creator
             else
             {
                 edit_type_button.IsEnabled = false;
+            }
+
+            if (editCard)
+            {
+                Create_Window.Title = "Edit card";
+                create_card_button.Content = "Save";
+                //delete_card_button.Visibility = Visibility.Visible; //TODO
+            }
+
+            if (card != null)
+            {
+                name_textBox.Text = card.Name;
+
+                CardType type;
+
+                using (var context = new CardContext())
+                {
+                    type = context.CardTypes.Single(a => a.ID == card.CardTypeID);
+                }
+
+                create_card_comboBox_type.SelectedItem = type;
             }
         }
 
@@ -145,7 +172,31 @@ namespace Card_Creator
 
         private void Create_card_button_Click(object sender, RoutedEventArgs e)
         {
+            using (CardContext context = new CardContext())
+            {
+                if (editCard)
+                {
 
+                    Card updatedCard = context.Cards.Find(currentCard.ID);
+
+                    updatedCard.Name = name_textBox.Text;
+                    updatedCard.CardTypeID = ((CardType)create_card_comboBox_type.SelectedItem).ID;
+
+                    context.SaveChanges();
+                }
+                else
+                {
+                    Card newCard = new Card()
+                    {
+                        Name = name_textBox.Text,
+                        CardTypeID = ((CardType)create_card_comboBox_type.SelectedItem).ID
+                };
+
+                    context.Cards.Add(newCard);
+                    context.SaveChanges();
+                }
+            }
+            Close();
         }
     }
 }

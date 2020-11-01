@@ -44,12 +44,14 @@ namespace Card_Creator
 
         private void Load_Card_Button_Click(object sender, RoutedEventArgs e)
         {
-    
+            //Create_Card_Window create_Card_Window = new Create_Card_Window(true, );
+            Load_Card_Window load_Card_Window = new Load_Card_Window();
+            load_Card_Window.ShowDialog();
         }
 
         private void Create_Card_Button_Click(object sender, RoutedEventArgs e)
         {
-            Create_Card_Window create_Card_Window = new Create_Card_Window();
+            Create_Card_Window create_Card_Window = new Create_Card_Window(false, null);
             create_Card_Window.ShowDialog();
         }
 

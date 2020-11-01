@@ -7,9 +7,11 @@ namespace Card_Creator.Classes
 
         public string Name { get; set; }
 
-        public CardType CardType { get; set; }
-
         public int CardTypeID { get; set; }
 
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
