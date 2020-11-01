@@ -7,6 +7,8 @@ namespace Card_Creator.Classes
 
         public string Name { get; set; }
 
+        public int HP { get; set; }
+
         public int CardTypeID { get; set; }
 
         public override string ToString()

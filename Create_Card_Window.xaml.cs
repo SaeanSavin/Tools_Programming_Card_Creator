@@ -37,7 +37,7 @@ namespace Card_Creator
             ReadDatabase();
 
             this.editCard = editCard;
-            this.currentCard = card;
+            currentCard = card;
 
             if(cardTypes.Count > 0)
             {
@@ -57,6 +57,8 @@ namespace Card_Creator
 
             if (card != null)
             {
+
+                /*
                 name_textBox.Text = card.Name;
 
                 CardType type;
@@ -67,6 +69,12 @@ namespace Card_Creator
                 }
 
                 create_card_comboBox_type.SelectedItem = type;
+                */
+
+                name_textBox.Text = card.Name;
+
+                hp_textBox.Text = card.HP.ToString();
+
             }
         }
 
@@ -91,11 +99,12 @@ namespace Card_Creator
 
         private void Select_Image_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openImage = new OpenFileDialog();
+            OpenFileDialog openImage = new OpenFileDialog
+            {
+                Filter = "Image files (*.png;*.jpg)|*.png;*.jpg"
+            };
 
-            openImage.Filter = "Image files (*.png;*.jpg)|*.png;*.jpg";
-
-            if(openImage.ShowDialog() == true)
+            if (openImage.ShowDialog() == true)
             {
                 string fullpath = openImage.FileName;
                 ImageSourceConverter converter = new ImageSourceConverter();
@@ -181,6 +190,7 @@ namespace Card_Creator
 
                     updatedCard.Name = name_textBox.Text;
                     updatedCard.CardTypeID = ((CardType)create_card_comboBox_type.SelectedItem).ID;
+                    updatedCard.HP = int.Parse(hp_textBox.Text);
 
                     context.SaveChanges();
                 }

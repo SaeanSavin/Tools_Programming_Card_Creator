@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace Card_Creator
 {
-    /// <summary>
-    /// Interaction logic for Load_Card_Window.xaml
-    /// </summary>
     public partial class Load_Card_Window : Window
     {
         Card currentCard;
@@ -37,6 +34,7 @@ namespace Card_Creator
         {
             Create_Card_Window create_Card_Window = new Create_Card_Window(true, currentCard);
             create_Card_Window.ShowDialog();
+            ReadDatabase();
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

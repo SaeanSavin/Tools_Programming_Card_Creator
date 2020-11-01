@@ -16,5 +16,7 @@ namespace Card_Creator.Classes
 
         public int Damage { get; set; }
 
+        public int CardTypeID { get; set; }
+
     }
 }
