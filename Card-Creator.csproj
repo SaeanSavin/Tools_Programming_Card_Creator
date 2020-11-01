@@ -201,6 +201,10 @@
     <Compile Include="Migrations\20201030104716_UpdateDbFelixStationary.designer.cs">
       <DependentUpon>20201030104716_UpdateDbFelixStationary.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20201101035017_AddAttacks-Andreas.cs" />
+    <Compile Include="Migrations\20201101035017_AddAttacks-Andreas.designer.cs">
+      <DependentUpon>20201101035017_AddAttacks-Andreas.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC\Card_UC.xaml.cs">
       <DependentUpon>Card_UC.xaml</DependentUpon>
     </Compile>

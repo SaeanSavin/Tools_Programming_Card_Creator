@@ -14,6 +14,8 @@ namespace Card_Creator.Classes.Db
 
         public DbSet<CardType> CardTypes { get; set; }
 
+        public DbSet<Attack> Attacks { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
