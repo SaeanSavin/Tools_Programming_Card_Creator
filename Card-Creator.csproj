@@ -193,6 +193,9 @@
     </Compile>
     <Compile Include="Classes\Attack.cs" />
     <Compile Include="Classes\UpdateSettings.cs" />
+    <Compile Include="Load_Card_Window.xaml.cs">
+      <DependentUpon>Load_Card_Window.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\20201029064444_addedDBtoLatopFelix.cs" />
     <Compile Include="Migrations\20201029064444_addedDBtoLatopFelix.designer.cs">
       <DependentUpon>20201029064444_addedDBtoLatopFelix.cs</DependentUpon>
@@ -213,6 +216,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Create_Card_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Load_Card_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

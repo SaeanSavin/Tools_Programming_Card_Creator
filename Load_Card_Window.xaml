@@ -1,0 +1,15 @@
+﻿<Window x:Class="Card_Creator.Load_Card_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Card_Creator"
+        mc:Ignorable="d"
+        Title="Load_Card_Window" Height="107.934" Width="315.129">
+    <Grid>
+        <ComboBox Name="card_select_comboBox" SelectionChanged="ComboBox_SelectionChanged" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Select card to load:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="224"/>
+        <Button Name="load_card_button" IsEnabled="False" Content="Load" HorizontalAlignment="Left" Margin="219,31,0,0" VerticalAlignment="Top" Width="78" Click="Button_Click" Height="22"/>
+
+    </Grid>
+</Window>
