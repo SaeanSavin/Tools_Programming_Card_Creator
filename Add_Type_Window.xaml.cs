@@ -112,10 +112,5 @@ namespace Card_Creator
             }
             Close();
         }
-
-        private void type_max_stat_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-
-        }
     }
 }

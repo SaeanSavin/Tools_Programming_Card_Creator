@@ -74,15 +74,5 @@ namespace Card_Creator
                 }
             }
         }
-
-        private void card_select_comboBox_SourceUpdated(object sender, DataTransferEventArgs e)
-        {
-
-        }
-
-        private void Card_UC_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
-        }
     }
 }

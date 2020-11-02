@@ -13,12 +13,10 @@ namespace Card_Creator.Classes
 
         //public string ImagePath { get; set; }
 
-        /*
         public override string ToString()
         {
             return Name;
         } 
-         */
 
     }
 }

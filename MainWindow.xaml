@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Card_Creator"
         xmlns:uc="clr-namespace:Card_Creator.UC"
         mc:Ignorable="d"
-        Title="Menu" Height="631" Width="748" ResizeMode="CanMinimize">
+        Title="Menu" Height="631" Width="748">
 
 
     <Grid Margin="0,0,4,-4">
@@ -34,7 +34,12 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <ListView x:Name="card_list_view" SelectionChanged="card_list_view_SelectionChanged" Height="400" Margin="10,60,10,-180" Grid.Row="1" Background="Gray">
+        <ListView x:Name="card_list_view" SelectionChanged="Card_list_view_SelectionChanged" MouseDoubleClick="Card_list_view_MouseDoubleClick" Margin="10,10,10,-200" Grid.Row="1" Background="Gray" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <uc:Card_UC Card="{Binding}"/>

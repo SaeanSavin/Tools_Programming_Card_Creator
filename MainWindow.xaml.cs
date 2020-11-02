@@ -24,21 +24,20 @@ namespace Card_Creator
 
     public partial class MainWindow : Window
     {
+
+        List<Card> cards;
         
         public MainWindow()
         {
             InitializeComponent();
-            
-            
+
+            ReadDatabase();
             
             UpdateSettings.UpdateDarkMode(this);
             if (Properties.Settings.Default.darkmode)
             {
                 darkMode.IsChecked = true;
             }
-
-
-
         }
 
         private void ComboBox_01_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -51,12 +50,14 @@ namespace Card_Creator
             //Create_Card_Window create_Card_Window = new Create_Card_Window(true, );
             Load_Card_Window load_Card_Window = new Load_Card_Window();
             load_Card_Window.ShowDialog();
+            ReadDatabase();
         }
 
         private void Create_Card_Button_Click(object sender, RoutedEventArgs e)
         {
             Create_Card_Window create_Card_Window = new Create_Card_Window(false, null);
             create_Card_Window.ShowDialog();
+            ReadDatabase();
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -90,12 +91,35 @@ namespace Card_Creator
 
         void ReadDatabase()
         {
+            using(CardContext context = new CardContext())
+            {
+                cards = context.Cards.ToList();
+
+                if(card_list_view != null)
+                {
+                    foreach(Card c in cards)
+                    {
+                        card_list_view.ItemsSource = cards;
+                    }
+                }
+            }
+        }
+
+        private void Card_list_view_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
         }
 
-        private void card_list_view_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Card_list_view_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            Card selectedCard = (Card)card_list_view.SelectedItem;
 
+            if(selectedCard != null)
+            {
+                Create_Card_Window editCard = new Create_Card_Window(true, selectedCard);
+                editCard.ShowDialog();
+                ReadDatabase();
+            }
         }
     }
 }
