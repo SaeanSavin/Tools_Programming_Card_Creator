@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Card_Creator"
         xmlns:uc="clr-namespace:Card_Creator.UC"
         mc:Ignorable="d"
-        Title="Menu" Height="631" Width="748">
+        Title="Menu" Height="631" MinHeight="600" Width="748" MinWidth="700">
 
 
     <Grid Margin="0,0,4,-4">

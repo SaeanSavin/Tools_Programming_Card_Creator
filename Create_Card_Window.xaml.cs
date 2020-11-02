@@ -203,7 +203,9 @@ namespace Card_Creator
                     Card newCard = new Card()
                     {
                         Name = name_textBox.Text,
-                        CardTypeID = ((CardType)create_card_comboBox_type.SelectedItem).ID
+                        CardTypeID = ((CardType)create_card_comboBox_type.SelectedItem).ID,
+                        HP = int.Parse(hp_textBox.Text)
+
                         //ImagePath = 
                         
                 };

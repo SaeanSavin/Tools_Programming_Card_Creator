@@ -1,4 +1,5 @@
 ﻿using Card_Creator.Classes;
+using Card_Creator.Classes.Db;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -38,8 +39,15 @@ namespace Card_Creator.UC
             {
                 //TODO
                 cardControl.name.Content = (e.NewValue as Card).Name;
-                cardControl.hp.Content = (e.NewValue as Card).HP;
+                cardControl.hp.Content = "HP: " + (e.NewValue as Card).HP;
                 
+                using(CardContext context = new CardContext())
+                {
+                    cardControl.type.Content = "Type: " + context.CardTypes.Find((e.NewValue as Card).CardTypeID).Name;
+                    string color = context.CardTypes.Find((e.NewValue as Card).CardTypeID).Cardcolor;
+                    cardControl.borderColor.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(color));
+                }
+
                 //Convert from string to Source
                 ImageSourceConverter converter = new ImageSourceConverter();
                 
