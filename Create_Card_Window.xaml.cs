@@ -75,6 +75,17 @@ namespace Card_Creator
 
                 hp_textBox.Text = card.HP.ToString();
 
+
+                foreach (CardType c in cardTypes)
+                {
+                    if(c.ID == card.CardTypeID)
+                    {
+                        currentType = c;
+                        break;
+                    }
+                }
+                
+                create_card_comboBox_type.SelectedItem = currentType;
             }
         }
 
@@ -135,19 +146,12 @@ namespace Card_Creator
             {
                 cardTypes = context.CardTypes.ToList();
 
-                if(cardTypes.Count > 0)
+                if (cardTypes.Count > 0)
                 {
                     create_card_comboBox_type.ItemsSource = cardTypes;
-
                     create_card_comboBox_type.SelectedIndex = 0;
-
-                    currentType = (CardType)create_card_comboBox_type.SelectedItem;
-
-                    if (currentType != null)
-                    {
-                        create_card_comboBox_type.SelectedIndex = currentType.ID;
-                    }
                 }
+
                 else
                 {
                     create_card_comboBox_type.SelectedIndex = -1;
