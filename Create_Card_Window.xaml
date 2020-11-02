@@ -32,7 +32,7 @@
         <Button x:Name="Select_Image" Content="select image" HorizontalAlignment="Left" Margin="10,245,0,0" VerticalAlignment="Top" Width="121" Click="Select_Image_Click"/>
         <Image HorizontalAlignment="Left" Height="121" Margin="10,80,0,0" VerticalAlignment="Top" Width="121" Source="https://cohenwoodworking.com/wp-content/uploads/2016/09/image-placeholder-500x500.jpg" Visibility="Hidden"/>
         <Button x:Name="edit_type_button" Content="Edit" HorizontalAlignment="Left" Margin="440,27,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Edit_type_button_Click"/>
-        <uc:Card_UC x:Name="Card_Preview" Margin="293,245,39,11"/>
+        <uc:Card_UC x:Name="Card_Preview" Margin="315,245,26,11"/>
         <Label x:Name="label1" Content="Preview:" HorizontalAlignment="Left" Margin="300,203,0,0" VerticalAlignment="Top" FontSize="20"/>
         <TextBox x:Name="hp_textBox" PreviewTextInput="Hp_textBox_PreviewTextInput" MaxLength="3" HorizontalAlignment="Left" Height="23" Margin="10,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" TextChanged="Hp_textBox_TextChanged">
             <TextBox.Resources>

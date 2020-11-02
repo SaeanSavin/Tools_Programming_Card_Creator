@@ -4,21 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Card_Creator"
+        xmlns:uc="clr-namespace:Card_Creator.UC"
         mc:Ignorable="d"
-        Title="Menu" Height="356" Width="458" ResizeMode="CanMinimize">
+        Title="Menu" Height="631" Width="748" ResizeMode="CanMinimize">
 
 
-    <Grid Margin="0,0,4,1">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
+    <Grid Margin="0,0,4,-4">
         <Grid.RowDefinitions>
-            <RowDefinition Height="103*"/>
-            <RowDefinition Height="20*"/>
-            <RowDefinition Height="203*"/>
+            <RowDefinition Height="56"/>
+            <RowDefinition Height="287"/>
         </Grid.RowDefinitions>
-        <DockPanel Margin="0,0,-4,80" Grid.ColumnSpan="2" RenderTransformOrigin="0.487,2.152">
+        <DockPanel Margin="0,0,-4,34" RenderTransformOrigin="0.487,2.152">
             <Menu Width="Auto" Height="22"  DockPanel.Dock="Top">
                 <Menu.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -37,7 +33,13 @@
                     <MenuItem Header="Dark Mode" Name="darkMode" IsCheckable="True" Checked="darkMode_Checked" Unchecked="darkMode_Unchecked"/>
                 </MenuItem>
             </Menu>
-
         </DockPanel>
+        <ListView x:Name="card_list_view" SelectionChanged="card_list_view_SelectionChanged" Height="400" Margin="10,60,10,-180" Grid.Row="1" Background="Gray">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <uc:Card_UC Card="{Binding}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>

@@ -30,11 +30,15 @@ namespace Card_Creator
             InitializeComponent();
             
             
+            
             UpdateSettings.UpdateDarkMode(this);
             if (Properties.Settings.Default.darkmode)
             {
                 darkMode.IsChecked = true;
             }
+
+
+
         }
 
         private void ComboBox_01_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -81,6 +85,17 @@ namespace Card_Creator
             {
                 window.Background = new SolidColorBrush(Colors.White);
             }
+        }
+
+
+        void ReadDatabase()
+        {
+
+        }
+
+        private void card_list_view_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

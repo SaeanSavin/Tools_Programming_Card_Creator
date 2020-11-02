@@ -200,6 +200,8 @@ namespace Card_Creator
                     {
                         Name = name_textBox.Text,
                         CardTypeID = ((CardType)create_card_comboBox_type.SelectedItem).ID
+                        //ImagePath = 
+                        
                 };
 
                     context.Cards.Add(newCard);
