@@ -30,7 +30,7 @@
                     <MenuItem Header="Export from JSON" />
                 </MenuItem>
                 <MenuItem Header="Settings" HorizontalAlignment="Right" Width="73">
-                    <MenuItem Header="Dark Mode" Name="darkMode" IsCheckable="True" Checked="darkMode_Checked" Unchecked="darkMode_Unchecked"/>
+                    <MenuItem Header="Dark Mode" Name="darkMode" IsCheckable="True" Checked="DarkMode_Checked" Unchecked="DarkMode_Unchecked"/>
                 </MenuItem>
             </Menu>
         </DockPanel>

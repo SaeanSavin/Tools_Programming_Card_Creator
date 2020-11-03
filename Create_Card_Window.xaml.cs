@@ -58,23 +58,12 @@ namespace Card_Creator
             if (card != null)
             {
 
-                /*
-                name_textBox.Text = card.Name;
-
-                CardType type;
-
-                using (var context = new CardContext())
-                {
-                    type = context.CardTypes.Single(a => a.ID == card.CardTypeID);
-                }
-
-                create_card_comboBox_type.SelectedItem = type;
-                */
-
                 name_textBox.Text = card.Name;
 
                 hp_textBox.Text = card.HP.ToString();
 
+                ImageSourceConverter converter = new ImageSourceConverter();
+                Card_Preview.img.Source = (ImageSource)converter.ConvertFromString(currentCard.ImagePath);
 
                 foreach (CardType c in cardTypes)
                 {
@@ -195,6 +184,7 @@ namespace Card_Creator
                     updatedCard.Name = name_textBox.Text;
                     updatedCard.CardTypeID = ((CardType)create_card_comboBox_type.SelectedItem).ID;
                     updatedCard.HP = int.Parse(hp_textBox.Text);
+                    updatedCard.ImagePath = Card_Preview.img.Source.ToString();
 
                     context.SaveChanges();
                 }
@@ -204,11 +194,9 @@ namespace Card_Creator
                     {
                         Name = name_textBox.Text,
                         CardTypeID = ((CardType)create_card_comboBox_type.SelectedItem).ID,
-                        HP = int.Parse(hp_textBox.Text)
-
-                        //ImagePath = 
-                        
-                };
+                        HP = int.Parse(hp_textBox.Text),
+                        ImagePath = Card_Preview.img.Source.ToString()
+                    };
 
                     context.Cards.Add(newCard);
                     context.SaveChanges();

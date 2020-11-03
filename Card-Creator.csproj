@@ -208,13 +208,9 @@
     <Compile Include="Migrations\20201101035017_AddAttacks-Andreas.designer.cs">
       <DependentUpon>20201101035017_AddAttacks-Andreas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20201101232400_UpdateCardTable-Andreas.cs" />
-    <Compile Include="Migrations\20201101232400_UpdateCardTable-Andreas.designer.cs">
-      <DependentUpon>20201101232400_UpdateCardTable-Andreas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20201102211037_UpdateTable-Andreas.cs" />
-    <Compile Include="Migrations\20201102211037_UpdateTable-Andreas.designer.cs">
-      <DependentUpon>20201102211037_UpdateTable-Andreas.cs</DependentUpon>
+    <Compile Include="Migrations\20201103044548_addedImagePath-Andreas.cs" />
+    <Compile Include="Migrations\20201103044548_addedImagePath-Andreas.designer.cs">
+      <DependentUpon>20201103044548_addedImagePath-Andreas.cs</DependentUpon>
     </Compile>
     <Compile Include="UC\Card_UC.xaml.cs">
       <DependentUpon>Card_UC.xaml</DependentUpon>

@@ -55,6 +55,9 @@ namespace Card_Creator.Migrations
                     b.Property<int>("HP")
                         .HasColumnType("int");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 

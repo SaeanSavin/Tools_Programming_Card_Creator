@@ -37,7 +37,6 @@ namespace Card_Creator.UC
 
             if(cardControl != null)
             {
-                //TODO
                 cardControl.name.Content = (e.NewValue as Card).Name;
                 cardControl.hp.Content = "HP: " + (e.NewValue as Card).HP;
                 
@@ -50,8 +49,7 @@ namespace Card_Creator.UC
 
                 //Convert from string to Source
                 ImageSourceConverter converter = new ImageSourceConverter();
-                
-
+                cardControl.img.Source = (ImageSource)converter.ConvertFromString((e.NewValue as Card).ImagePath);
             }
 
         }

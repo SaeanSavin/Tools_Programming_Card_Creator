@@ -37,7 +37,7 @@ namespace Card_Creator
             ReadDatabase();
             
             UpdateSettings.UpdateDarkMode(this);
-            if (Properties.Settings.Default.darkmode)
+            if (Settings.Default.darkmode)
             {
                 darkMode.IsChecked = true;
             }
@@ -50,7 +50,6 @@ namespace Card_Creator
 
         private void Load_Card_Button_Click(object sender, RoutedEventArgs e)
         {
-            //Create_Card_Window create_Card_Window = new Create_Card_Window(true, );
             Load_Card_Window load_Card_Window = new Load_Card_Window();
             load_Card_Window.ShowDialog();
             ReadDatabase();
@@ -63,10 +62,7 @@ namespace Card_Creator
             ReadDatabase();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        private void MenuItem_Click(object sender, RoutedEventArgs e){}
 
         private void Import_From_JSON(object sender, RoutedEventArgs e)
         {
@@ -93,22 +89,21 @@ namespace Card_Creator
             }
         }
 
-        private void darkMode_Checked(object sender, RoutedEventArgs e)
+        private void DarkMode_Checked(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.darkmode = true;
-            Properties.Settings.Default.Save();
+            Settings.Default.darkmode = true;
+            Settings.Default.Save();
 
             foreach (Window window in System.Windows.Application.Current.Windows)
             {
                 window.Background = new SolidColorBrush(Colors.Gray);
             }
-
         }
 
-        public void darkMode_Unchecked(object sender, RoutedEventArgs e)
+        public void DarkMode_Unchecked(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.darkmode = false;
-            Properties.Settings.Default.Save();
+            Settings.Default.darkmode = false;
+            Settings.Default.Save();
 
             foreach (Window window in System.Windows.Application.Current.Windows)
             {

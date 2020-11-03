@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Card_Creator.Migrations
 {
     [DbContext(typeof(CardContext))]
-    [Migration("20201101232400_UpdateCardTable-Andreas")]
-    partial class UpdateCardTableAndreas
+    [Migration("20201103044548_addedImagePath-Andreas")]
+    partial class addedImagePathAndreas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,6 +56,9 @@ namespace Card_Creator.Migrations
 
                     b.Property<int>("HP")
                         .HasColumnType("int");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
