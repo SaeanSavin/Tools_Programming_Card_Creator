@@ -1,0 +1,46 @@
+﻿<Window Name="CardEditor_Window" x:Class="Card_Creator.CardEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:uc="clr-namespace:Card_Creator.UC"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="CardEditor - Create mode" Height="567" Width="544">
+    <Grid>
+        <Label x:Name="CardCreator_Name_Label" Content="Name:" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Width="90"/>
+        <TextBox x:Name="CardEditor_Name_Textbox" MaxLength="12" HorizontalAlignment="Left" Height="23" Margin="10,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" PreviewTextInput="CardEditor_Name_Textbox_PreviewTextInput" TextChanged="CardEditor_Name_Textbox_TextChanged">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <Label x:Name="CardEditor_Type_Label" Content="Type:" HorizontalAlignment="Left" Margin="185,5,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="CardEditor_Type_Combobox" HorizontalAlignment="Left" Margin="190,27,0,0" VerticalAlignment="Top" Width="169" SelectionChanged="CardEditor_Type_Combobox_SelectionChanged" BorderBrush="#FF0A0A0A" SelectedIndex="0">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button x:Name="CardEditor_NewType_Button" Content="New" HorizontalAlignment="Left" Margin="364,27,0,0" VerticalAlignment="Top" Width="71" Height="23" Click="CardEditor_NewType_Button_Click"/>
+        <Button x:Name="CardEditor_EditType_Button" Content="Edit" HorizontalAlignment="Left" Margin="440,27,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="CardEditor_EditType_Button_Click"/>
+        <Button x:Name="CardEditor_GenerateCard_Button" Content="Generate random card" HorizontalAlignment="Left" Margin="465,328,0,0" VerticalAlignment="Top" Width="161" Height="43" Click="CardEditor_GenerateCard_Button_Click" IsEnabled="False" Visibility="Hidden"/>
+        
+        <Label x:Name="CardEditor_CardPreview_Label" Content="Preview:" HorizontalAlignment="Left" Margin="300,203,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Button x:Name="CardEditor_SelectImage_Button" Content="select image" HorizontalAlignment="Left" Margin="394,215,0,0" VerticalAlignment="Top" Width="121" Click="CardEditor_SelectImage_Button_Click"/>
+        <uc:CardControl x:Name="CardEditor_Card_Preview" Margin="315,245,26,11"/>
+  
+        <Label x:Name="CardCreator_HP_Label" Content="HP:" HorizontalAlignment="Left" Margin="5,67,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="CardEditor_HP_Textbox" PreviewTextInput="CardEditor_HP_Textbox_PreviewTextInput" MaxLength="3" HorizontalAlignment="Left" Height="23" Margin="10,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" TextChanged="CardEditor_HP_Textbox_TextChanged">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <Button x:Name="CardEditor_SaveCard_Button" Content="Create Card" HorizontalAlignment="Left" Margin="10,470,0,0" VerticalAlignment="Top" Width="90" Height="51" Click="CardEditor_CreateCard_Button_Click"/>
+    </Grid>
+</Window>

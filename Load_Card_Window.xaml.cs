@@ -32,7 +32,7 @@ namespace Card_Creator
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Create_Card_Window create_Card_Window = new Create_Card_Window(true, currentCard);
+            CardEditor create_Card_Window = new CardEditor(true, currentCard);
             create_Card_Window.ShowDialog();
             ReadDatabase();
         }

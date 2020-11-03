@@ -188,8 +188,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Add_Type_Window.xaml.cs">
-      <DependentUpon>Add_Type_Window.xaml</DependentUpon>
+    <Compile Include="TypeEditor.xaml.cs">
+      <DependentUpon>TypeEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Attack.cs" />
     <Compile Include="Classes\UpdateSettings.cs" />
@@ -212,14 +212,14 @@
     <Compile Include="Migrations\20201103044548_addedImagePath-Andreas.designer.cs">
       <DependentUpon>20201103044548_addedImagePath-Andreas.cs</DependentUpon>
     </Compile>
-    <Compile Include="UC\Card_UC.xaml.cs">
-      <DependentUpon>Card_UC.xaml</DependentUpon>
+    <Compile Include="UC\CardControl.xaml.cs">
+      <DependentUpon>CardControl.xaml</DependentUpon>
     </Compile>
-    <Page Include="Add_Type_Window.xaml">
+    <Page Include="TypeEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Create_Card_Window.xaml">
+    <Page Include="CardEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -238,14 +238,14 @@
     <Compile Include="Classes\Card.cs" />
     <Compile Include="Classes\CardType.cs" />
     <Compile Include="Classes\Db\CardContext.cs" />
-    <Compile Include="Create_Card_Window.xaml.cs">
-      <DependentUpon>Create_Card_Window.xaml</DependentUpon>
+    <Compile Include="CardEditor.xaml.cs">
+      <DependentUpon>CardEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UC\Card_UC.xaml">
+    <Page Include="UC\CardControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

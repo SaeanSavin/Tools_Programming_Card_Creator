@@ -1,25 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Runtime.Remoting.Contexts;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Card_Creator.Classes;
 using Card_Creator.Classes.Db;
 using Card_Creator.Properties;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 
 namespace Card_Creator
@@ -43,11 +32,7 @@ namespace Card_Creator
             }
         }
 
-        private void ComboBox_01_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
-
+        //Remove later?
         private void Load_Card_Button_Click(object sender, RoutedEventArgs e)
         {
             Load_Card_Window load_Card_Window = new Load_Card_Window();
@@ -55,16 +40,16 @@ namespace Card_Creator
             ReadDatabase();
         }
 
-        private void Create_Card_Button_Click(object sender, RoutedEventArgs e)
+        private void MainWindow_CreateCard_Button_Click(object sender, RoutedEventArgs e)
         {
-            Create_Card_Window create_Card_Window = new Create_Card_Window(false, null);
-            create_Card_Window.ShowDialog();
+            CardEditor cardEditor = new CardEditor(false, null);
+            cardEditor.ShowDialog();
             ReadDatabase();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e){}
+        private void MainWindow_MenuItem_Click(object sender, RoutedEventArgs e){}
 
-        private void Import_From_JSON(object sender, RoutedEventArgs e)
+        private void MainWindow_ImportFromJSON(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openJSON = new OpenFileDialog
             {
@@ -72,7 +57,7 @@ namespace Card_Creator
             };
             openJSON.CheckFileExists = true;
 
-            if (openJSON.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openJSON.ShowDialog() == true)
             {
                 if(openJSON.FileName.Trim() != string.Empty)
                 {
@@ -82,7 +67,7 @@ namespace Card_Creator
 
                         Card importedCard = JsonConvert.DeserializeObject<Card>(json);
 
-                        Create_Card_Window create_Card_Window = new Create_Card_Window(true, importedCard);
+                        CardEditor create_Card_Window = new CardEditor(true, importedCard);
                         create_Card_Window.ShowDialog();
                     }
                 }
@@ -94,7 +79,7 @@ namespace Card_Creator
             Settings.Default.darkmode = true;
             Settings.Default.Save();
 
-            foreach (Window window in System.Windows.Application.Current.Windows)
+            foreach (Window window in Application.Current.Windows)
             {
                 window.Background = new SolidColorBrush(Colors.Gray);
             }
@@ -105,42 +90,42 @@ namespace Card_Creator
             Settings.Default.darkmode = false;
             Settings.Default.Save();
 
-            foreach (Window window in System.Windows.Application.Current.Windows)
+            foreach (Window window in Application.Current.Windows)
             {
                 window.Background = new SolidColorBrush(Colors.White);
             }
         }
 
-        void ReadDatabase()
-        {
-            using(CardContext context = new CardContext())
-            {
-                cards = context.Cards.ToList();
-
-                if(card_list_view != null)
-                {
-                    foreach(Card c in cards)
-                    {
-                        card_list_view.ItemsSource = cards;
-                    }
-                }
-            }
-        }
-
-        private void Card_list_view_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Cards_ListView_Main_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
-        private void Card_list_view_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void Cards_ListView_Main_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Card selectedCard = (Card)card_list_view.SelectedItem;
+            Card selectedCard = (Card)Cards_ListView_Main.SelectedItem;
 
             if(selectedCard != null)
             {
-                Create_Card_Window editCard = new Create_Card_Window(true, selectedCard);
+                CardEditor editCard = new CardEditor(true, selectedCard);
                 editCard.ShowDialog();
                 ReadDatabase();
+            }
+        }
+
+        void ReadDatabase()
+        {
+            using (CardContext context = new CardContext())
+            {
+                cards = context.Cards.ToList();
+
+                if (Cards_ListView_Main != null)
+                {
+                    foreach (Card c in cards)
+                    {
+                        Cards_ListView_Main.ItemsSource = cards;
+                    }
+                }
             }
         }
     }

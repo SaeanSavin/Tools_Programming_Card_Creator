@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 
 namespace Card_Creator.UC
 {
-    public partial class Card_UC : UserControl
+    public partial class CardControl : UserControl
     {
 
         public Card Card
@@ -28,12 +28,12 @@ namespace Card_Creator.UC
         }
 
         public static readonly DependencyProperty CardProperty =
-            DependencyProperty.Register("Card", typeof(Card), typeof(Card_UC), new PropertyMetadata(null, SetData));
+            DependencyProperty.Register("Card", typeof(Card), typeof(CardControl), new PropertyMetadata(null, SetData));
 
 
         public static void SetData(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            Card_UC cardControl = d as Card_UC;
+            CardControl cardControl = d as CardControl;
 
             if(cardControl != null)
             {
@@ -54,7 +54,7 @@ namespace Card_Creator.UC
 
         }
 
-        public Card_UC()
+        public CardControl()
         {
             InitializeComponent();
         }

@@ -21,49 +21,49 @@ using Card_Creator.Classes.Db;
 namespace Card_Creator
 {
 
-    public partial class Add_Type_Window : Window
+    public partial class TypeEditor : Window
     {
-        CardType currentType;
-        bool editType = false;
+        private readonly CardType currentType;
+        private readonly bool editType = false;
 
-        public Add_Type_Window(bool editMode, CardType type)
+        public TypeEditor(bool editMode, CardType type)
         {
             InitializeComponent();
             UpdateSettings.UpdateDarkMode(this);
 
-            type_color_combobox.ItemsSource = typeof(Colors).GetProperties();
+            TypeEditor_Color_Combobox.ItemsSource = typeof(Colors).GetProperties();
 
             if(editMode)
             {
                 editType = true;
-                Type_Window.Title = "Edit type";
-                Type_Save_Button.Content = "Save";
-                delete_type_button.Visibility = Visibility.Visible;
+                TypeEditor_Window.Title = "TypeEditor - Edit mode";
+                TypeEditor_Save_Button.Content = "Save";
+                TypeEditor_Delete_Button.Visibility = Visibility.Visible;
             }
 
             if(type != null)
             {
                 currentType = type;
-                type_name_textbox.Text = type.Name;
+                TypeEditor_Name_Textbox.Text = type.Name;
                 
-                foreach(var c in type_color_combobox.ItemsSource)
+                foreach(var c in TypeEditor_Color_Combobox.ItemsSource)
                 {
                     if((c as PropertyInfo).Name == type.Cardcolor)
                     {
-                        type_color_combobox.SelectedItem = c;
+                        TypeEditor_Color_Combobox.SelectedItem = c;
                         break;
                     }
                 }
             }
         }
 
-        private void Type_min_stat_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void TypeEditor_min_stat_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex reg = new Regex("[^0-9]+");
             e.Handled = reg.IsMatch(e.Text);
         }
 
-        private void Type_max_stat_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void TypeEditor_max_stat_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex reg = new Regex("[^0-9]+");
             e.Handled = reg.IsMatch(e.Text);
@@ -80,15 +80,15 @@ namespace Card_Creator
 
                     CardType updatedType = context.CardTypes.Find(currentType.ID);
 
-                    updatedType.Name = type_name_textbox.Text;
-                    updatedType.Cardcolor = (type_color_combobox.SelectedItem as PropertyInfo).Name;
+                    updatedType.Name = TypeEditor_Name_Textbox.Text;
+                    updatedType.Cardcolor = (TypeEditor_Color_Combobox.SelectedItem as PropertyInfo).Name;
 
                     context.SaveChanges();
                 } else {
                     CardType newType = new CardType()
                     {
-                        Name = type_name_textbox.Text,
-                        Cardcolor = (type_color_combobox.SelectedItem as PropertyInfo).Name
+                        Name = TypeEditor_Name_Textbox.Text,
+                        Cardcolor = (TypeEditor_Color_Combobox.SelectedItem as PropertyInfo).Name
                     };
 
                     context.CardTypes.Add(newType);
@@ -98,12 +98,12 @@ namespace Card_Creator
            Close();
         }
 
-        private void Cancel_button_Click(object sender, RoutedEventArgs e)
+        private void TypeEditor_Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
-        private void Delete_type_button_Click(object sender, RoutedEventArgs e)
+        private void TypeEditor_Delete_Button_Click(object sender, RoutedEventArgs e)
         {
             using(CardContext context = new CardContext())
             {

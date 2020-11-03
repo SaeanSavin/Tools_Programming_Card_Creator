@@ -3,10 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Card_Creator"
         xmlns:uc="clr-namespace:Card_Creator.UC"
         mc:Ignorable="d"
-        Title="Menu" Height="631" MinHeight="600" Width="748" MinWidth="700">
+        Title="MainWindow-Cards" Height="631" MinHeight="600" Width="748" MinWidth="700">
 
 
     <Grid Margin="0,0,4,-4">
@@ -22,11 +21,11 @@
                     </ItemsPanelTemplate>
                 </Menu.ItemsPanel>
                 <MenuItem Header="Card">
-                    <MenuItem Header="New card" Click="Create_Card_Button_Click" />
+                    <MenuItem Header="New card" Click="MainWindow_CreateCard_Button_Click" />
                     <MenuItem Header="Edit card" Click="Load_Card_Button_Click"/>
                 </MenuItem>
                 <MenuItem Header="External">
-                    <MenuItem Header="Import from JSON" Click="Import_From_JSON"/>
+                    <MenuItem Header="Import from JSON" Click="MainWindow_ImportFromJSON"/>
                     <MenuItem Header="Export from JSON" />
                 </MenuItem>
                 <MenuItem Header="Settings" HorizontalAlignment="Right" Width="73">
@@ -34,7 +33,7 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <ListView x:Name="card_list_view" SelectionChanged="Card_list_view_SelectionChanged" MouseDoubleClick="Card_list_view_MouseDoubleClick" Margin="10,10,10,-200" Grid.Row="1" Background="Gray" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView x:Name="Cards_ListView_Main" SelectionChanged="Cards_ListView_Main_SelectionChanged" MouseDoubleClick="Cards_ListView_Main_MouseDoubleClick" Margin="10,10,10,-200" Grid.Row="1" Background="Gray" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel></WrapPanel>
@@ -42,7 +41,7 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <uc:Card_UC Card="{Binding}"/>
+                    <uc:CardControl Card="{Binding}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
