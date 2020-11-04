@@ -8,20 +8,24 @@
         Title="MainWindow-Cards" Height="631" MinHeight="600" Width="748" MinWidth="700">
 
 
-    <Grid Margin="0,0,4,-4">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="56"/>
-            <RowDefinition Height="287"/>
+            <RowDefinition Height="22"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <DockPanel Margin="0,0,-4,34" RenderTransformOrigin="0.487,2.152">
-            <Menu Width="Auto" Height="22"  DockPanel.Dock="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.ColumnSpan="2">
+            <Menu Width="auto" Height="auto" DockPanel.Dock="Top">
                 <Menu.ItemsPanel>
                     <ItemsPanelTemplate>
                         <DockPanel HorizontalAlignment="Stretch"/>
                     </ItemsPanelTemplate>
                 </Menu.ItemsPanel>
                 <MenuItem Header="Card">
-                    <MenuItem Header="New card" Click="MainWindow_CreateCard_Button_Click" />
+                    <MenuItem Header="New card" Click="MainWindow_CreateCard_Button_Click"/>
                     <MenuItem Header="Edit card" Click="Load_Card_Button_Click"/>
                 </MenuItem>
                 <MenuItem Header="External">
@@ -33,7 +37,7 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <ListView x:Name="Cards_ListView_Main" SelectionChanged="Cards_ListView_Main_SelectionChanged" MouseDoubleClick="Cards_ListView_Main_MouseDoubleClick" Margin="10,10,10,-200" Grid.Row="1" Background="Gray" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView x:Name="Cards_ListView_Main" SelectionChanged="Cards_ListView_Main_SelectionChanged" MouseDoubleClick="Cards_ListView_Main_MouseDoubleClick" Background="Gray" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel></WrapPanel>
@@ -45,5 +49,18 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Grid Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <TextBox Name="SearchBox" HorizontalAlignment="Left" Height="24" Margin="10,10,0,0" TextWrapping="NoWrap" Text="Search..." VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus"/>
+            <Label Content="Filter by:" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <ListBox HorizontalAlignment="Left" Height="238" Margin="10,41,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120">
+                <CheckBox Content="Name" Checked="CheckBox_Checked"/>
+                <CheckBox Content="Type"/>
+                <CheckBox Content="HP"/>
+            </ListBox>
+        </Grid>
     </Grid>
 </Window>

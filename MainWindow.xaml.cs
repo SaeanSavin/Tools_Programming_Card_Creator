@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -18,6 +19,7 @@ namespace Card_Creator
     {
 
         List<Card> cards;
+        Card currentCard;
         
         public MainWindow()
         {
@@ -102,7 +104,7 @@ namespace Card_Creator
 
         private void Cards_ListView_Main_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            currentCard = (Card)Cards_ListView_Main.SelectedItem;
         }
 
         private void Cards_ListView_Main_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -125,6 +127,37 @@ namespace Card_Creator
                 {
                     Cards_ListView_Main.ItemsSource = cards;
                 }
+            }
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(cards != null)
+            {
+                cards = cards.OrderBy(o=>o.Name).ToList();
+                //cards.Sort((x, y) => x.Name.CompareTo(y.Name));
+                refreshListView();
+            }
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SearchBox_GotFocus(object sender, EventArgs e)
+        {
+            if (SearchBox.Text == "Search...")
+            {
+                SearchBox.Text = "";
+            }
+        }
+
+        private void SearchBox_LostFocus(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(SearchBox.Text))
+            {
+                SearchBox.Text = "Search...";
             }
         }
     }
