@@ -28,11 +28,11 @@
         <Button x:Name="CardEditor_NewType_Button" Content="New" HorizontalAlignment="Left" Margin="364,27,0,0" VerticalAlignment="Top" Width="71" Height="23" Click="CardEditor_NewType_Button_Click"/>
         <Button x:Name="CardEditor_EditType_Button" Content="Edit" HorizontalAlignment="Left" Margin="440,27,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="CardEditor_EditType_Button_Click"/>
         <Button x:Name="CardEditor_GenerateCard_Button" Content="Generate random card" HorizontalAlignment="Left" Margin="465,328,0,0" VerticalAlignment="Top" Width="161" Height="43" Click="CardEditor_GenerateCard_Button_Click" IsEnabled="False" Visibility="Hidden"/>
-        
+
         <Label x:Name="CardEditor_CardPreview_Label" Content="Preview:" HorizontalAlignment="Left" Margin="300,203,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Button x:Name="CardEditor_SelectImage_Button" Content="select image" HorizontalAlignment="Left" Margin="394,215,0,0" VerticalAlignment="Top" Width="121" Click="CardEditor_SelectImage_Button_Click"/>
         <uc:CardControl x:Name="CardEditor_Card_Preview" Margin="315,245,26,11"/>
-  
+
         <Label x:Name="CardCreator_HP_Label" Content="HP:" HorizontalAlignment="Left" Margin="5,67,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="CardEditor_HP_Textbox" PreviewTextInput="CardEditor_HP_Textbox_PreviewTextInput" MaxLength="3" HorizontalAlignment="Left" Height="23" Margin="10,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" TextChanged="CardEditor_HP_Textbox_TextChanged">
             <TextBox.Resources>
@@ -42,5 +42,28 @@
             </TextBox.Resources>
         </TextBox>
         <Button x:Name="CardEditor_SaveCard_Button" Content="Create Card" HorizontalAlignment="Left" Margin="10,470,0,0" VerticalAlignment="Top" Width="90" Height="51" Click="CardEditor_CreateCard_Button_Click"/>
+
+        <Label x:Name="CardEditor_Attack1_Label" Content="Attack1:" HorizontalAlignment="Left" Margin="10,177,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="CardEditor_Attack1_Combobox" HorizontalAlignment="Left" Margin="10,203,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="CardEditor_Attack1_Combobox_SelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Label x:Name="CardEditor_Attack2_Label" Content="Attack2:" HorizontalAlignment="Left" Margin="10,234,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="CardEditor_Attack2_Combobox" HorizontalAlignment="Left" Margin="10,260,0,0" VerticalAlignment="Top" Width="150">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button x:Name="CardEditor_NewAttack_Button" Content="New" HorizontalAlignment="Left" Margin="10,313,0,0" VerticalAlignment="Top" Width="75" Click="CardEditor_NewAttack_Button_Click"/>
+        <Button x:Name="CardEditor_EditAttack_Button" Content="Edit" HorizontalAlignment="Left" Margin="95,313,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>

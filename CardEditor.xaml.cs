@@ -16,6 +16,7 @@ namespace Card_Creator
     {
         CardType currentType;
         List<CardType> cardTypes;
+        List<Attack> attacks;
 
         private readonly Card currentCard;
         private readonly bool editCard;
@@ -27,7 +28,9 @@ namespace Card_Creator
             UpdateSettings.UpdateDarkMode(this);
 
             cardTypes = ReadDatabase.getListOfCardTypes();
-            RefreshComboBox();
+            attacks = ReadDatabase.getListOfAttacks();
+            RefreshTypes();
+            RefreshAttacks();
 
             this.editCard = editCard;
             currentCard = card;
@@ -43,7 +46,7 @@ namespace Card_Creator
 
             if (editCard)
             {
-                CardEditor_Window.Title = "Edit card";
+                CardEditor_Window.Title = "CardEditor - Edit mode";
                 CardEditor_SaveCard_Button.Content = "Save";
                 //delete_card_button.Visibility = Visibility.Visible; //TODO
             }
@@ -76,7 +79,7 @@ namespace Card_Creator
             TypeEditor typeEditor = new TypeEditor(false, null);
             typeEditor.ShowDialog();
             cardTypes = ReadDatabase.getListOfCardTypes();
-            RefreshComboBox();
+            RefreshTypes();
         }
 
         private void CardEditor_EditType_Button_Click(object sender, RoutedEventArgs e)
@@ -84,7 +87,7 @@ namespace Card_Creator
             TypeEditor typeEditor = new TypeEditor(true, currentType);
             typeEditor.ShowDialog();
             cardTypes = ReadDatabase.getListOfCardTypes();
-            RefreshComboBox();
+            RefreshTypes();
         }
 
         private void CardEditor_GenerateCard_Button_Click(object sender, RoutedEventArgs e)
@@ -179,7 +182,7 @@ namespace Card_Creator
             Close();
         }
 
-        private void RefreshComboBox()
+        private void RefreshTypes()
         {
             if (cardTypes.Count > 0)
             {
@@ -193,6 +196,33 @@ namespace Card_Creator
                 CardEditor_Type_Combobox.ItemsSource = null;
                 CardEditor_EditType_Button.IsEnabled = false;
             }
+        }
+
+        private void RefreshAttacks()
+        {
+            if(attacks.Count > 0)
+            {
+                CardEditor_Attack1_Combobox.ItemsSource = attacks;
+                CardEditor_Attack2_Combobox.ItemsSource = attacks;
+
+                CardEditor_Attack1_Combobox.SelectedIndex = 0;
+                CardEditor_Attack2_Combobox.SelectedIndex = 0;
+
+            }
+        }
+
+
+        private void CardEditor_NewAttack_Button_Click(object sender, RoutedEventArgs e)
+        {
+            AttackEditor attackEditor = new AttackEditor();
+            attackEditor.ShowDialog();
+            attacks = ReadDatabase.getListOfAttacks();
+            RefreshAttacks();
+        }
+
+        private void CardEditor_Attack1_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

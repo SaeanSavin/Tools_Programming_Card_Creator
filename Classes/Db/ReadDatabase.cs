@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,14 @@ namespace Card_Creator.Classes.Db
             using (CardContext context = new CardContext())
             {
                 return context.CardTypes.ToList();
+            }
+        }
+
+        public static List<Attack> getListOfAttacks()
+        {
+            using(CardContext context = new CardContext())
+            {
+                return context.Attacks.ToList();
             }
         }
     }

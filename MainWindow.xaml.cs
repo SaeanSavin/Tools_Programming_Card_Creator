@@ -47,6 +47,7 @@ namespace Card_Creator
         private void MainWindow_CreateCard_Button_Click(object sender, RoutedEventArgs e)
         {
             CardEditor cardEditor = new CardEditor(false, null);
+            cardEditor.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             cardEditor.ShowDialog();
             cards = ReadDatabase.getListOfCards();
             refreshListView();
