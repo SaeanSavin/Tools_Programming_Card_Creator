@@ -117,7 +117,7 @@ namespace Card_Creator
             if(currentType != null)
             {
                 CardEditor_Card_Preview.type.Content = "Type: " + currentType.Name;
-                CardEditor_Card_Preview.borderColor.BorderBrush = (System.Windows.Media.Brush)new BrushConverter().ConvertFromString(currentType.Cardcolor);
+                CardEditor_Card_Preview.borderColor.BorderBrush = (Brush)new BrushConverter().ConvertFromString(currentType.Cardcolor);
             }
         }
 

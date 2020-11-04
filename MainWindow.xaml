@@ -26,7 +26,7 @@
                 </MenuItem>
                 <MenuItem Header="External">
                     <MenuItem Header="Import from JSON" Click="MainWindow_ImportFromJSON"/>
-                    <MenuItem Header="Export from JSON" />
+                    <MenuItem Header="Export from JSON" Click="MainWindow_ExportFromJSON"/>
                 </MenuItem>
                 <MenuItem Header="Settings" HorizontalAlignment="Right" Width="73">
                     <MenuItem Header="Dark Mode" Name="darkMode" IsCheckable="True" Checked="DarkMode_Checked" Unchecked="DarkMode_Unchecked"/>
