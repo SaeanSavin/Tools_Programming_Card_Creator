@@ -26,7 +26,8 @@ namespace Card_Creator
 
             UpdateSettings.UpdateDarkMode(this);
 
-            ReadDatabase();
+            cardTypes = ReadDatabase.getListOfCardTypes();
+            RefreshComboBox();
 
             this.editCard = editCard;
             currentCard = card;
@@ -74,14 +75,16 @@ namespace Card_Creator
         {
             TypeEditor typeEditor = new TypeEditor(false, null);
             typeEditor.ShowDialog();
-            ReadDatabase();
+            cardTypes = ReadDatabase.getListOfCardTypes();
+            RefreshComboBox();
         }
 
         private void CardEditor_EditType_Button_Click(object sender, RoutedEventArgs e)
         {
             TypeEditor typeEditor = new TypeEditor(true, currentType);
             typeEditor.ShowDialog();
-            ReadDatabase();
+            cardTypes = ReadDatabase.getListOfCardTypes();
+            RefreshComboBox();
         }
 
         private void CardEditor_GenerateCard_Button_Click(object sender, RoutedEventArgs e)
@@ -176,24 +179,19 @@ namespace Card_Creator
             Close();
         }
 
-        void ReadDatabase()
+        private void RefreshComboBox()
         {
-            using (CardContext context = new CardContext())
+            if (cardTypes.Count > 0)
             {
-                cardTypes = context.CardTypes.ToList();
+                CardEditor_Type_Combobox.ItemsSource = cardTypes;
+                CardEditor_Type_Combobox.SelectedIndex = 0;
+            }
 
-                if (cardTypes.Count > 0)
-                {
-                    CardEditor_Type_Combobox.ItemsSource = cardTypes;
-                    CardEditor_Type_Combobox.SelectedIndex = 0;
-                }
-
-                else
-                {
-                    CardEditor_Type_Combobox.SelectedIndex = -1;
-                    CardEditor_Type_Combobox.ItemsSource = null;
-                    CardEditor_EditType_Button.IsEnabled = false;
-                }
+            else
+            {
+                CardEditor_Type_Combobox.SelectedIndex = -1;
+                CardEditor_Type_Combobox.ItemsSource = null;
+                CardEditor_EditType_Button.IsEnabled = false;
             }
         }
     }
