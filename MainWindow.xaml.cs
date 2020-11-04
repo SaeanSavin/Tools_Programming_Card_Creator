@@ -24,8 +24,10 @@ namespace Card_Creator
         {
             InitializeComponent();
 
-            ReadDatabase();
-            
+            cards = ReadDatabase.getListOfCards();
+
+            refreshListView();
+
             UpdateSettings.UpdateDarkMode(this);
             if (Settings.Default.darkmode)
             {
@@ -38,14 +40,16 @@ namespace Card_Creator
         {
             Load_Card_Window load_Card_Window = new Load_Card_Window();
             load_Card_Window.ShowDialog();
-            ReadDatabase();
+            cards = ReadDatabase.getListOfCards();
+            refreshListView();
         }
 
         private void MainWindow_CreateCard_Button_Click(object sender, RoutedEventArgs e)
         {
             CardEditor cardEditor = new CardEditor(false, null);
             cardEditor.ShowDialog();
-            ReadDatabase();
+            cards = ReadDatabase.getListOfCards();
+            refreshListView();
         }
 
         private void MainWindow_MenuItem_Click(object sender, RoutedEventArgs e){}
@@ -125,22 +129,17 @@ namespace Card_Creator
             {
                 CardEditor editCard = new CardEditor(true, selectedCard);
                 editCard.ShowDialog();
-                ReadDatabase();
+                cards = ReadDatabase.getListOfCards();
             }
         }
 
-        void ReadDatabase()
+        private void refreshListView()
         {
-            using (CardContext context = new CardContext())
+            if (Cards_ListView_Main != null)
             {
-                cards = context.Cards.ToList();
-
-                if (Cards_ListView_Main != null)
+                foreach (Card c in cards)
                 {
-                    foreach (Card c in cards)
-                    {
-                        Cards_ListView_Main.ItemsSource = cards;
-                    }
+                    Cards_ListView_Main.ItemsSource = cards;
                 }
             }
         }

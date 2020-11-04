@@ -188,6 +188,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Db\ReadDatabase.cs" />
     <Compile Include="TypeEditor.xaml.cs">
       <DependentUpon>TypeEditor.xaml</DependentUpon>
     </Compile>

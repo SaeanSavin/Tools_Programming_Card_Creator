@@ -1,7 +1,9 @@
 ﻿using Card_Creator.Classes;
 using Card_Creator.Classes.Db;
+using Newtonsoft.Json.Bson;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +27,9 @@ namespace Card_Creator
         {
             InitializeComponent();
 
-            ReadDatabase();
+            cards = ReadDatabase.getListOfCards();
+
+            refreshComboBox();
 
             card_select_comboBox.ItemsSource = cards;
         }
@@ -34,7 +38,8 @@ namespace Card_Creator
         {
             CardEditor create_Card_Window = new CardEditor(true, currentCard);
             create_Card_Window.ShowDialog();
-            ReadDatabase();
+            cards = ReadDatabase.getListOfCards();
+            refreshComboBox();
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -47,31 +52,26 @@ namespace Card_Creator
             }
         }
 
-        void ReadDatabase()
+        private void refreshComboBox()
         {
-            using (CardContext context = new CardContext())
+            if (cards.Count > 0)
             {
-                cards = context.Cards.ToList();
+                card_select_comboBox.ItemsSource = cards;
 
-                if (cards.Count > 0)
+                card_select_comboBox.SelectedIndex = 0;
+
+                currentCard = (Card)card_select_comboBox.SelectedItem;
+
+                if (currentCard != null)
                 {
-                    card_select_comboBox.ItemsSource = cards;
-
-                    card_select_comboBox.SelectedIndex = 0;
-
-                    currentCard = (Card)card_select_comboBox.SelectedItem;
-
-                    if (currentCard != null)
-                    {
-                        card_select_comboBox.SelectedIndex = currentCard.ID;
-                    }
+                    card_select_comboBox.SelectedIndex = currentCard.ID;
                 }
-                else
-                {
-                    card_select_comboBox.SelectedIndex = -1;
-                    card_select_comboBox.ItemsSource = null;
-                    card_select_comboBox.IsEnabled = false;
-                }
+            }
+            else
+            {
+                card_select_comboBox.SelectedIndex = -1;
+                card_select_comboBox.ItemsSource = null;
+                card_select_comboBox.IsEnabled = false;
             }
         }
     }
