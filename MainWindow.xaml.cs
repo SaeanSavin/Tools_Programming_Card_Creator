@@ -80,6 +80,21 @@ namespace Card_Creator
             }
         }
 
+        private void MainWindow_ExportFromJSON(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveJSON = new SaveFileDialog();
+            saveJSON.Filter = "JSON file (*.JSON)|*.JSON";
+
+            
+            if(saveJSON.ShowDialog() == true)
+            {
+                string output = JsonConvert.SerializeObject(currentCard, Formatting.Indented);
+
+                File.WriteAllText(saveJSON.FileName, output);
+            }
+
+        }
+
         private void DarkMode_Checked(object sender, RoutedEventArgs e)
         {
             Settings.Default.darkmode = true;
