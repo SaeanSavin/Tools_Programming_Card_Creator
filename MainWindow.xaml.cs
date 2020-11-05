@@ -64,7 +64,7 @@ namespace Card_Creator
 
         private void MainWindow_CreateCard_Button_Click(object sender, RoutedEventArgs e)
         {
-            CardEditor cardEditor = new CardEditor(false, null);
+            CardEditor_Tab cardEditor = new CardEditor_Tab(false, null);
             cardEditor.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             cardEditor.ShowDialog();
             cards = ReadDatabase.getListOfCards();
@@ -146,9 +146,10 @@ namespace Card_Creator
 
             if(selectedCard != null)
             {
-                CardEditor editCard = new CardEditor(true, selectedCard);
+                CardEditor_Tab editCard = new CardEditor_Tab(true, selectedCard);
                 editCard.ShowDialog();
-                cards = ReadDatabase.getListOfCards();
+                cardsToView = ReadDatabase.getListOfCards();
+                refreshListView();
             }
         }
 
