@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -47,7 +48,8 @@ namespace Card_Creator
 
         private void MainWindow_CreateCard_Button_Click(object sender, RoutedEventArgs e)
         {
-            CardEditor cardEditor = new CardEditor(false, null);
+            //CardEditor cardEditor = new CardEditor(false, null);
+            CardEditor_Tab cardEditor = new CardEditor_Tab(false, null);
             cardEditor.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             cardEditor.ShowDialog();
             cards = ReadDatabase.getListOfCards();
@@ -129,9 +131,12 @@ namespace Card_Creator
 
             if(selectedCard != null)
             {
-                CardEditor editCard = new CardEditor(true, selectedCard);
+                //CardEditor editCard = new CardEditor(true, selectedCard);
+
+                CardEditor_Tab editCard = new CardEditor_Tab(true, selectedCard);
                 editCard.ShowDialog();
                 cards = ReadDatabase.getListOfCards();
+                refreshListView();
             }
         }
 

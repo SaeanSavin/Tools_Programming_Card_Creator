@@ -45,6 +45,13 @@ namespace Card_Creator.UC
                     cardControl.type.Content = "Type: " + context.CardTypes.Find((e.NewValue as Card).CardTypeID).Name;
                     string color = context.CardTypes.Find((e.NewValue as Card).CardTypeID).Cardcolor;
                     cardControl.borderColor.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(color));
+
+                    cardControl.attack1.Content = context.Attacks.Find((e.NewValue as Card).Attack1ID).Name;
+                    cardControl.Attack1_Damage.Content = context.Attacks.Find((e.NewValue as Card).Attack1ID).Damage;
+
+                    cardControl.attack2.Content = context.Attacks.Find((e.NewValue as Card).Attack2ID).Name;
+                    cardControl.Attack2_Damage.Content = context.Attacks.Find((e.NewValue as Card).Attack2ID).Damage;
+
                 }
 
                 //Convert from string to Source

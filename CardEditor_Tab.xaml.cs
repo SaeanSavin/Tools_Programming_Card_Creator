@@ -1,0 +1,273 @@
+﻿using Card_Creator.Classes;
+using Card_Creator.Classes.Db;
+using Microsoft.Win32;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace Card_Creator
+{
+
+    public partial class CardEditor_Tab : Window
+    {
+
+        private readonly Card currentCard;
+        private readonly bool editCard;
+
+        CardType currentType;
+        List<CardType> cardTypes;
+
+        Attack currentAttack1;
+        Attack currentAttack2;
+
+        List<Attack> attacks;
+
+        private int typeIndex = 0;
+
+        public CardEditor_Tab(bool editCard, Card card)
+        {
+            InitializeComponent();
+
+            UpdateSettings.UpdateDarkMode(this);
+
+            cardTypes = ReadDatabase.getListOfCardTypes();
+            attacks = ReadDatabase.getListOfAttacks();
+            RefreshTypes();
+            RefreshAttacks();
+
+            this.editCard = editCard;
+            currentCard = card;
+            
+            if(cardTypes.Count > 0)
+            {
+                CardEditor_Type_Combobox.SelectedIndex = 0;
+            }
+            else
+            {
+                CardEditor_EditType_Button.IsEnabled = false;
+            }
+
+            if(editCard)
+            {
+                CardEditor_Tab_Window.Title = "CardEditor - Edit mode";
+                CardEditorTab_CreateCard_Button.Content = "Save Card";
+            }
+
+            if(card != null)
+            {
+                CardEditor_Name_Textbox.Text = card.Name;
+
+                CardEditor_HP_Textbox.Text = card.HP.ToString();
+
+                ImageSourceConverter converter = new ImageSourceConverter();
+                CardEditor_Card_Preview.img.Source = (ImageSource)converter.ConvertFromString(card.ImagePath);
+
+                foreach(CardType cardType in cardTypes)
+                {
+                    if(cardType.ID == card.CardTypeID)
+                    {
+                        currentType = cardType;
+                        break;
+                    }
+                }
+
+                foreach(Attack attack in attacks)
+                {
+                    if(attack.ID == card.Attack1ID)
+                    {
+                        currentAttack1 = attack;
+                    }
+                    if(attack.ID == card.Attack2ID)
+                    {
+                        currentAttack2 = attack;
+                    }
+                }
+
+                CardEditor_Type_Combobox.SelectedItem = currentType;
+                CardEditor_Attack1_Combobox.SelectedItem = currentAttack1;
+                CardEditor_Attack2_Combobox.SelectedItem = currentAttack2;
+            }
+        }
+
+        private void GeneralTab_ImageSelector_Button_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openImage = new OpenFileDialog
+            {
+                Filter = "Image files (*.png;*.jpg)|*.png;*.jpg"
+            };
+
+            if (openImage.ShowDialog() == true)
+            {
+                string fullpath = openImage.FileName;
+                ImageSourceConverter converter = new ImageSourceConverter();
+                CardEditor_Card_Preview.img.Source = (ImageSource)converter.ConvertFromString(fullpath);
+            }
+        }
+
+        private void CardEditor_NewType_Button_Click(object sender, RoutedEventArgs e)
+        {
+            TypeEditor typeEditor = new TypeEditor(false, null);
+            typeEditor.ShowDialog();
+            cardTypes = ReadDatabase.getListOfCardTypes();
+            RefreshTypes();
+        }
+
+        private void CardEditor_EditType_Button_Click(object sender, RoutedEventArgs e)
+        {
+            TypeEditor typeEditor = new TypeEditor(true, currentType);
+            typeEditor.ShowDialog();
+            cardTypes = ReadDatabase.getListOfCardTypes();
+            RefreshTypes();
+        }
+
+        private void RefreshTypes()
+        {
+            if (cardTypes.Count > 0)
+            {
+                CardEditor_Type_Combobox.ItemsSource = cardTypes;
+                CardEditor_Type_Combobox.SelectedIndex = typeIndex;
+            }
+
+            else
+            {
+                CardEditor_Type_Combobox.SelectedIndex = -1;
+                CardEditor_Type_Combobox.ItemsSource = null;
+                CardEditor_EditType_Button.IsEnabled = false;
+            }
+        }
+
+        private void RefreshAttacks()
+        {
+            if (attacks.Count > 0)
+            {
+                CardEditor_Attack1_Combobox.ItemsSource = attacks;
+                CardEditor_Attack2_Combobox.ItemsSource = attacks;
+
+                CardEditor_Attack1_Combobox.SelectedIndex = 0;
+                CardEditor_Attack2_Combobox.SelectedIndex = 0;
+
+            }
+        }
+
+        private void CardEditor_Type_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            currentType = (CardType)CardEditor_Type_Combobox.SelectedItem;
+            
+
+            if (CardEditor_Type_Combobox.SelectedIndex >= 0)
+            {
+                typeIndex = CardEditor_Type_Combobox.SelectedIndex;
+                CardEditor_EditType_Button.IsEnabled = true;
+            }
+
+            if (currentType != null)
+            {
+                CardEditor_Card_Preview.type.Content = "Type: " + currentType.Name;
+                CardEditor_Card_Preview.borderColor.BorderBrush = (Brush)new BrushConverter().ConvertFromString(currentType.Cardcolor);
+            }
+        }
+
+        private void CardEditor_Name_Textbox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CardEditor_Card_Preview.name.Content = CardEditor_Name_Textbox.Text;
+        }
+
+        private void CardEditor_Name_Textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex reg = new Regex("[^A-Za-z]+");
+            e.Handled = reg.IsMatch(e.Text);
+        }
+
+        private void CardEditor_HP_Textbox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CardEditor_Card_Preview.hp.Content = "HP: " + CardEditor_HP_Textbox.Text;
+        }
+
+        private void CardEditor_HP_Textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex reg = new Regex("[^0-9]+");
+            e.Handled = reg.IsMatch(e.Text);
+        }
+
+        private void CardEditor_Attack1_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            currentAttack1 = (Attack)CardEditor_Attack1_Combobox.SelectedItem;
+
+            if(CardEditor_Attack1_Combobox.SelectedIndex >= 0)
+            {
+                CardEditor_Attack1Edit_Button.IsEnabled = true;
+            }
+
+            if(currentAttack1 != null)
+            {
+                CardEditor_Card_Preview.attack1.Content = currentAttack1.Name;
+                CardEditor_Card_Preview.Attack1_Damage.Content = currentAttack1.Damage;
+            }
+
+        }
+
+        private void CardEditor_Attack2_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            currentAttack2 = (Attack)CardEditor_Attack2_Combobox.SelectedItem;
+
+            if (CardEditor_Attack2_Combobox.SelectedIndex >= 0)
+            {
+                CardEditor_Attack2Edit_Button.IsEnabled = true;
+            }
+
+            if (currentAttack2 != null)
+            {
+                CardEditor_Card_Preview.attack2.Content = currentAttack2.Name;
+                CardEditor_Card_Preview.Attack2_Damage.Content = currentAttack2.Damage;
+            }
+        }
+
+        private void CardEditorTab_CreateCard_Button_Click(object sender, RoutedEventArgs e)
+        {
+            using (CardContext context = new CardContext())
+            {
+                if (editCard)
+                {
+
+                    Card updatedCard = context.Cards.Find(currentCard.ID);
+
+                    updatedCard.Name = CardEditor_Name_Textbox.Text;
+                    updatedCard.CardTypeID = ((CardType)CardEditor_Type_Combobox.SelectedItem).ID;
+                    updatedCard.HP = int.Parse(CardEditor_HP_Textbox.Text);
+                    updatedCard.ImagePath = CardEditor_Card_Preview.img.Source.ToString();
+                    updatedCard.Attack1ID = ((Attack)CardEditor_Attack1_Combobox.SelectedItem).ID;
+                    updatedCard.Attack2ID = ((Attack)CardEditor_Attack2_Combobox.SelectedItem).ID;
+
+                    context.SaveChanges();
+                }
+                else
+                {
+                    Card newCard = new Card()
+                    {
+                        Name = CardEditor_Name_Textbox.Text,
+                        CardTypeID = ((CardType)CardEditor_Type_Combobox.SelectedItem).ID,
+                        HP = int.Parse(CardEditor_HP_Textbox.Text),
+                        ImagePath = CardEditor_Card_Preview.img.Source.ToString(),
+                        Attack1ID = ((Attack)CardEditor_Attack1_Combobox.SelectedItem).ID,
+                        Attack2ID = ((Attack)CardEditor_Attack2_Combobox.SelectedItem).ID
+                    };
+
+                    context.Cards.Add(newCard);
+                    context.SaveChanges();
+                }
+            }
+            Close();
+        }
+    }
+}

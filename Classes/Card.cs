@@ -11,6 +11,10 @@ namespace Card_Creator.Classes
 
         public int CardTypeID { get; set; }
 
+        public int Attack1ID { get; set; }
+
+        public int Attack2ID { get; set; }
+
         public string ImagePath { get; set; }
 
         public override string ToString()

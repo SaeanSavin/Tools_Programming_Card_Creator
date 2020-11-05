@@ -14,13 +14,18 @@
             <Rectangle Name="bgColor" Height="250" Width="175" Fill="LightYellow"/>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="250"  VerticalAlignment="Top" Width="175">
             </Border>
-            <Border Name="borderColor" BorderBrush="Yellow" BorderThickness="5" HorizontalAlignment="Left" Height="248"  VerticalAlignment="Top" Width="173" Margin="1,1,0,0"></Border>
+            <Border Name="borderColor" BorderThickness="5" HorizontalAlignment="Left" Height="248"  VerticalAlignment="Top" Width="173" Margin="1,1,0,0"></Border>
             <Label Name="name" Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="96"/>
             <Label Name="hp" Content="HP" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="114,10,0,0"/>
-            <Image Name="img" Source="/Images/hamstercam.png" Margin="10,36,10,118"></Image>
-            <Label Name="attack1" Content="Thunderbolt: 20DMG" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,137,0,0"/>
-            <Label Name="attack2" Content="Bonk: 1000DMG" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,168,0,0"/>
-            <Label Name="type" Content="Type: Electric" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,214,0,0"/>
+            <Image Name="img" Margin="10,36,10,118"></Image>
+            
+            <Label Name="attack1" Content="Attack1:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,137,0,0"/>
+            <Label x:Name="Attack1_Damage" Content="0 " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="117,137,0,0"/>
+            
+            <Label Name="attack2" Content="Attack2:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,168,0,0"/>
+            <Label x:Name="Attack2_Damage" Content="0" HorizontalAlignment="Left" Margin="117,168,0,0" VerticalAlignment="Top"/>
+
+            <Label Name="type" Content="Type:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,214,0,0"/>
         </Grid>
     </Grid>
 </UserControl>

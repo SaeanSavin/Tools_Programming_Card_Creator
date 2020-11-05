@@ -191,10 +191,17 @@
     <Compile Include="AttackEditor.xaml.cs">
       <DependentUpon>AttackEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CardEditor_Tab.xaml.cs">
+      <DependentUpon>CardEditor_Tab.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Db\ReadDatabase.cs" />
     <Compile Include="Migrations\20201104012800_removedAttackDescription-Andreas.cs" />
     <Compile Include="Migrations\20201104012800_removedAttackDescription-Andreas.designer.cs">
       <DependentUpon>20201104012800_removedAttackDescription-Andreas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20201104235518_AddedAttacksToCards-Andreas.cs" />
+    <Compile Include="Migrations\20201104235518_AddedAttacksToCards-Andreas.designer.cs">
+      <DependentUpon>20201104235518_AddedAttacksToCards-Andreas.cs</DependentUpon>
     </Compile>
     <Compile Include="TypeEditor.xaml.cs">
       <DependentUpon>TypeEditor.xaml</DependentUpon>
@@ -224,6 +231,10 @@
       <DependentUpon>CardControl.xaml</DependentUpon>
     </Compile>
     <Page Include="AttackEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CardEditor_Tab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
