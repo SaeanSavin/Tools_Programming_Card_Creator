@@ -55,12 +55,8 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <TextBox Name="SearchBox" HorizontalAlignment="Left" Height="24" Margin="10,10,0,0" TextWrapping="NoWrap" Text="Search..." VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus"/>
-            <Label Content="Filter by:" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-            <ListBox HorizontalAlignment="Left" Height="238" Margin="10,41,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120">
-                <CheckBox Content="Name" Checked="CheckBox_Checked"/>
-                <CheckBox Content="Type"/>
-                <CheckBox Content="HP"/>
-            </ListBox>
+            <Label Content="Sort by:" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <ComboBox Name="SortBy_ComboBox" SelectionChanged="SortBy_ComboBox_SelectionChanged" HorizontalAlignment="Left" Margin="10,41,0,-2" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
         </Grid>
     </Grid>
 </Window>

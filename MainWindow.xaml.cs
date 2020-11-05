@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using Card_Creator.Classes;
 using Card_Creator.Classes.Db;
 using Card_Creator.Properties;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Bson;
 
 namespace Card_Creator
 {
@@ -21,14 +24,27 @@ namespace Card_Creator
 
         List<Card> cards;
         Card currentCard;
+
+        List<Card> cardsToView;
+
+        enum CardSortBy
+        {
+            ID,
+            Name,
+            Type,
+            Health
+        }
         
         public MainWindow()
         {
             InitializeComponent();
 
             cards = ReadDatabase.getListOfCards();
+            cardsToView = cards.ToList();
+            Cards_ListView_Main.ItemsSource = cardsToView;
 
-            refreshListView();
+            SortBy_ComboBox.ItemsSource = Enum.GetNames(typeof(CardSortBy));
+            SortBy_ComboBox.SelectedIndex = 0;
 
             UpdateSettings.UpdateDarkMode(this);
             if (Settings.Default.darkmode)
@@ -48,8 +64,7 @@ namespace Card_Creator
 
         private void MainWindow_CreateCard_Button_Click(object sender, RoutedEventArgs e)
         {
-            //CardEditor cardEditor = new CardEditor(false, null);
-            CardEditor_Tab cardEditor = new CardEditor_Tab(false, null);
+            CardEditor cardEditor = new CardEditor(false, null);
             cardEditor.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             cardEditor.ShowDialog();
             cards = ReadDatabase.getListOfCards();
@@ -131,39 +146,67 @@ namespace Card_Creator
 
             if(selectedCard != null)
             {
-                //CardEditor editCard = new CardEditor(true, selectedCard);
-
-                CardEditor_Tab editCard = new CardEditor_Tab(true, selectedCard);
+                CardEditor editCard = new CardEditor(true, selectedCard);
                 editCard.ShowDialog();
                 cards = ReadDatabase.getListOfCards();
-                refreshListView();
             }
         }
 
         private void refreshListView()
         {
-            if (Cards_ListView_Main != null)
+            Console.WriteLine(SortBy_ComboBox.SelectedItem);
+
+            switch(Enum.Parse(typeof(CardSortBy), SortBy_ComboBox.SelectedItem.ToString()))
             {
-                foreach (Card c in cards)
-                {
-                    Cards_ListView_Main.ItemsSource = cards;
-                }
+                case CardSortBy.ID:
+                    cardsToView = cardsToView.OrderBy(c => c.ID).ToList();
+                    break;
+                case CardSortBy.Name:
+                    cardsToView = cardsToView.OrderBy(c => c.Name).ToList();
+                    break;
+                case CardSortBy.Type:
+                    cardsToView = cardsToView.OrderBy(c => c.CardTypeID).ToList();
+                    break;
+                case CardSortBy.Health:
+                    cardsToView = cardsToView.OrderByDescending(c => c.HP).ToList();
+                    break;
             }
+
+            Cards_ListView_Main.ItemsSource = cardsToView;
+            Cards_ListView_Main.Items.Refresh();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if(cards != null)
             {
-                cards = cards.OrderBy(o=>o.Name).ToList();
-                //cards.Sort((x, y) => x.Name.CompareTo(y.Name));
+                if (string.IsNullOrWhiteSpace(SearchBox.Text) || SearchBox.Text == "" || SearchBox.Text == "Search...")
+                {
+                    cardsToView = cards.ToList();
+                    refreshListView();
+                    return;
+                }
+
+                cardsToView.Clear();
+
+                foreach (Card c in cards)
+                {
+                    if (c.Name.ToLower().Contains(SearchBox.Text.ToLower()))
+                    {
+                        cardsToView.Add(c);
+                    }
+                }
+                Console.WriteLine("adding" + cardsToView.Count);
                 refreshListView();
+
+                //cards = cards.OrderBy(o=>o.Name).ToList();
+                //cards.Sort((x, y) => x.Name.CompareTo(y.Name));
             }
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        private void SortBy_ComboBox_SelectionChanged(object sender, EventArgs e)
         {
-
+            refreshListView();
         }
 
         private void SearchBox_GotFocus(object sender, EventArgs e)
