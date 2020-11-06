@@ -3,14 +3,16 @@ using Card_Creator.Classes.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Card_Creator.Migrations
 {
     [DbContext(typeof(CardContext))]
-    partial class CardContextModelSnapshot : ModelSnapshot
+    [Migration("20201105201508_Addminandmax-Andreas")]
+    partial class AddminandmaxAndreas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,13 +81,7 @@ namespace Card_Creator.Migrations
                     b.Property<string>("Cardcolor")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MaxAttackDMG")
-                        .HasColumnType("int");
-
                     b.Property<int>("MaxHP")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MinAttackDMG")
                         .HasColumnType("int");
 
                     b.Property<int>("MinHP")

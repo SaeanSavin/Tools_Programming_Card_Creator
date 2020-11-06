@@ -29,7 +29,7 @@ namespace Card_Creator
 
             cards = ReadDatabase.getListOfCards();
 
-            refreshComboBox();
+            RefreshComboBox();
 
             card_select_comboBox.ItemsSource = cards;
         }
@@ -39,7 +39,7 @@ namespace Card_Creator
             CardEditor create_Card_Window = new CardEditor(true, currentCard);
             create_Card_Window.ShowDialog();
             cards = ReadDatabase.getListOfCards();
-            refreshComboBox();
+            RefreshComboBox();
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -52,7 +52,7 @@ namespace Card_Creator
             }
         }
 
-        private void refreshComboBox()
+        private void RefreshComboBox()
         {
             if (cards.Count > 0)
             {

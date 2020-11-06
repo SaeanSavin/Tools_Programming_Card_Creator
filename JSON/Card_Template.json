@@ -1,5 +1,8 @@
+
 {
-  "Name": "Fireman",
-  "Type": "Fire",
-  "HP": "100"
+  "ID": 1,
+  "Name": "Card Name",
+  "HP": 100,
+  "CardTypeID": 1,
+  "ImagePath": "images/hamstercam.png"
 }

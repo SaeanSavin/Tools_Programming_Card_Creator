@@ -203,6 +203,14 @@
     <Compile Include="Migrations\20201104235518_AddedAttacksToCards-Andreas.designer.cs">
       <DependentUpon>20201104235518_AddedAttacksToCards-Andreas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20201105201508_Addminandmax-Andreas.cs" />
+    <Compile Include="Migrations\20201105201508_Addminandmax-Andreas.designer.cs">
+      <DependentUpon>20201105201508_Addminandmax-Andreas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20201105224811_AddminandmaxAttacks-Andreas.cs" />
+    <Compile Include="Migrations\20201105224811_AddminandmaxAttacks-Andreas.designer.cs">
+      <DependentUpon>20201105224811_AddminandmaxAttacks-Andreas.cs</DependentUpon>
+    </Compile>
     <Compile Include="TypeEditor.xaml.cs">
       <DependentUpon>TypeEditor.xaml</DependentUpon>
     </Compile>
@@ -319,7 +327,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\hamstercam.png" />
+    <Resource Include="Images\no-image.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

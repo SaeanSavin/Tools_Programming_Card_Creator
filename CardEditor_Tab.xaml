@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="CardEditor_Tab" Height="421" Width="649" ResizeMode="NoResize">
     <Grid>
-        <uc:CardControl x:Name="CardEditor_Card_Preview" Margin="395,52,58,65"/>
+        <uc:CardControl x:Name="CardEditor_Card_Preview" Margin="385,52,58,65"/>
         <TabControl x:Name="CardEditor_TabControl" HorizontalAlignment="Left" Height="335" VerticalAlignment="Top" Width="325" Margin="10,0,0,0">
             <TabItem Header="General">
                 <Grid Background="#FFE5E5E5">
@@ -30,6 +30,9 @@
                     </TextBox>
                     <Label x:Name="GeneralTab_Image_Label" Content="Image:" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="GeneralTab_ImageSelector_Button" Content="Select Image" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top" Width="98" Click="GeneralTab_ImageSelector_Button_Click"/>
+                    <Label x:Name="CardEditor_Error_Image_Label" HorizontalAlignment="Left" Margin="7,240,0,0" VerticalAlignment="Top" Foreground="Red"/>
+                    <Label x:Name="CardEditor_Error_HP_Label" HorizontalAlignment="Left" Margin="7,149,0,0" VerticalAlignment="Top" Foreground="Red"/>
+                    <Label x:Name="CardEditor_Error_Name_Label" HorizontalAlignment="Left" Margin="7,53,0,0" VerticalAlignment="Top" Foreground="Red"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Type / Attack">
@@ -70,11 +73,11 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                     <Button x:Name="CardEditor_Attack2Edit_Button" Content="Edit" HorizontalAlignment="Left" Margin="162,211,0,0" VerticalAlignment="Top" Width="60" Height="22" IsEnabled="False"/>
-                    <Button x:Name="CardEditor_NewAttack_Button" Content="New Attack" HorizontalAlignment="Left" Margin="20,260,0,0" VerticalAlignment="Top" Width="75" Height="27"/>
+                    <Button x:Name="CardEditor_NewAttack_Button" Content="New Attack" HorizontalAlignment="Left" Margin="20,260,0,0" VerticalAlignment="Top" Width="75" Height="27" Click="CardEditor_NewAttack_Button_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>
-        <Label x:Name="CardEditorTab_Preview_Label" Content="Preview:" HorizontalAlignment="Left" Margin="403,10,0,0" VerticalAlignment="Top" FontSize="20" RenderTransformOrigin="0.305,0.676"/>
+        <Label x:Name="CardEditorTab_Preview_Label" Content="Preview:" HorizontalAlignment="Left" Margin="395,10,0,0" VerticalAlignment="Top" FontSize="20" RenderTransformOrigin="0.305,0.676"/>
         <Button x:Name="CardEditorTab_CreateCard_Button" Content="Create Card" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top" Width="115" Height="37" Click="CardEditorTab_CreateCard_Button_Click"/>
 
     </Grid>

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
-
-namespace Card_Creator.Classes
+﻿namespace Card_Creator.Classes
 {
     public class CardType
     {
@@ -15,8 +8,13 @@ namespace Card_Creator.Classes
 
         public string Cardcolor { get; set; }
 
-        //public CardType Weakness { get; set; }
+        public int MinHP { get; set; }
 
-        //public CardType Resistance { get; set; }
+        public int MaxHP { get; set; }
+
+        public int MinAttackDMG { get; set; }
+
+        public int MaxAttackDMG { get; set; }
+
     }
 }

@@ -54,6 +54,12 @@ namespace Card_Creator
                         break;
                     }
                 }
+
+                TypeEditor_Min_HP_textbox.Text = type.MinHP.ToString();
+                TypeEditor_Max_HP_textbox.Text = type.MaxHP.ToString();
+                TypeEditor_MinAttackDMG_Textbox.Text = type.MinAttackDMG.ToString();
+                TypeEditor_MaxAttackDMG_Textbox.Text = type.MaxAttackDMG.ToString();
+
             }
         }
 
@@ -69,33 +75,64 @@ namespace Card_Creator
             e.Handled = reg.IsMatch(e.Text);
         }
 
+        private void TypeEditor_MinAttackDMG_Textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex reg = new Regex("[^0-9]+");
+            e.Handled = reg.IsMatch(e.Text);
+        }
+
+
+        private void TypeEditor_MaxAttackDMG_Textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex reg = new Regex("[^0-9]+");
+            e.Handled = reg.IsMatch(e.Text);
+        }
+
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e){}
 
         private void Type_Save_Button_Click(object sender, RoutedEventArgs e)
         {
-           using(CardContext context = new CardContext())
-           {
-                if(editType)
+
+            bool InputValidation = CheckValidInput();
+
+            if(InputValidation)
+            {
+                using (CardContext context = new CardContext())
                 {
-
-                    CardType updatedType = context.CardTypes.Find(currentType.ID);
-
-                    updatedType.Name = TypeEditor_Name_Textbox.Text;
-                    updatedType.Cardcolor = (TypeEditor_Color_Combobox.SelectedItem as PropertyInfo).Name;
-
-                    context.SaveChanges();
-                } else {
-                    CardType newType = new CardType()
+                    if (editType)
                     {
-                        Name = TypeEditor_Name_Textbox.Text,
-                        Cardcolor = (TypeEditor_Color_Combobox.SelectedItem as PropertyInfo).Name
-                    };
 
-                    context.CardTypes.Add(newType);
-                    context.SaveChanges();
+                        CardType updatedType = context.CardTypes.Find(currentType.ID);
+
+                        updatedType.Name = TypeEditor_Name_Textbox.Text;
+                        updatedType.Cardcolor = (TypeEditor_Color_Combobox.SelectedItem as PropertyInfo).Name;
+                        updatedType.MinHP = int.Parse(TypeEditor_Min_HP_textbox.Text);
+                        updatedType.MaxHP = int.Parse(TypeEditor_Max_HP_textbox.Text);
+                        updatedType.MinAttackDMG = int.Parse(TypeEditor_MinAttackDMG_Textbox.Text);
+                        updatedType.MaxAttackDMG = int.Parse(TypeEditor_MaxAttackDMG_Textbox.Text);
+
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        CardType newType = new CardType()
+                        {
+                            Name = TypeEditor_Name_Textbox.Text,
+                            Cardcolor = (TypeEditor_Color_Combobox.SelectedItem as PropertyInfo).Name,
+                            MinHP = int.Parse(TypeEditor_Min_HP_textbox.Text),
+                            MaxHP = int.Parse(TypeEditor_Max_HP_textbox.Text),
+                            MinAttackDMG = int.Parse(TypeEditor_MinAttackDMG_Textbox.Text),
+                            MaxAttackDMG = int.Parse(TypeEditor_MaxAttackDMG_Textbox.Text)
+                        };
+
+                        context.CardTypes.Add(newType);
+                        context.SaveChanges();
+                    }
                 }
-           }
-           Close();
+                Close();
+            }
+            return;
+            
         }
 
         private void TypeEditor_Cancel_Button_Click(object sender, RoutedEventArgs e)
@@ -112,5 +149,55 @@ namespace Card_Creator
             }
             Close();
         }
+
+ 
+        private bool CheckValidInput()
+        {
+            bool isValid = true;
+
+            if (TypeEditor_Min_HP_textbox.Text == "")
+            {
+                TypeEditor_Error_MinHP_Label.Content = "Invalid Input!";
+                isValid = false;
+            }
+            else
+            {
+                TypeEditor_Error_MinHP_Label.Content = "";
+            }
+
+            if (TypeEditor_Max_HP_textbox.Text == "")
+            {
+                TypeEditor_Error_MaxHP_Label.Content = "Invalid Input!";
+                isValid = false;   
+            }
+            else
+            {
+                TypeEditor_Error_MaxHP_Label.Content = "";
+            }
+
+            if (TypeEditor_MinAttackDMG_Textbox.Text == "")
+            {
+                TypeEditor_Error_MinAttackDMG_Label.Content = "Invalid Input!";
+                isValid = false;    
+            }
+            else
+            {
+                TypeEditor_Error_MinAttackDMG_Label.Content = "";
+            }
+
+            if (TypeEditor_MaxAttackDMG_Textbox.Text == "")
+            {
+                TypeEditor_Error_MaxAttackDMG_Label.Content = "Invalid Input!";
+                isValid = false;
+            }
+            else
+            {
+                TypeEditor_Error_MaxAttackDMG_Label.Content = "";
+            }
+
+            return isValid;
+        }
+
+ 
     }
 }

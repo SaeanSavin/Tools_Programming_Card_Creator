@@ -21,6 +21,8 @@ namespace Card_Creator
 
     public partial class CardEditor_Tab : Window
     {
+      
+        public static BitmapImage noImage = new BitmapImage(new Uri(@"pack://application:,,,/Card-Creator;Component/Images/no-image.png"));
 
         private readonly Card currentCard;
         private readonly bool editCard;
@@ -73,6 +75,8 @@ namespace Card_Creator
                 ImageSourceConverter converter = new ImageSourceConverter();
                 CardEditor_Card_Preview.img.Source = (ImageSource)converter.ConvertFromString(card.ImagePath);
 
+                Console.WriteLine(card.ImagePath);
+
                 foreach(CardType cardType in cardTypes)
                 {
                     if(cardType.ID == card.CardTypeID)
@@ -111,7 +115,17 @@ namespace Card_Creator
             {
                 string fullpath = openImage.FileName;
                 ImageSourceConverter converter = new ImageSourceConverter();
-                CardEditor_Card_Preview.img.Source = (ImageSource)converter.ConvertFromString(fullpath);
+                try
+                {
+                    CardEditor_Card_Preview.img.Source = (ImageSource)converter.ConvertFromString(fullpath);
+                    CardEditor_Error_Image_Label.Content = "";
+                }
+                catch(NotSupportedException)
+                {
+                    CardEditor_Card_Preview.img.Source = noImage;
+                    CardEditor_Error_Image_Label.Content = "Error! File not supported";
+                }
+                
             }
         }
 
@@ -235,6 +249,20 @@ namespace Card_Creator
 
         private void CardEditorTab_CreateCard_Button_Click(object sender, RoutedEventArgs e)
         {
+
+            if(CardEditor_Name_Textbox.Text == "")
+            {
+                CardEditor_Error_Name_Label.Content = "Invalid Input!";
+                return;
+            }
+
+            if(int.Parse(CardEditor_HP_Textbox.Text) < currentType.MinHP || int.Parse(CardEditor_HP_Textbox.Text) > currentType.MaxHP)
+            {
+                CardEditor_Error_HP_Label.Content = "Invalid Input!";
+                return;
+            }
+
+
             using (CardContext context = new CardContext())
             {
                 if (editCard)
@@ -268,6 +296,13 @@ namespace Card_Creator
                 }
             }
             Close();
+        }
+
+        private void CardEditor_NewAttack_Button_Click(object sender, RoutedEventArgs e)
+        {
+            AttackEditor attackEditor = new AttackEditor();
+            attackEditor.ShowDialog();
+            attacks = ReadDatabase.getListOfAttacks();
         }
     }
 }

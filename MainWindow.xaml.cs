@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -14,7 +15,6 @@ using Card_Creator.Properties;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Bson;
 
 namespace Card_Creator
 {
@@ -53,13 +53,17 @@ namespace Card_Creator
             }
         }
 
-        //Remove later?
         private void Load_Card_Button_Click(object sender, RoutedEventArgs e)
         {
-            Load_Card_Window load_Card_Window = new Load_Card_Window();
-            load_Card_Window.ShowDialog();
-            cards = ReadDatabase.getListOfCards();
-            refreshListView();
+            Card selectedCard = (Card)Cards_ListView_Main.SelectedItem;
+
+            if (selectedCard != null)
+            {
+                CardEditor_Tab editCard = new CardEditor_Tab(true, selectedCard);
+                editCard.ShowDialog();
+                cardsToView = ReadDatabase.getListOfCards();
+                RefreshListView();
+            }
         }
 
         private void MainWindow_CreateCard_Button_Click(object sender, RoutedEventArgs e)
@@ -68,13 +72,14 @@ namespace Card_Creator
             cardEditor.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             cardEditor.ShowDialog();
             cards = ReadDatabase.getListOfCards();
-            refreshListView();
+            RefreshListView();
         }
 
         private void MainWindow_MenuItem_Click(object sender, RoutedEventArgs e){}
 
         private void MainWindow_ImportFromJSON(object sender, RoutedEventArgs e)
         {
+
             OpenFileDialog openJSON = new OpenFileDialog
             {
                 Filter = "Json files (*.json)|*.json"
@@ -91,8 +96,8 @@ namespace Card_Creator
 
                         Card importedCard = JsonConvert.DeserializeObject<Card>(json);
 
-                        CardEditor create_Card_Window = new CardEditor(true, importedCard);
-                        create_Card_Window.ShowDialog();
+                        CardEditor_Tab cardEditor = new CardEditor_Tab(true, importedCard);
+                        cardEditor.ShowDialog();
                     }
                 }
             }
@@ -149,11 +154,11 @@ namespace Card_Creator
                 CardEditor_Tab editCard = new CardEditor_Tab(true, selectedCard);
                 editCard.ShowDialog();
                 cardsToView = ReadDatabase.getListOfCards();
-                refreshListView();
+                RefreshListView();
             }
         }
 
-        private void refreshListView()
+        private void RefreshListView()
         {
             Console.WriteLine(SortBy_ComboBox.SelectedItem);
 
@@ -184,7 +189,7 @@ namespace Card_Creator
                 if (string.IsNullOrWhiteSpace(SearchBox.Text) || SearchBox.Text == "" || SearchBox.Text == "Search...")
                 {
                     cardsToView = cards.ToList();
-                    refreshListView();
+                    RefreshListView();
                     return;
                 }
 
@@ -198,7 +203,7 @@ namespace Card_Creator
                     }
                 }
                 Console.WriteLine("adding" + cardsToView.Count);
-                refreshListView();
+                RefreshListView();
 
                 //cards = cards.OrderBy(o=>o.Name).ToList();
                 //cards.Sort((x, y) => x.Name.CompareTo(y.Name));
@@ -207,7 +212,7 @@ namespace Card_Creator
 
         private void SortBy_ComboBox_SelectionChanged(object sender, EventArgs e)
         {
-            refreshListView();
+            RefreshListView();
         }
 
         private void SearchBox_GotFocus(object sender, EventArgs e)
