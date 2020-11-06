@@ -1,6 +1,7 @@
 ﻿using Card_Creator.Classes;
 using Card_Creator.Classes.Db;
 using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -88,6 +89,31 @@ namespace Card_Creator
             typeEditor.ShowDialog();
             cardTypes = ReadDatabase.getListOfCardTypes();
             RefreshTypes();
+        }
+
+        private void CardEditor_NewAttack_Button_Click(object sender, RoutedEventArgs e)
+        {
+            AttackEditor attackEditor = new AttackEditor(false, null);
+            attackEditor.ShowDialog();
+            attacks = ReadDatabase.getListOfAttacks();
+            RefreshAttacks();
+        }
+
+        private void CardEtior_EditAttack1_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("sploink");
+            AttackEditor attackEditor = new AttackEditor(true, (Attack)CardEditor_Attack1_Combobox.SelectedItem);
+            attackEditor.ShowDialog();
+            attacks = ReadDatabase.getListOfAttacks();
+            RefreshAttacks();
+        }
+
+        private void CardEtior_EditAttack2_Button_Click(object sender, RoutedEventArgs e)
+        {
+            AttackEditor attackEditor = new AttackEditor(true, (Attack)CardEditor_Attack2_Combobox.SelectedItem);
+            attackEditor.ShowDialog();
+            attacks = ReadDatabase.getListOfAttacks();
+            RefreshAttacks();
         }
 
         private void CardEditor_GenerateCard_Button_Click(object sender, RoutedEventArgs e)
@@ -203,26 +229,17 @@ namespace Card_Creator
             if(attacks.Count > 0)
             {
                 CardEditor_Attack1_Combobox.ItemsSource = attacks;
-                CardEditor_Attack2_Combobox.ItemsSource = attacks;
-
                 CardEditor_Attack1_Combobox.SelectedIndex = 0;
+                CardEditor_Attack1_Combobox.Items.Refresh();
+
+                CardEditor_Attack2_Combobox.ItemsSource = attacks;
                 CardEditor_Attack2_Combobox.SelectedIndex = 0;
-
             }
-        }
-
-
-        private void CardEditor_NewAttack_Button_Click(object sender, RoutedEventArgs e)
-        {
-            AttackEditor attackEditor = new AttackEditor();
-            attackEditor.ShowDialog();
-            attacks = ReadDatabase.getListOfAttacks();
-            RefreshAttacks();
-        }
-
-        private void CardEditor_Attack1_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            else
+            {
+                CardEditor_Attack1_Combobox.SelectedIndex = -1;
+                CardEditor_Attack1_Combobox.ItemsSource = null;
+            }
         }
     }
 }

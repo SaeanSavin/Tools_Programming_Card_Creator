@@ -3,6 +3,7 @@ using Card_Creator.Classes.Db;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,14 +22,41 @@ namespace Card_Creator
     public partial class AttackEditor : Window
     {
         List<CardType> types;
+        private Attack currentAttack;
+        private CardType currentType;
+        private bool editAttack = false;
 
-        public AttackEditor()
+        public AttackEditor(bool editMode, Attack attack)
         {
             InitializeComponent();
 
             types = ReadDatabase.getListOfCardTypes();
             RefreshComboBox();
 
+            if (editMode)
+            {
+                editAttack = true;
+                AttackEditor_Window.Title = "AttackEditor - Edit mode";
+                AttackEditor_CreateAttack_Button.Content = "Save";
+                AttackEditor_Delete_Button.Visibility = Visibility.Visible;
+            }
+
+            if(attack != null)
+            {
+                currentAttack = attack;
+                AttackEditor_Name_Textbox.Text = attack.Name;
+
+                foreach(var t in types)
+                {
+                    if(attack.CardTypeID == t.ID)
+                    {
+                        currentType = t;
+                        break;
+                    }
+                }
+
+                AttackEditor_Damage_Textbox.Text = attack.Damage.ToString();
+            }
         }
 
         private void AttackEditor_Type_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -62,6 +90,11 @@ namespace Card_Creator
 
             }
             Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

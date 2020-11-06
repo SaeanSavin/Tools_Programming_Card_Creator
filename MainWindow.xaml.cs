@@ -62,6 +62,7 @@ namespace Card_Creator
                 CardEditor_Tab editCard = new CardEditor_Tab(true, selectedCard);
                 editCard.ShowDialog();
                 cardsToView = ReadDatabase.getListOfCards();
+                cardsToView = cards.ToList();
                 RefreshListView();
             }
         }
@@ -72,6 +73,7 @@ namespace Card_Creator
             cardEditor.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             cardEditor.ShowDialog();
             cards = ReadDatabase.getListOfCards();
+            cardsToView = cards.ToList();
             RefreshListView();
         }
 

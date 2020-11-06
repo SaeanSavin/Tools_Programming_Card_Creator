@@ -300,7 +300,7 @@ namespace Card_Creator
 
         private void CardEditor_NewAttack_Button_Click(object sender, RoutedEventArgs e)
         {
-            AttackEditor attackEditor = new AttackEditor();
+            AttackEditor attackEditor = new AttackEditor(false, null);
             attackEditor.ShowDialog();
             attacks = ReadDatabase.getListOfAttacks();
         }

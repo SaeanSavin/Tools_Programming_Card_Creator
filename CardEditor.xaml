@@ -44,7 +44,7 @@
         <Button x:Name="CardEditor_SaveCard_Button" Content="Create Card" HorizontalAlignment="Left" Margin="10,470,0,0" VerticalAlignment="Top" Width="90" Height="51" Click="CardEditor_CreateCard_Button_Click"/>
 
         <Label x:Name="CardEditor_Attack1_Label" Content="Attack1:" HorizontalAlignment="Left" Margin="15,161,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="CardEditor_Attack1_Combobox" HorizontalAlignment="Left" Margin="20,187,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="CardEditor_Attack1_Combobox_SelectionChanged">
+        <ComboBox x:Name="CardEditor_Attack1_Combobox" HorizontalAlignment="Left" Margin="20,187,0,0" VerticalAlignment="Top" Width="150">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -64,7 +64,7 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <Button x:Name="CardEditor_NewAttack_Button" Content="New Attack" HorizontalAlignment="Left" Margin="20,259,0,0" VerticalAlignment="Top" Width="80" Click="CardEditor_NewAttack_Button_Click" Height="31"/>
-        <Button x:Name="CardEditor_EditAttack1_Button" Content="Edit" HorizontalAlignment="Left" Margin="175,187,0,0" VerticalAlignment="Top" Width="50" Height="22"/>
-        <Button x:Name="CardEditor_EditAttack2_Button" Content="Edit" HorizontalAlignment="Left" Margin="650,187,0,0" VerticalAlignment="Top" Width="50" Height="22"/>
+        <Button x:Name="CardEditor_EditAttack1_Button" Click="CardEtior_EditAttack1_Button_Click" Content="Edit" HorizontalAlignment="Left" Margin="175,187,0,0" VerticalAlignment="Top" Width="50" Height="22"/>
+        <Button x:Name="CardEditor_EditAttack2_Button" Click="CardEtior_EditAttack2_Button_Click" Content="Edit" HorizontalAlignment="Left" Margin="650,187,0,0" VerticalAlignment="Top" Width="50" Height="22"/>
     </Grid>
 </Window>

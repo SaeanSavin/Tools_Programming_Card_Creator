@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Card_Creator"
         mc:Ignorable="d"
-        Title="AttackEditor" Height="300" Width="400">
+        Name="AttackEditor_Window" Title="AttackEditor" Height="300" Width="400">
     <Grid>
         <Label x:Name="AttackEditor_Name_Label" Content="Name:" HorizontalAlignment="Left" Margin="25,14,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="AttackEditor_Name_Textbox" HorizontalAlignment="Left" Height="23" Margin="25,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
@@ -34,5 +34,6 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <Button x:Name="AttackEditor_CreateAttack_Button" Content="Create Attack" HorizontalAlignment="Left" Margin="25,205,0,0" VerticalAlignment="Top" Width="90" Height="45" Click="AttackEditor_CreateAttack_Button_Click"/>
+        <Button Name="AttackEditor_Delete_Button" Content="Delete" Visibility="Hidden" HorizontalAlignment="Left" Margin="280,205,0,0" VerticalAlignment="Top" Width="90" Click="Button_Click" RenderTransformOrigin="0.483,-0.158" Height="45"/>
     </Grid>
 </Window>
