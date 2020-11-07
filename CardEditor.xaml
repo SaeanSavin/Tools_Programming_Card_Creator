@@ -15,6 +15,7 @@
                 </Style>
             </TextBox.Resources>
         </TextBox>
+        <Label x:Name="CardEditor_Error_Name" Content="Ab" HorizontalAlignment="Left" Margin="10,55,0,0" VerticalAlignment="Top" Height="24" FontSize="10" Foreground="Red"/>
         <Label x:Name="CardEditor_Type_Label" Content="Type:" HorizontalAlignment="Left" Margin="375,7,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="CardEditor_Type_Combobox" HorizontalAlignment="Left" Margin="375,33,0,0" VerticalAlignment="Top" Width="169" SelectionChanged="CardEditor_Type_Combobox_SelectionChanged" BorderBrush="#FF0A0A0A" SelectedIndex="0">
             <ComboBox.ItemTemplate>
@@ -41,6 +42,7 @@
                 </Style>
             </TextBox.Resources>
         </TextBox>
+        <Label x:Name="CardEditor_Error_HP" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Height="24" FontSize="10" Foreground="Red"/>
         <Button x:Name="CardEditor_SaveCard_Button" Content="Create Card" HorizontalAlignment="Left" Margin="10,470,0,0" VerticalAlignment="Top" Width="90" Height="51" Click="CardEditor_CreateCard_Button_Click"/>
 
         <Label x:Name="CardEditor_Attack1_Label" Content="Attack1:" HorizontalAlignment="Left" Margin="15,161,0,0" VerticalAlignment="Top"/>

@@ -177,6 +177,12 @@ namespace Card_Creator
 
         private void CardEditor_CreateCard_Button_Click(object sender, RoutedEventArgs e)
         {
+
+            if(checkValidInput())
+            {
+                return;
+            }
+
             using (CardContext context = new CardContext())
             {
                 if (editCard)
@@ -240,6 +246,32 @@ namespace Card_Creator
                 CardEditor_Attack1_Combobox.SelectedIndex = -1;
                 CardEditor_Attack1_Combobox.ItemsSource = null;
             }
+        }
+        private bool checkValidInput()
+        {
+            bool isValid = true;
+
+            if(CardEditor_Name_Textbox.Text == "")
+            {
+                CardEditor_Error_Name.Content = "Invalid Input!";
+                isValid = false;
+            }
+            else
+            {
+                CardEditor_Error_Name.Content = "";
+            }
+
+            if (CardEditor_HP_Textbox.Text == "")
+            {
+                CardEditor_Error_HP.Content = "Invalidd Input!";
+                isValid = false;
+            }
+            else
+            {
+                CardEditor_Error_HP.Content = "";
+            }
+
+            return isValid;
         }
     }
 }

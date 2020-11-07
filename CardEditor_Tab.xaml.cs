@@ -250,15 +250,8 @@ namespace Card_Creator
         private void CardEditorTab_CreateCard_Button_Click(object sender, RoutedEventArgs e)
         {
 
-            if(CardEditor_Name_Textbox.Text == "")
+            if(!checkValidInput())
             {
-                CardEditor_Error_Name_Label.Content = "Invalid Input!";
-                return;
-            }
-
-            if(int.Parse(CardEditor_HP_Textbox.Text) < currentType.MinHP || int.Parse(CardEditor_HP_Textbox.Text) > currentType.MaxHP)
-            {
-                CardEditor_Error_HP_Label.Content = "Invalid Input!";
                 return;
             }
 
@@ -320,6 +313,42 @@ namespace Card_Creator
             attackEditor.ShowDialog();
             attacks = ReadDatabase.getListOfAttacks();
             RefreshAttacks();
+        }
+
+        private bool checkValidInput()
+        {
+            bool isValid = true;
+
+            if (CardEditor_Name_Textbox.Text == "")
+            {
+                CardEditor_Error_Name_Label.Content = "Invalid Input!";
+                isValid = false;
+            }
+            else
+            {
+                CardEditor_Error_Name_Label.Content = "";
+            }
+
+            if(CardEditor_HP_Textbox.Text == "")
+            {
+                isValid = false;
+            }
+            else if (int.Parse(CardEditor_HP_Textbox.Text) < currentType.MinHP)
+            {
+                CardEditor_Error_HP_Label.Content = "Hp cannot be lower than the minHP of the card type";
+                isValid = false;
+            }
+            else if (int.Parse(CardEditor_HP_Textbox.Text) > currentType.MaxHP)
+            {
+                CardEditor_Error_HP_Label.Content = "Hp cannot be higher than the minHP of the card type";
+                isValid = false;
+            }
+            else
+            {
+                CardEditor_Error_HP_Label.Content = "";
+            }
+
+            return isValid;
         }
     }
 }
