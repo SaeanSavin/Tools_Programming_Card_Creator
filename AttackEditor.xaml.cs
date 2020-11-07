@@ -76,25 +76,47 @@ namespace Card_Creator
 
         private void AttackEditor_CreateAttack_Button_Click(object sender, RoutedEventArgs e)
         {
-            using(CardContext context = new CardContext())
-            {
-                Attack newAttack = new Attack()
-                {
-                    Name = AttackEditor_Name_Textbox.Text,
-                    CardTypeID = ((CardType)AttackEditor_Type_Combobox.SelectedItem).ID,
-                    Damage = int.Parse(AttackEditor_Damage_Textbox.Text)
-                };
 
-                context.Attacks.Add(newAttack);
-                context.SaveChanges();
+            using (CardContext context = new CardContext())
+            {
+                if(editAttack)
+                {
+                    Attack updatedAttack = context.Attacks.Find(currentAttack.ID);
+
+                    updatedAttack.Name = AttackEditor_Name_Textbox.Text;
+                    updatedAttack.CardTypeID = ((CardType)AttackEditor_Type_Combobox.SelectedItem).ID;
+                    updatedAttack.Damage = int.Parse(AttackEditor_Damage_Textbox.Text);
+
+                    context.SaveChanges();
+                } 
+                else
+                {
+                    Attack newAttack = new Attack()
+                    {
+                        Name = AttackEditor_Name_Textbox.Text,
+                        CardTypeID = ((CardType)AttackEditor_Type_Combobox.SelectedItem).ID,
+                        Damage = int.Parse(AttackEditor_Damage_Textbox.Text)
+                    };
+
+                    context.Attacks.Add(newAttack);
+                    context.SaveChanges();
+                }
+
+              
 
             }
+
             Close();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void AttackEditor_Close_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -303,6 +303,23 @@ namespace Card_Creator
             AttackEditor attackEditor = new AttackEditor(false, null);
             attackEditor.ShowDialog();
             attacks = ReadDatabase.getListOfAttacks();
+            RefreshAttacks();
+        }
+
+        private void CardEditor_Attack1Edit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            AttackEditor attackEditor = new AttackEditor(true, currentAttack1);
+            attackEditor.ShowDialog();
+            attacks = ReadDatabase.getListOfAttacks();
+            RefreshAttacks();
+        }
+
+        private void CardEditor_Attack2Edit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            AttackEditor attackEditor = new AttackEditor(true, currentAttack2);
+            attackEditor.ShowDialog();
+            attacks = ReadDatabase.getListOfAttacks();
+            RefreshAttacks();
         }
     }
 }
