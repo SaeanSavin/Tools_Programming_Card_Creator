@@ -155,6 +155,24 @@ namespace Card_Creator
         {
             bool isValid = true;
 
+            if(TypeEditor_Name_Textbox.Text == "")
+            {
+                TypeEditor_Error_Name_Label.Content = "Invalid Input!";
+                isValid = false;
+            }
+            else
+            {
+                TypeEditor_Error_Name_Label.Content = "";
+            }
+            if(TypeEditor_Color_Combobox.SelectedItem == null)
+            {
+                TypeEditor_Error_Color_Label.Content = "Invalid Input!";
+                isValid = false;
+            }
+            else
+            {
+                TypeEditor_Error_Color_Label.Content = "";
+            }
             if (TypeEditor_Min_HP_textbox.Text == "")
             {
                 TypeEditor_Error_MinHP_Label.Content = "Invalid Input!";
