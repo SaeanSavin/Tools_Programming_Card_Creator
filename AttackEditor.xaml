@@ -15,8 +15,8 @@
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <Label x:Name="AttackEditor_Damage_Label" Content="Damage:" HorizontalAlignment="Left" Margin="25,81,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="AttackEditor_Damage_Textbox" HorizontalAlignment="Left" Height="23" Margin="25,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
+        <Label x:Name="AttackEditor_Damage_Label" Content="Damage:" HorizontalAlignment="Left" Margin="25,97,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="AttackEditor_Damage_Textbox" PreviewTextInput="AttackEditor_HP_Textbox_PreviewTextInput" HorizontalAlignment="Left" Height="23" Margin="25,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -36,5 +36,7 @@
         <Button x:Name="AttackEditor_CreateAttack_Button" Content="Create Attack" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="AttackEditor_CreateAttack_Button_Click"/>
         <Button Name="AttackEditor_Delete_Button" Visibility="Hidden"  Content="Delete"  HorizontalAlignment="Left" Margin="140,220,0,0" VerticalAlignment="Top" Width="90" Click="Button_Click" RenderTransformOrigin="0.483,-0.158" Height="30"/>
         <Button x:Name="AttackEditor_Close_Button" Content="Close" HorizontalAlignment="Left" Margin="280,220,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="AttackEditor_Close_Button_Click"/>
+        <Label x:Name="AttackEditor_Error_Name" HorizontalAlignment="Left" Margin="25,68,0,0" VerticalAlignment="Top" Height="24" FontSize="10" Foreground="Red"/>
+        <Label x:Name="AttackEditor_Error_Damage" HorizontalAlignment="Left" Margin="25,156,0,0" VerticalAlignment="Top" Height="24" FontSize="10" Foreground="Red"/>
     </Grid>
 </Window>

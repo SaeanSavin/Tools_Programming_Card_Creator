@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -77,6 +78,11 @@ namespace Card_Creator
         private void AttackEditor_CreateAttack_Button_Click(object sender, RoutedEventArgs e)
         {
 
+            if (!checkValidInput())
+            {
+                return;
+            }
+
             using (CardContext context = new CardContext())
             {
                 if(editAttack)
@@ -117,6 +123,39 @@ namespace Card_Creator
         private void AttackEditor_Close_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void AttackEditor_HP_Textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex reg = new Regex("[^0-9]+");
+            e.Handled = reg.IsMatch(e.Text);
+        }
+
+
+        private bool checkValidInput()
+        {
+            bool isValid = true;
+
+            if(AttackEditor_Name_Textbox.Text == "")
+            {
+                AttackEditor_Error_Name.Content = "Invalid input!";
+                isValid = false;
+            }
+            else
+            {
+                AttackEditor_Error_Damage.Content = "";
+            }
+            if (AttackEditor_Damage_Textbox.Text == "")
+            {
+                AttackEditor_Error_Damage.Content = "Invalid input!";
+                isValid = false;
+            }
+            else
+            {
+                AttackEditor_Error_Name.Content = "";
+            }
+
+            return isValid;
         }
     }
 }
