@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="CardEditor_Tab" Height="421" Width="649" ResizeMode="NoResize">
     <Grid>
-        <uc:CardControl x:Name="CardEditor_Card_Preview" Margin="385,52,58,65"/>
+        <uc:CardControl x:Name="CardEditor_Card_Preview" Margin="385,52,58,65" Card="{Binding}"/>
         <TabControl x:Name="CardEditor_TabControl" HorizontalAlignment="Left" Height="335" VerticalAlignment="Top" Width="325" Margin="10,0,0,0">
             <TabItem Header="General">
                 <Grid Background="#FFE5E5E5">
@@ -20,7 +20,7 @@
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <Label x:Name="GeneralTab_HP_Label" Content="HP:" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="CardEditor_HP_Label" Content="HP:" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="CardEditor_HP_Textbox" PreviewTextInput="CardEditor_HP_Textbox_PreviewTextInput" HorizontalAlignment="Left" Height="23" Margin="10,130,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="62" TextChanged="CardEditor_HP_Textbox_TextChanged">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
@@ -29,7 +29,7 @@
                         </TextBox.Resources>
                     </TextBox>
                     <Label x:Name="GeneralTab_Image_Label" Content="Image:" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="GeneralTab_ImageSelector_Button" Content="Select Image" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top" Width="98" Click="GeneralTab_ImageSelector_Button_Click"/>
+                    <Button x:Name="GeneralTab_ImageSelector_Button" Content="Select Image" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top" Width="98" Click="CardEditor_ImageSelector_Button_Click"/>
                     <Label x:Name="CardEditor_Error_Image_Label" HorizontalAlignment="Left" Margin="7,240,0,0" VerticalAlignment="Top" Foreground="Red"/>
                     <Label x:Name="CardEditor_Error_HP_Label" HorizontalAlignment="Left" Margin="7,149,0,0" VerticalAlignment="Top" Foreground="Red"/>
                     <Label x:Name="CardEditor_Error_Name_Label" HorizontalAlignment="Left" Margin="7,53,0,0" VerticalAlignment="Top" Foreground="Red"/>

@@ -38,7 +38,7 @@ namespace Card_Creator.UC
             if(cardControl != null)
             {
                 cardControl.name.Content = (e.NewValue as Card).Name;
-                cardControl.hp.Content = "HP: " + (e.NewValue as Card).HP;
+                cardControl.hp.Content = (e.NewValue as Card).HP + " HP";
                 
                 using(CardContext context = new CardContext())
                 {

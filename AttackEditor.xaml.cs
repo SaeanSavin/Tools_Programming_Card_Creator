@@ -32,7 +32,7 @@ namespace Card_Creator
             InitializeComponent();
 
             types = ReadDatabase.getListOfCardTypes();
-            RefreshComboBox();
+            RefreshTypes();
 
             if (editMode)
             {
@@ -56,29 +56,38 @@ namespace Card_Creator
                     }
                 }
 
+                AttackEditor_Type_Combobox.SelectedItem = currentType;
                 AttackEditor_Damage_Textbox.Text = attack.Damage.ToString();
             }
         }
 
         private void AttackEditor_Type_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            currentType = ((CardType)AttackEditor_Type_Combobox.SelectedItem);
+
+            AttackEditor_Damage_Label.Content = ("Damage: " + "( " + currentType.MinAttackDMG + " - " + currentType.MaxAttackDMG + " )" );
 
         }
 
 
-        private void RefreshComboBox()
+        private void RefreshTypes()
         {
             if(types.Count > 0)
             {
                 AttackEditor_Type_Combobox.ItemsSource = types;
-                AttackEditor_Type_Combobox.SelectedIndex = 0;
+                
+                if(currentType != null)
+                {
+                    AttackEditor_Type_Combobox.SelectedItem = currentType.Name;
+                }
+                //AttackEditor_Type_Combobox.SelectedIndex = 0;
             }
         }
 
         private void AttackEditor_CreateAttack_Button_Click(object sender, RoutedEventArgs e)
         {
 
-            if (!checkValidInput())
+            if (!CheckValidInput())
             {
                 return;
             }
@@ -115,11 +124,6 @@ namespace Card_Creator
             Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void AttackEditor_Close_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -132,7 +136,7 @@ namespace Card_Creator
         }
 
 
-        private bool checkValidInput()
+        private bool CheckValidInput()
         {
             bool isValid = true;
 
@@ -143,9 +147,20 @@ namespace Card_Creator
             }
             else
             {
-                AttackEditor_Error_Damage.Content = "";
+                AttackEditor_Error_Name.Content = "";
             }
-            if (AttackEditor_Damage_Textbox.Text == "")
+
+            if(AttackEditor_Type_Combobox.SelectedIndex == -1)
+            {
+                AttackEditor_Error_Type.Content = "Invalid Input!";
+                isValid = false;
+            }
+            else
+            {
+                AttackEditor_Error_Type.Content = "";
+            }
+
+            if (AttackEditor_Damage_Textbox.Text == "" || (int.Parse(AttackEditor_Damage_Textbox.Text) < currentType.MinAttackDMG || int.Parse(AttackEditor_Damage_Textbox.Text) > currentType.MaxAttackDMG))
             {
                 AttackEditor_Error_Damage.Content = "Invalid input!";
                 isValid = false;
@@ -156,6 +171,16 @@ namespace Card_Creator
             }
 
             return isValid;
+        }
+
+        private void AttackEditor_Delete_Button_Click(object sender, RoutedEventArgs e)
+        {
+            using (CardContext context = new CardContext())
+            {
+                context.Attacks.Remove(context.Attacks.Find(currentAttack.ID));
+                context.SaveChanges();
+            }
+            Close();
         }
     }
 }

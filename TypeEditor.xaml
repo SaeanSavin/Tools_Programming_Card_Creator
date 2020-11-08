@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         Title="TypeEditor - Create mode" Height="266" Width="408" ResizeMode="NoResize">
     <Grid Margin="0,0,2,4">
-        <ComboBox x:Name="TypeEditor_Color_Combobox" HorizontalAlignment="Left" Margin="210,25,0,0" VerticalAlignment="Top" Width="170" Height="23" SelectionChanged="ComboBox_SelectionChanged" BorderThickness="2" BorderBrush="#FFC9C8C8">
+        <ComboBox x:Name="TypeEditor_Color_Combobox" HorizontalAlignment="Left" Margin="210,25,0,0" VerticalAlignment="Top" Width="170" Height="23" BorderThickness="2" BorderBrush="#FFC9C8C8">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

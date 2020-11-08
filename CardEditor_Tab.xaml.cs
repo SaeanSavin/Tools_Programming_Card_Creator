@@ -104,7 +104,8 @@ namespace Card_Creator
             }
         }
 
-        private void GeneralTab_ImageSelector_Button_Click(object sender, RoutedEventArgs e)
+
+        private void CardEditor_ImageSelector_Button_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openImage = new OpenFileDialog
             {
@@ -129,6 +130,7 @@ namespace Card_Creator
             }
         }
 
+
         private void CardEditor_NewType_Button_Click(object sender, RoutedEventArgs e)
         {
             TypeEditor typeEditor = new TypeEditor(false, null);
@@ -136,6 +138,7 @@ namespace Card_Creator
             cardTypes = ReadDatabase.getListOfCardTypes();
             RefreshTypes();
         }
+
 
         private void CardEditor_EditType_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -145,35 +148,7 @@ namespace Card_Creator
             RefreshTypes();
         }
 
-        private void RefreshTypes()
-        {
-            if (cardTypes.Count > 0)
-            {
-                CardEditor_Type_Combobox.ItemsSource = cardTypes;
-                CardEditor_Type_Combobox.SelectedIndex = typeIndex;
-            }
-
-            else
-            {
-                CardEditor_Type_Combobox.SelectedIndex = -1;
-                CardEditor_Type_Combobox.ItemsSource = null;
-                CardEditor_EditType_Button.IsEnabled = false;
-            }
-        }
-
-        private void RefreshAttacks()
-        {
-            if (attacks.Count > 0)
-            {
-                CardEditor_Attack1_Combobox.ItemsSource = attacks;
-                CardEditor_Attack2_Combobox.ItemsSource = attacks;
-
-                CardEditor_Attack1_Combobox.SelectedIndex = 0;
-                CardEditor_Attack2_Combobox.SelectedIndex = 0;
-
-            }
-        }
-
+       
         private void CardEditor_Type_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             currentType = (CardType)CardEditor_Type_Combobox.SelectedItem;
@@ -187,15 +162,18 @@ namespace Card_Creator
 
             if (currentType != null)
             {
+                CardEditor_HP_Label.Content = "HP: " + ("( " + currentType.MinHP + " - " + currentType.MaxHP +" )");
                 CardEditor_Card_Preview.type.Content = "Type: " + currentType.Name;
                 CardEditor_Card_Preview.borderColor.BorderBrush = (Brush)new BrushConverter().ConvertFromString(currentType.Cardcolor);
             }
         }
 
+
         private void CardEditor_Name_Textbox_TextChanged(object sender, TextChangedEventArgs e)
         {
             CardEditor_Card_Preview.name.Content = CardEditor_Name_Textbox.Text;
         }
+
 
         private void CardEditor_Name_Textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -203,16 +181,19 @@ namespace Card_Creator
             e.Handled = reg.IsMatch(e.Text);
         }
 
+
         private void CardEditor_HP_Textbox_TextChanged(object sender, TextChangedEventArgs e)
         {
             CardEditor_Card_Preview.hp.Content = "HP: " + CardEditor_HP_Textbox.Text;
         }
+
 
         private void CardEditor_HP_Textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex reg = new Regex("[^0-9]+");
             e.Handled = reg.IsMatch(e.Text);
         }
+
 
         private void CardEditor_Attack1_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -231,6 +212,7 @@ namespace Card_Creator
 
         }
 
+
         private void CardEditor_Attack2_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             currentAttack2 = (Attack)CardEditor_Attack2_Combobox.SelectedItem;
@@ -247,10 +229,38 @@ namespace Card_Creator
             }
         }
 
+
+        private void CardEditor_Attack1Edit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            AttackEditor attackEditor = new AttackEditor(true, currentAttack1);
+            attackEditor.ShowDialog();
+            attacks = ReadDatabase.getListOfAttacks();
+            RefreshAttacks();
+        }
+
+
+        private void CardEditor_Attack2Edit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            AttackEditor attackEditor = new AttackEditor(true, currentAttack2);
+            attackEditor.ShowDialog();
+            attacks = ReadDatabase.getListOfAttacks();
+            RefreshAttacks();
+        }
+
+
+        private void CardEditor_NewAttack_Button_Click(object sender, RoutedEventArgs e)
+        {
+            AttackEditor attackEditor = new AttackEditor(false, null);
+            attackEditor.ShowDialog();
+            attacks = ReadDatabase.getListOfAttacks();
+            RefreshAttacks();
+        }
+
+
         private void CardEditorTab_CreateCard_Button_Click(object sender, RoutedEventArgs e)
         {
 
-            if(!checkValidInput())
+            if (!CheckValidInput())
             {
                 return;
             }
@@ -291,31 +301,47 @@ namespace Card_Creator
             Close();
         }
 
-        private void CardEditor_NewAttack_Button_Click(object sender, RoutedEventArgs e)
+
+        private void RefreshTypes()
         {
-            AttackEditor attackEditor = new AttackEditor(false, null);
-            attackEditor.ShowDialog();
-            attacks = ReadDatabase.getListOfAttacks();
-            RefreshAttacks();
+            if (cardTypes.Count > 0)
+            {
+                CardEditor_Type_Combobox.ItemsSource = cardTypes;
+                CardEditor_Type_Combobox.SelectedIndex = typeIndex;
+            }
+
+            else
+            {
+                CardEditor_Type_Combobox.SelectedIndex = -1;
+                CardEditor_Type_Combobox.ItemsSource = null;
+                CardEditor_EditType_Button.IsEnabled = false;
+            }
         }
 
-        private void CardEditor_Attack1Edit_Button_Click(object sender, RoutedEventArgs e)
+
+        private void RefreshAttacks()
         {
-            AttackEditor attackEditor = new AttackEditor(true, currentAttack1);
-            attackEditor.ShowDialog();
-            attacks = ReadDatabase.getListOfAttacks();
-            RefreshAttacks();
+            if (attacks.Count > 0)
+            {
+                CardEditor_Attack1_Combobox.ItemsSource = attacks;
+                CardEditor_Attack2_Combobox.ItemsSource = attacks;
+
+                CardEditor_Attack1_Combobox.SelectedIndex = 0;
+                CardEditor_Attack2_Combobox.SelectedIndex = 0;
+
+            }
+            else
+            {
+                CardEditor_Attack1_Combobox.ItemsSource = attacks;
+                CardEditor_Attack2_Combobox.ItemsSource = attacks;
+
+                CardEditor_Attack1_Combobox.SelectedIndex = -1;
+                CardEditor_Attack2_Combobox.SelectedIndex = -1;
+            }
         }
 
-        private void CardEditor_Attack2Edit_Button_Click(object sender, RoutedEventArgs e)
-        {
-            AttackEditor attackEditor = new AttackEditor(true, currentAttack2);
-            attackEditor.ShowDialog();
-            attacks = ReadDatabase.getListOfAttacks();
-            RefreshAttacks();
-        }
 
-        private bool checkValidInput()
+        private bool CheckValidInput()
         {
             bool isValid = true;
 
@@ -331,6 +357,7 @@ namespace Card_Creator
 
             if(CardEditor_HP_Textbox.Text == "")
             {
+                CardEditor_Error_HP_Label.Content = "Invalid Input!";
                 isValid = false;
             }
             else if (int.Parse(CardEditor_HP_Textbox.Text) < currentType.MinHP)
@@ -350,5 +377,6 @@ namespace Card_Creator
 
             return isValid;
         }
+
     }
 }

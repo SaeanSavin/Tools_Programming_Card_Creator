@@ -63,17 +63,20 @@ namespace Card_Creator
             }
         }
 
+
         private void TypeEditor_min_stat_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex reg = new Regex("[^0-9]+");
             e.Handled = reg.IsMatch(e.Text);
         }
 
+
         private void TypeEditor_max_stat_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex reg = new Regex("[^0-9]+");
             e.Handled = reg.IsMatch(e.Text);
         }
+
 
         private void TypeEditor_MinAttackDMG_Textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -87,8 +90,7 @@ namespace Card_Creator
             Regex reg = new Regex("[^0-9]+");
             e.Handled = reg.IsMatch(e.Text);
         }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e){}
+   
 
         private void Type_Save_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -132,13 +134,14 @@ namespace Card_Creator
                 Close();
             }
             return;
-            
         }
+
 
         private void TypeEditor_Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+
 
         private void TypeEditor_Delete_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -175,13 +178,26 @@ namespace Card_Creator
             }
             if (TypeEditor_Min_HP_textbox.Text == "")
             {
+
                 TypeEditor_Error_MinHP_Label.Content = "Invalid Input!";
+                isValid = false;
+                
+            }
+            else
+            {
+                TypeEditor_Error_MinHP_Label.Content = "";
+            }
+            
+            if (int.Parse(TypeEditor_Min_HP_textbox.Text) > int.Parse(TypeEditor_Max_HP_textbox.Text))
+            {
+                TypeEditor_Error_MinHP_Label.Content = "Min value cant be lower than max";
                 isValid = false;
             }
             else
             {
                 TypeEditor_Error_MinHP_Label.Content = "";
             }
+
 
             if (TypeEditor_Max_HP_textbox.Text == "")
             {
@@ -215,7 +231,5 @@ namespace Card_Creator
 
             return isValid;
         }
-
- 
     }
 }
