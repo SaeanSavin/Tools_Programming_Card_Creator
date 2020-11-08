@@ -101,7 +101,6 @@ namespace Card_Creator
 
         private void CardEtior_EditAttack1_Button_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("sploink");
             AttackEditor attackEditor = new AttackEditor(true, (Attack)CardEditor_Attack1_Combobox.SelectedItem);
             attackEditor.ShowDialog();
             attacks = ReadDatabase.getListOfAttacks();

@@ -74,6 +74,9 @@ namespace Card_Creator
                 editCard.ShowDialog();
                 cards = ReadDatabase.getListOfCards();
                 cardsToView = cards.ToList();
+                cardTypes = ReadDatabase.getListOfCardTypes();
+                FilterBy_Type_ListBox.ItemsSource = cardTypes;
+                Cards_ListView_Main.ItemsSource = cards;
                 RefreshListView();
             }
         }
@@ -177,7 +180,10 @@ namespace Card_Creator
             {
                 CardEditor_Tab editCard = new CardEditor_Tab(true, selectedCard);
                 editCard.ShowDialog();
-                cardsToView = ReadDatabase.getListOfCards();
+                cards = ReadDatabase.getListOfCards();
+                cardTypes = ReadDatabase.getListOfCardTypes();
+                FilterBy_Type_ListBox.ItemsSource = cardTypes;
+                Cards_ListView_Main.ItemsSource = cards;
                 RefreshListView();
             }
         }
@@ -286,10 +292,6 @@ namespace Card_Creator
         private void FilterBy_Type_ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedTypes = FilterBy_Type_ListBox.SelectedItems.Cast<CardType>().ToList();
-            foreach (CardType t in selectedTypes)
-            {
-                Console.WriteLine(t.Name);
-            }
             RefreshListView();
         }
     }

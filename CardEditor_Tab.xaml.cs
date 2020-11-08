@@ -75,8 +75,6 @@ namespace Card_Creator
                 ImageSourceConverter converter = new ImageSourceConverter();
                 CardEditor_Card_Preview.img.Source = (ImageSource)converter.ConvertFromString(card.ImagePath);
 
-                Console.WriteLine(card.ImagePath);
-
                 foreach(CardType cardType in cardTypes)
                 {
                     if(cardType.ID == card.CardTypeID)
