@@ -42,19 +42,42 @@ namespace Card_Creator.UC
                 
                 using(CardContext context = new CardContext())
                 {
-                    cardControl.type.Content = "Type: " + context.CardTypes.Find((e.NewValue as Card).CardTypeID).Name;
-                    string color = context.CardTypes.Find((e.NewValue as Card).CardTypeID).Cardcolor;
-                    cardControl.borderColor.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(color));
 
-                    cardControl.attack1.Content = context.Attacks.Find((e.NewValue as Card).Attack1ID).Name;
-                    cardControl.Attack1_Damage.Content = context.Attacks.Find((e.NewValue as Card).Attack1ID).Damage;
+                    if(context.CardTypes.Find((e.NewValue as Card).CardTypeID) != null)
+                    {
+                        cardControl.type.Content = context.CardTypes.Find((e.NewValue as Card).CardTypeID).Name;
+                        string color = context.CardTypes.Find((e.NewValue as Card).CardTypeID).Cardcolor;
+                        cardControl.borderColor.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(color));
+                    }
+                    else
+                    {
+                        cardControl.type.Content = "No Type";
+                    }
+                
 
-                    cardControl.attack2.Content = context.Attacks.Find((e.NewValue as Card).Attack2ID).Name;
-                    cardControl.Attack2_Damage.Content = context.Attacks.Find((e.NewValue as Card).Attack2ID).Damage;
+                    if(context.Attacks.Find((e.NewValue as Card).Attack1ID) != null)
+                    {
+                        cardControl.attack1.Content = context.Attacks.Find((e.NewValue as Card).Attack1ID).Name;
+                        cardControl.Attack1_Damage.Content = context.Attacks.Find((e.NewValue as Card).Attack1ID).Damage;
+                    }
+                    else
+                    {
+                        cardControl.attack1.Content = "";
+                        cardControl.Attack1_Damage.Content = "";
+                    }
 
+                    if(context.Attacks.Find((e.NewValue as Card).Attack2ID) != null)
+                    {
+                        cardControl.attack2.Content = context.Attacks.Find((e.NewValue as Card).Attack2ID).Name;
+                        cardControl.Attack2_Damage.Content = context.Attacks.Find((e.NewValue as Card).Attack2ID).Damage;
+                    }
+                    else
+                    {
+                        cardControl.attack2.Content = "";
+                        cardControl.Attack2_Damage.Content = "";
+                    }
                 }
 
-                //Convert from string to Source
                 ImageSourceConverter converter = new ImageSourceConverter();
                 cardControl.img.Source = (ImageSource)converter.ConvertFromString((e.NewValue as Card).ImagePath);
             }
