@@ -86,6 +86,9 @@ namespace Card_Creator
             cardEditor.ShowDialog();
             cards = ReadDatabase.getListOfCards();
             cardsToView = cards.ToList();
+            cardTypes = ReadDatabase.getListOfCardTypes();
+            FilterBy_Type_ListBox.ItemsSource = cardTypes;
+            Cards_ListView_Main.ItemsSource = cards;
             RefreshListView();
         }
 
