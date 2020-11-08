@@ -329,6 +329,9 @@
   <ItemGroup>
     <Resource Include="Images\no-image.png" />
   </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="SplashScreen1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
