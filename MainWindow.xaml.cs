@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.SqlTypes;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -25,7 +26,10 @@ namespace Card_Creator
         List<Card> cards;
         Card currentCard;
 
+        List<CardType> cardTypes;
+
         List<Card> cardsToView;
+        List<CardType> selectedTypes;
 
         enum CardSortBy
         {
@@ -34,26 +38,31 @@ namespace Card_Creator
             Type,
             Health
         }
-        
+
 
         public MainWindow()
         {
             InitializeComponent();
 
             cards = ReadDatabase.getListOfCards();
+            cardTypes = ReadDatabase.getListOfCardTypes();
             cardsToView = cards.ToList();
+            selectedTypes = cardTypes.ToList();
             Cards_ListView_Main.ItemsSource = cardsToView;
 
             SortBy_ComboBox.ItemsSource = Enum.GetNames(typeof(CardSortBy));
             SortBy_ComboBox.SelectedIndex = 0;
+
+            FilterBy_Type_ListBox.ItemsSource = cardTypes;
 
             UpdateSettings.UpdateDarkMode(this);
             if (Settings.Default.darkmode)
             {
                 darkMode.IsChecked = true;
             }
-        }
 
+            RefreshListView();
+        }
 
         private void Load_Card_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -81,7 +90,7 @@ namespace Card_Creator
         }
 
 
-        private void MainWindow_MenuItem_Click(object sender, RoutedEventArgs e){}
+        private void MainWindow_MenuItem_Click(object sender, RoutedEventArgs e) { }
 
 
         private void MainWindow_ImportFromJSON(object sender, RoutedEventArgs e)
@@ -95,7 +104,7 @@ namespace Card_Creator
 
             if (openJSON.ShowDialog() == true)
             {
-                if(openJSON.FileName.Trim() != string.Empty)
+                if (openJSON.FileName.Trim() != string.Empty)
                 {
                     using (StreamReader sr = new StreamReader(openJSON.FileName))
                     {
@@ -116,8 +125,8 @@ namespace Card_Creator
             SaveFileDialog saveJSON = new SaveFileDialog();
             saveJSON.Filter = "JSON file (*.JSON)|*.JSON";
 
-            
-            if(saveJSON.ShowDialog() == true)
+
+            if (saveJSON.ShowDialog() == true)
             {
                 string output = JsonConvert.SerializeObject(currentCard, Formatting.Indented);
 
@@ -161,7 +170,7 @@ namespace Card_Creator
         {
             Card selectedCard = (Card)Cards_ListView_Main.SelectedItem;
 
-            if(selectedCard != null)
+            if (selectedCard != null)
             {
                 CardEditor_Tab editCard = new CardEditor_Tab(true, selectedCard);
                 editCard.ShowDialog();
@@ -170,33 +179,10 @@ namespace Card_Creator
             }
         }
 
-       
+
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(cards != null)
-            {
-                if (string.IsNullOrWhiteSpace(SearchBox.Text) || SearchBox.Text == "" || SearchBox.Text == "Search...")
-                {
-                    cardsToView = cards.ToList();
-                    RefreshListView();
-                    return;
-                }
-
-                cardsToView.Clear();
-
-                foreach (Card c in cards)
-                {
-                    if (c.Name.ToLower().Contains(SearchBox.Text.ToLower()))
-                    {
-                        cardsToView.Add(c);
-                    }
-                }
-                Console.WriteLine("adding" + cardsToView.Count);
-                RefreshListView();
-
-                //cards = cards.OrderBy(o=>o.Name).ToList();
-                //cards.Sort((x, y) => x.Name.CompareTo(y.Name));
-            }
+            RefreshListView();
         }
 
 
@@ -223,29 +209,85 @@ namespace Card_Creator
             }
         }
 
-
         private void RefreshListView()
         {
-            Console.WriteLine(SortBy_ComboBox.SelectedItem);
 
-            switch (Enum.Parse(typeof(CardSortBy), SortBy_ComboBox.SelectedItem.ToString()))
+            //1: add matching searches if search has input
+            if (cards != null)
             {
-                case CardSortBy.ID:
-                    cardsToView = cardsToView.OrderBy(c => c.ID).ToList();
-                    break;
-                case CardSortBy.Name:
-                    cardsToView = cardsToView.OrderBy(c => c.Name).ToList();
-                    break;
-                case CardSortBy.Type:
-                    cardsToView = cardsToView.OrderBy(c => c.CardTypeID).ToList();
-                    break;
-                case CardSortBy.Health:
-                    cardsToView = cardsToView.OrderByDescending(c => c.HP).ToList();
-                    break;
+                if (string.IsNullOrWhiteSpace(SearchBox.Text) || SearchBox.Text == "" || SearchBox.Text == "Search...")
+                {
+                    cardsToView = cards.ToList();
+                }
+                else
+                {
+                    cardsToView.Clear();
+
+                    foreach (Card c in cards)
+                    {
+                        if (c.Name.ToLower().Contains(SearchBox.Text.ToLower()))
+                        {
+                            cardsToView.Add(c);
+                        }
+                    }
+                }
+            }
+
+            //2: remove cards if any filters have been checked
+            if (selectedTypes != null)
+            {
+                if (selectedTypes.Count < cardTypes.Count && selectedTypes.Count != 0)
+                {
+                    foreach (Card c in cardsToView.ToList())
+                    {
+                        bool removeCard = true;
+                        foreach (CardType t in selectedTypes.ToList())
+                        {
+                            if (c.CardTypeID == t.ID)
+                            {
+                                removeCard = false;
+                            }
+                        }
+                        if (removeCard)
+                        {
+                            cardsToView.Remove(c);
+                        }
+                    }
+                }
+            }
+
+            //3: sort by current sorting criteria
+            if (SortBy_ComboBox != null)
+            {
+                switch (Enum.Parse(typeof(CardSortBy), SortBy_ComboBox.SelectedItem.ToString()))
+                {
+                    case CardSortBy.ID:
+                        cardsToView = cardsToView.OrderBy(c => c.ID).ToList();
+                        break;
+                    case CardSortBy.Name:
+                        cardsToView = cardsToView.OrderBy(c => c.Name).ToList();
+                        break;
+                    case CardSortBy.Type:
+                        cardsToView = cardsToView.OrderBy(c => c.CardTypeID).ToList();
+                        break;
+                    case CardSortBy.Health:
+                        cardsToView = cardsToView.OrderByDescending(c => c.HP).ToList();
+                        break;
+                }
             }
 
             Cards_ListView_Main.ItemsSource = cardsToView;
             Cards_ListView_Main.Items.Refresh();
+        }
+
+        private void FilterBy_Type_ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedTypes = FilterBy_Type_ListBox.SelectedItems.Cast<CardType>().ToList();
+            foreach (CardType t in selectedTypes)
+            {
+                Console.WriteLine(t.Name);
+            }
+            RefreshListView();
         }
     }
 }

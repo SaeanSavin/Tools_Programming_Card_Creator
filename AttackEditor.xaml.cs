@@ -116,11 +116,7 @@ namespace Card_Creator
                     context.Attacks.Add(newAttack);
                     context.SaveChanges();
                 }
-
-              
-
             }
-
             Close();
         }
 
@@ -169,7 +165,6 @@ namespace Card_Creator
             {
                 AttackEditor_Error_Name.Content = "";
             }
-
             return isValid;
         }
 

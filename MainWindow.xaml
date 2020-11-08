@@ -6,6 +6,29 @@
         xmlns:uc="clr-namespace:Card_Creator.UC"
         mc:Ignorable="d"
         Title="MainWindow-Cards" Height="631" MinHeight="600" Width="748" MinWidth="700">
+    <Window.Resources>
+        <Style x:Key="checkmarkItem" TargetType="ListBoxItem">
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Grid>
+                            <Border Name="Border" BorderThickness="0.5" BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Right" Padding="1,0,0,1">
+                                <TextBlock VerticalAlignment="Top" HorizontalAlignment="Right" Name="Marker" Visibility="Hidden" Padding="1,0,0,1"  Foreground="Black">✔</TextBlock>
+                            </Border>
+                            <ContentPresenter />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="ListBoxItem.IsSelected" Value="true">
+                                <Setter TargetName="Marker" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -52,10 +75,24 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <TextBox Name="SearchBox" HorizontalAlignment="Left" Height="24" Margin="10,10,0,0" TextWrapping="NoWrap" Text="Search..." VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus"/>
             <Label Content="Sort by:" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"/>
             <ComboBox Name="SortBy_ComboBox" SelectionChanged="SortBy_ComboBox_SelectionChanged" HorizontalAlignment="Left" Margin="10,41,0,-2" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Filter by type:&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,31,0,-13" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="0.172,0.359" Height="30"/>
+            <ListBox Name="FilterBy_Type_ListBox" SelectionChanged="FilterBy_Type_ListBox_SelectionChanged" ItemContainerStyle="{StaticResource checkmarkItem}" SelectionMode="Multiple" HorizontalAlignment="Left" Height="136" Margin="10,64,0,-145" Grid.Row="2" VerticalAlignment="Top" Width="120" ScrollViewer.HorizontalScrollBarVisibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                <ListBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="-0.5"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-0.436"/>
+                    </TransformGroup>
+                </ListBox.RenderTransform>
+            </ListBox>
+
         </Grid>
     </Grid>
 </Window>
+    
