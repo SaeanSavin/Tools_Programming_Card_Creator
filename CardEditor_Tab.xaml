@@ -47,8 +47,8 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <Button x:Name="CardEditor_NewType_Button" Content="New" HorizontalAlignment="Left" Margin="162,38,0,0" VerticalAlignment="Top" Width="60" Height="22" Click="CardEditor_NewType_Button_Click"/>
-                    <Button x:Name="CardEditor_EditType_Button" Content="Edit" HorizontalAlignment="Left" Margin="227,38,0,0" VerticalAlignment="Top" Width="60" Height="22" Click="CardEditor_EditType_Button_Click"/>
+                    <Button x:Name="CardEditor_NewType_Button" Content="New" HorizontalAlignment="Left" Margin="227,38,0,0" VerticalAlignment="Top" Width="60" Height="22" Click="CardEditor_NewType_Button_Click"/>
+                    <Button x:Name="CardEditor_EditType_Button" Content="Edit" HorizontalAlignment="Left" Margin="162,38,0,0" VerticalAlignment="Top" Width="60" Height="22" Click="CardEditor_EditType_Button_Click"/>
 
                     <Label x:Name="CardEditor_Attack1_Label" Content="Attack1:" HorizontalAlignment="Left" Margin="17,104,0,0" VerticalAlignment="Top"/>
                     <ComboBox x:Name="CardEditor_Attack1_Combobox" HorizontalAlignment="Left" Margin="20,135,0,0" VerticalAlignment="Top" Width="137" SelectionChanged="CardEditor_Attack1_Combobox_SelectionChanged">
