@@ -16,7 +16,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Button x:Name="TypeEditor_Save_Button" Content="Add" HorizontalAlignment="Left" Margin="295,195,0,0" VerticalAlignment="Top" Width="75" Click="Type_Save_Button_Click" Height="28"/>
+        <Button x:Name="TypeEditor_Save_Button" Content="Add" HorizontalAlignment="Left" Margin="19,195,0,0" VerticalAlignment="Top" Width="75" Click="TypeEditor_CreateType_Button_Click" Height="28"/>
         <TextBox x:Name="TypeEditor_Name_Textbox" MaxLength="17" HorizontalAlignment="Left" Height="23" Margin="10,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" BorderThickness="2">
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
@@ -24,21 +24,21 @@
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <TextBox x:Name="TypeEditor_MinHP_Textbox" PreviewTextInput="TypeEditor_min_stat_textbox_PreviewTextInput" MaxLength="3" HorizontalAlignment="Left" Height="23" Margin="89,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" BorderThickness="2">
+        <TextBox x:Name="TypeEditor_MinHP_Textbox" PreviewTextInput="TypeEditor_MinHP_Textbox_PreviewTextInput" MaxLength="3" HorizontalAlignment="Left" Height="23" Margin="89,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" BorderThickness="2">
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <TextBox x:Name="TypeEditor_Max_HP_textbox" PreviewTextInput="TypeEditor_max_stat_textbox_PreviewTextInput" MaxLength="3" HorizontalAlignment="Left" Height="23" Margin="87,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" BorderThickness="2">
+        <TextBox x:Name="TypeEditor_Max_HP_textbox" PreviewTextInput="TypeEditor_MaxHP_Textbox_PreviewTextInput" MaxLength="3" HorizontalAlignment="Left" Height="23" Margin="288,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" BorderThickness="2">
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <TextBox x:Name="TypeEditor_MinAttackDMG_Textbox" PreviewTextInput="TypeEditor_MinAttackDMG_Textbox_PreviewTextInput" MaxLength="3" HorizontalAlignment="Left" Height="23" Margin="285,78,0,0" TextWrapping="NoWrap"  VerticalAlignment="Top" Width="55" BorderThickness="2">
+        <TextBox x:Name="TypeEditor_MinAttackDMG_Textbox" PreviewTextInput="TypeEditor_MinAttackDMG_Textbox_PreviewTextInput" MaxLength="3" HorizontalAlignment="Left" Height="23" Margin="89,138,0,0" TextWrapping="NoWrap"  VerticalAlignment="Top" Width="55" BorderThickness="2">
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -54,15 +54,15 @@
         </TextBox>
         <Label x:Name="TypeEditor_Name_Label" Content="Name:" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top"/>
         <Label x:Name="TypeEditor_Min_Stat_Label" Content="Min HP:" HorizontalAlignment="Left" Margin="27,75,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="TypeEditor_Max_Stat_Label" Content="Max HP:" HorizontalAlignment="Left" Margin="25,134,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="TypeEditor_Max_Stat_Label" Content="Max HP:" HorizontalAlignment="Left" Margin="226,74,0,0" VerticalAlignment="Top"/>
         <Label x:Name="TypeEditor_Color_Label" Content="Color:" HorizontalAlignment="Left" Margin="205,0,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="TypeEditor_Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="25,195,0,0" VerticalAlignment="Top" Width="75" Click="TypeEditor_Cancel_Button_Click" Height="28"/>
+        <Button x:Name="TypeEditor_Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="305,195,0,0" VerticalAlignment="Top" Width="75" Click="TypeEditor_Cancel_Button_Click" Height="28"/>
         <Button x:Name="TypeEditor_Delete_Button" Content="Delete" HorizontalAlignment="Left" Margin="155,195,0,0" VerticalAlignment="Top" Width="75" Height="28" Click="TypeEditor_Delete_Button_Click" Visibility="Hidden"/>
-        <Label x:Name="TypeEditor_MinAttackDMG_Label" Content="Min Attack: " HorizontalAlignment="Left" Margin="210,75,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="TypeEditor_MinAttackDMG_Label" Content="Min Attack: " HorizontalAlignment="Left" Margin="14,135,0,0" VerticalAlignment="Top"/>
         <Label x:Name="TypeEditor_MaxAttackDMG_Label" Content="Max Attack: " HorizontalAlignment="Left" Margin="210,134,0,0" VerticalAlignment="Top"/>
         <Label x:Name="TypeEditor_Error_MinHP_Label"  HorizontalAlignment="Left" Margin="84,95,0,0" VerticalAlignment="Top" Height="24" FontSize="10" Foreground="Red"/>
-        <Label x:Name="TypeEditor_Error_MaxHP_Label" HorizontalAlignment="Left" Margin="84,155,0,0" VerticalAlignment="Top" Height="24" FontSize="10" Foreground="Red"/>
-        <Label x:Name="TypeEditor_Error_MinAttackDMG_Label" HorizontalAlignment="Left" Margin="280,95,0,0" VerticalAlignment="Top" Height="24" FontSize="10" Foreground="Red"/>
+        <Label x:Name="TypeEditor_Error_MaxHP_Label" HorizontalAlignment="Left" Margin="285,95,0,0" VerticalAlignment="Top" Height="24" FontSize="10" Foreground="Red"/>
+        <Label x:Name="TypeEditor_Error_MinAttackDMG_Label" HorizontalAlignment="Left" Margin="84,155,0,0" VerticalAlignment="Top" Height="24" FontSize="10" Foreground="Red"/>
         <Label x:Name="TypeEditor_Error_MaxAttackDMG_Label" HorizontalAlignment="Left" Margin="280,155,0,0" VerticalAlignment="Top" Height="24" FontSize="10" Foreground="Red"/>
         <Label x:Name="TypeEditor_Error_Name_Label" HorizontalAlignment="Left" Margin="5,45,0,0" VerticalAlignment="Top" Height="24" FontSize="10" Foreground="Red"/>
         <Label x:Name="TypeEditor_Error_Color_Label" HorizontalAlignment="Left" Margin="205,45,0,0" VerticalAlignment="Top" Height="24" FontSize="10" Foreground="Red"/>

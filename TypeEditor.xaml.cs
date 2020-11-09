@@ -64,14 +64,14 @@ namespace Card_Creator
         }
 
 
-        private void TypeEditor_min_stat_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void TypeEditor_MinHP_Textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex reg = new Regex("[^0-9]+");
             e.Handled = reg.IsMatch(e.Text);
         }
 
 
-        private void TypeEditor_max_stat_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void TypeEditor_MaxHP_Textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex reg = new Regex("[^0-9]+");
             e.Handled = reg.IsMatch(e.Text);
@@ -92,7 +92,7 @@ namespace Card_Creator
         }
    
 
-        private void Type_Save_Button_Click(object sender, RoutedEventArgs e)
+        private void TypeEditor_CreateType_Button_Click(object sender, RoutedEventArgs e)
         {
 
             if (!CheckValidInput())
