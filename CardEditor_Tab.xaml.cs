@@ -34,7 +34,6 @@ namespace Card_Creator
         Attack currentAttack2;
 
         List<Attack> attacks;
-        List<Attack> attacksForCurrentType;
 
         private int typeIndex = -1;
 
