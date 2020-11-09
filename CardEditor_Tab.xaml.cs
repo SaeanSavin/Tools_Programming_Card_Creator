@@ -35,7 +35,10 @@ namespace Card_Creator
 
         List<Attack> attacks;
 
-        private int typeIndex = 0;
+        private int typeIndex = -1;
+
+        private int attack1Index = -1;
+        private int attack2Index = -1;
 
         public CardEditor_Tab(bool editCard, Card card)
         {
@@ -199,6 +202,7 @@ namespace Card_Creator
 
             if(CardEditor_Attack1_Combobox.SelectedIndex >= 0)
             {
+                attack1Index = CardEditor_Attack1_Combobox.SelectedIndex;
                 CardEditor_Attack1Edit_Button.IsEnabled = true;
             }
 
@@ -217,6 +221,7 @@ namespace Card_Creator
 
             if (CardEditor_Attack2_Combobox.SelectedIndex >= 0)
             {
+                attack2Index = CardEditor_Attack2_Combobox.SelectedIndex;
                 CardEditor_Attack2Edit_Button.IsEnabled = true;
             }
 
@@ -272,11 +277,37 @@ namespace Card_Creator
                     Card updatedCard = context.Cards.Find(currentCard.ID);
 
                     updatedCard.Name = CardEditor_Name_Textbox.Text;
-                    updatedCard.CardTypeID = ((CardType)CardEditor_Type_Combobox.SelectedItem).ID;
+                    
+                    if(CardEditor_Type_Combobox.SelectedIndex == -1)
+                    {
+                        updatedCard.CardTypeID = 0;
+                    }
+                    else
+                    {
+                        updatedCard.CardTypeID = ((CardType)CardEditor_Type_Combobox.SelectedItem).ID;
+                    }
+                    
                     updatedCard.HP = int.Parse(CardEditor_HP_Textbox.Text);
                     updatedCard.ImagePath = CardEditor_Card_Preview.img.Source.ToString();
-                    updatedCard.Attack1ID = ((Attack)CardEditor_Attack1_Combobox.SelectedItem).ID;
-                    updatedCard.Attack2ID = ((Attack)CardEditor_Attack2_Combobox.SelectedItem).ID;
+                    
+                    if(CardEditor_Attack1_Combobox.SelectedIndex == -1)
+                    {
+                        updatedCard.Attack1ID = 0;
+                    }
+                    else
+                    {
+                        updatedCard.Attack1ID = ((Attack)CardEditor_Attack1_Combobox.SelectedItem).ID;
+                    }
+
+
+                    if (CardEditor_Attack2_Combobox.SelectedIndex == -1)
+                    {
+                        updatedCard.Attack2ID = 0;
+                    }
+                    else
+                    {
+                        updatedCard.Attack2ID = ((Attack)CardEditor_Attack2_Combobox.SelectedItem).ID;
+                    }
 
                     context.SaveChanges();
                 }
@@ -324,8 +355,8 @@ namespace Card_Creator
                 CardEditor_Attack1_Combobox.ItemsSource = attacks;
                 CardEditor_Attack2_Combobox.ItemsSource = attacks;
 
-                CardEditor_Attack1_Combobox.SelectedIndex = 0;
-                CardEditor_Attack2_Combobox.SelectedIndex = 0;
+                CardEditor_Attack1_Combobox.SelectedIndex = attack1Index;
+                CardEditor_Attack2_Combobox.SelectedIndex = attack2Index;
 
             }
             else
@@ -353,26 +384,28 @@ namespace Card_Creator
                 CardEditor_Error_Name_Label.Content = "";
             }
 
-            if(CardEditor_HP_Textbox.Text == "")
+            if(currentType != null)
             {
-                CardEditor_Error_HP_Label.Content = "Invalid Input!";
-                isValid = false;
+                if (CardEditor_HP_Textbox.Text == "")
+                {
+                    CardEditor_Error_HP_Label.Content = "Invalid Input!";
+                    isValid = false;
+                }
+                else if (int.Parse(CardEditor_HP_Textbox.Text) < currentType.MinHP)
+                {
+                    CardEditor_Error_HP_Label.Content = "Hp cannot be lower than the minHP of the card type";
+                    isValid = false;
+                }
+                else if (int.Parse(CardEditor_HP_Textbox.Text) > currentType.MaxHP)
+                {
+                    CardEditor_Error_HP_Label.Content = "Hp cannot be higher than the minHP of the card type";
+                    isValid = false;
+                }
+                else
+                {
+                    CardEditor_Error_HP_Label.Content = "";
+                }
             }
-            else if (int.Parse(CardEditor_HP_Textbox.Text) < currentType.MinHP)
-            {
-                CardEditor_Error_HP_Label.Content = "Hp cannot be lower than the minHP of the card type";
-                isValid = false;
-            }
-            else if (int.Parse(CardEditor_HP_Textbox.Text) > currentType.MaxHP)
-            {
-                CardEditor_Error_HP_Label.Content = "Hp cannot be higher than the minHP of the card type";
-                isValid = false;
-            }
-            else
-            {
-                CardEditor_Error_HP_Label.Content = "";
-            }
-
             return isValid;
         }
 

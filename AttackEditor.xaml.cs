@@ -156,14 +156,17 @@ namespace Card_Creator
                 AttackEditor_Error_Type.Content = "";
             }
 
-            if (AttackEditor_Damage_Textbox.Text == "" || (int.Parse(AttackEditor_Damage_Textbox.Text) < currentType.MinAttackDMG || int.Parse(AttackEditor_Damage_Textbox.Text) > currentType.MaxAttackDMG))
+            if(currentType != null)
             {
-                AttackEditor_Error_Damage.Content = "Invalid input!";
-                isValid = false;
-            }
-            else
-            {
-                AttackEditor_Error_Name.Content = "";
+                if (AttackEditor_Damage_Textbox.Text == "" || (int.Parse(AttackEditor_Damage_Textbox.Text) < currentType.MinAttackDMG || int.Parse(AttackEditor_Damage_Textbox.Text) > currentType.MaxAttackDMG))
+                {
+                    AttackEditor_Error_Damage.Content = "Invalid input!";
+                    isValid = false;
+                }
+                else
+                {
+                    AttackEditor_Error_Name.Content = "";
+                }
             }
             return isValid;
         }

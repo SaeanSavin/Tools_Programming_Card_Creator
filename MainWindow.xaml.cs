@@ -189,13 +189,13 @@ namespace Card_Creator
         }
 
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void MainWindow_Searchbox_TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             RefreshListView();
         }
 
 
-        private void SortBy_ComboBox_SelectionChanged(object sender, EventArgs e)
+        private void MainWindow_SortBy_ComboBox_SelectionChanged(object sender, EventArgs e)
         {
             RefreshListView();
         }
@@ -217,6 +217,14 @@ namespace Card_Creator
                 SearchBox.Text = "Search...";
             }
         }
+
+        
+        private void FilterBy_Type_ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedTypes = FilterBy_Type_ListBox.SelectedItems.Cast<CardType>().ToList();
+            RefreshListView();
+        }
+
 
         private void RefreshListView()
         {
@@ -287,12 +295,6 @@ namespace Card_Creator
 
             Cards_ListView_Main.ItemsSource = cardsToView;
             Cards_ListView_Main.Items.Refresh();
-        }
-
-        private void FilterBy_Type_ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            selectedTypes = FilterBy_Type_ListBox.SelectedItems.Cast<CardType>().ToList();
-            RefreshListView();
         }
     }
 }
