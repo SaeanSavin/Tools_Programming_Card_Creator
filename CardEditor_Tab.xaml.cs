@@ -34,6 +34,7 @@ namespace Card_Creator
         Attack currentAttack2;
 
         List<Attack> attacks;
+        List<Attack> attacksForCurrentType;
 
         private int typeIndex = -1;
 
@@ -167,6 +168,8 @@ namespace Card_Creator
                 CardEditor_Card_Preview.type.Content = "Type: " + currentType.Name;
                 CardEditor_Card_Preview.borderColor.BorderBrush = (Brush)new BrushConverter().ConvertFromString(currentType.Cardcolor);
             }
+
+            RefreshAttacks();
         }
 
 
@@ -350,7 +353,23 @@ namespace Card_Creator
 
         private void RefreshAttacks()
         {
-            if (attacks.Count > 0)
+            if (currentType != null)
+            {
+                attacks.Clear();
+                foreach(Attack a in ReadDatabase.getListOfAttacks())
+                {
+                    if(a.CardTypeID == currentType.ID)
+                    {
+                        attacks.Add(a);
+                        Console.WriteLine(a.Name);
+                    }
+                }
+
+                CardEditor_Attack1_Combobox.Items.Refresh();
+                CardEditor_Attack2_Combobox.Items.Refresh();
+
+            }
+            else if (attacks.Count > 0)
             {
                 CardEditor_Attack1_Combobox.ItemsSource = attacks;
                 CardEditor_Attack2_Combobox.ItemsSource = attacks;
