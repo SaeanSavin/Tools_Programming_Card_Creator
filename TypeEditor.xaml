@@ -24,7 +24,7 @@
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <TextBox x:Name="TypeEditor_Min_HP_textbox" PreviewTextInput="TypeEditor_min_stat_textbox_PreviewTextInput" MaxLength="3" HorizontalAlignment="Left" Height="23" Margin="89,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" BorderThickness="2">
+        <TextBox x:Name="TypeEditor_MinHP_Textbox" PreviewTextInput="TypeEditor_min_stat_textbox_PreviewTextInput" MaxLength="3" HorizontalAlignment="Left" Height="23" Margin="89,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" BorderThickness="2">
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>

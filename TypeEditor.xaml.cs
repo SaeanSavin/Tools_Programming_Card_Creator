@@ -55,7 +55,7 @@ namespace Card_Creator
                     }
                 }
 
-                TypeEditor_Min_HP_textbox.Text = type.MinHP.ToString();
+                TypeEditor_MinHP_Textbox.Text = type.MinHP.ToString();
                 TypeEditor_Max_HP_textbox.Text = type.MaxHP.ToString();
                 TypeEditor_MinAttackDMG_Textbox.Text = type.MinAttackDMG.ToString();
                 TypeEditor_MaxAttackDMG_Textbox.Text = type.MaxAttackDMG.ToString();
@@ -95,45 +95,44 @@ namespace Card_Creator
         private void Type_Save_Button_Click(object sender, RoutedEventArgs e)
         {
 
-            bool InputValidation = CheckValidInput();
-
-            if(InputValidation)
+            if (!CheckValidInput())
             {
-                using (CardContext context = new CardContext())
-                {
-                    if (editType)
-                    {
-
-                        CardType updatedType = context.CardTypes.Find(currentType.ID);
-
-                        updatedType.Name = TypeEditor_Name_Textbox.Text;
-                        updatedType.Cardcolor = (TypeEditor_Color_Combobox.SelectedItem as PropertyInfo).Name;
-                        updatedType.MinHP = int.Parse(TypeEditor_Min_HP_textbox.Text);
-                        updatedType.MaxHP = int.Parse(TypeEditor_Max_HP_textbox.Text);
-                        updatedType.MinAttackDMG = int.Parse(TypeEditor_MinAttackDMG_Textbox.Text);
-                        updatedType.MaxAttackDMG = int.Parse(TypeEditor_MaxAttackDMG_Textbox.Text);
-
-                        context.SaveChanges();
-                    }
-                    else
-                    {
-                        CardType newType = new CardType()
-                        {
-                            Name = TypeEditor_Name_Textbox.Text,
-                            Cardcolor = (TypeEditor_Color_Combobox.SelectedItem as PropertyInfo).Name,
-                            MinHP = int.Parse(TypeEditor_Min_HP_textbox.Text),
-                            MaxHP = int.Parse(TypeEditor_Max_HP_textbox.Text),
-                            MinAttackDMG = int.Parse(TypeEditor_MinAttackDMG_Textbox.Text),
-                            MaxAttackDMG = int.Parse(TypeEditor_MaxAttackDMG_Textbox.Text)
-                        };
-
-                        context.CardTypes.Add(newType);
-                        context.SaveChanges();
-                    }
-                }
-                Close();
+                return;
             }
-            return;
+
+            using (CardContext context = new CardContext())
+            {
+                if (editType)
+                {
+
+                    CardType updatedType = context.CardTypes.Find(currentType.ID);
+
+                    updatedType.Name = TypeEditor_Name_Textbox.Text;
+                    updatedType.Cardcolor = (TypeEditor_Color_Combobox.SelectedItem as PropertyInfo).Name;
+                    updatedType.MinHP = int.Parse(TypeEditor_MinHP_Textbox.Text);
+                    updatedType.MaxHP = int.Parse(TypeEditor_Max_HP_textbox.Text);
+                    updatedType.MinAttackDMG = int.Parse(TypeEditor_MinAttackDMG_Textbox.Text);
+                    updatedType.MaxAttackDMG = int.Parse(TypeEditor_MaxAttackDMG_Textbox.Text);
+
+                    context.SaveChanges();
+                }
+                else
+                {
+                    CardType newType = new CardType()
+                    {
+                        Name = TypeEditor_Name_Textbox.Text,
+                        Cardcolor = (TypeEditor_Color_Combobox.SelectedItem as PropertyInfo).Name,
+                        MinHP = int.Parse(TypeEditor_MinHP_Textbox.Text),
+                        MaxHP = int.Parse(TypeEditor_Max_HP_textbox.Text),
+                        MinAttackDMG = int.Parse(TypeEditor_MinAttackDMG_Textbox.Text),
+                        MaxAttackDMG = int.Parse(TypeEditor_MaxAttackDMG_Textbox.Text)
+                    };
+
+                    context.CardTypes.Add(newType);
+                    context.SaveChanges();
+                }
+            }
+            Close();
         }
 
 
@@ -156,7 +155,11 @@ namespace Card_Creator
  
         private bool CheckValidInput()
         {
+
+            Console.WriteLine("Checking values");
+
             bool isValid = true;
+
 
             if(TypeEditor_Name_Textbox.Text == "")
             {
@@ -167,6 +170,8 @@ namespace Card_Creator
             {
                 TypeEditor_Error_Name_Label.Content = "";
             }
+
+
             if(TypeEditor_Color_Combobox.SelectedItem == null)
             {
                 TypeEditor_Error_Color_Label.Content = "Invalid Input!";
@@ -176,23 +181,13 @@ namespace Card_Creator
             {
                 TypeEditor_Error_Color_Label.Content = "";
             }
-            if (TypeEditor_Min_HP_textbox.Text == "")
-            {
 
+
+            if (TypeEditor_MinHP_Textbox.Text == "")
+            {
                 TypeEditor_Error_MinHP_Label.Content = "Invalid Input!";
                 isValid = false;
-                
-            }
-            else
-            {
-                TypeEditor_Error_MinHP_Label.Content = "";
-            }
-            
-            if (int.Parse(TypeEditor_Min_HP_textbox.Text) > int.Parse(TypeEditor_Max_HP_textbox.Text))
-            {
-                TypeEditor_Error_MinHP_Label.Content = "Min value cant be lower than max";
-                isValid = false;
-            }
+            } 
             else
             {
                 TypeEditor_Error_MinHP_Label.Content = "";
@@ -209,6 +204,15 @@ namespace Card_Creator
                 TypeEditor_Error_MaxHP_Label.Content = "";
             }
 
+            if(TypeEditor_MinHP_Textbox.Text != "" && TypeEditor_Max_HP_textbox.Text != "" )
+            {
+                if (int.Parse(TypeEditor_MinHP_Textbox.Text) > int.Parse(TypeEditor_Max_HP_textbox.Text))
+                {
+                    TypeEditor_Error_MinHP_Label.Content = "Min value cant be higher than Max";
+                    isValid = false;
+                }
+            }
+
             if (TypeEditor_MinAttackDMG_Textbox.Text == "")
             {
                 TypeEditor_Error_MinAttackDMG_Label.Content = "Invalid Input!";
@@ -219,6 +223,7 @@ namespace Card_Creator
                 TypeEditor_Error_MinAttackDMG_Label.Content = "";
             }
 
+
             if (TypeEditor_MaxAttackDMG_Textbox.Text == "")
             {
                 TypeEditor_Error_MaxAttackDMG_Label.Content = "Invalid Input!";
@@ -228,6 +233,7 @@ namespace Card_Creator
             {
                 TypeEditor_Error_MaxAttackDMG_Label.Content = "";
             }
+
 
             return isValid;
         }
