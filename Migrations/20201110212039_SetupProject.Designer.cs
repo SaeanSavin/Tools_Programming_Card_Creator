@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Card_Creator.Migrations
 {
     [DbContext(typeof(CardContext))]
-    [Migration("20201104012800_removedAttackDescription-Andreas")]
-    partial class removedAttackDescriptionAndreas
+    [Migration("20201110212039_SetupProject")]
+    partial class SetupProject
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,6 +48,12 @@ namespace Card_Creator.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Attack1ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Attack2ID")
+                        .HasColumnType("int");
+
                     b.Property<int>("CardTypeID")
                         .HasColumnType("int");
 
@@ -74,6 +80,18 @@ namespace Card_Creator.Migrations
 
                     b.Property<string>("Cardcolor")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MaxAttackDMG")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaxHP")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MinAttackDMG")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MinHP")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
