@@ -89,6 +89,7 @@ namespace Card_Creator
 
             if (!CheckValidInput())
             {
+                MessageBox.Show("Some values are not valid!", "Invalid Input!");
                 return;
             }
 
