@@ -78,7 +78,10 @@
             </TabItem>
         </TabControl>
         <Label x:Name="CardEditorTab_Preview_Label" Content="Preview:" HorizontalAlignment="Left" Margin="395,10,0,0" VerticalAlignment="Top" FontSize="20" RenderTransformOrigin="0.305,0.676"/>
-        <Button x:Name="CardEditorTab_CreateCard_Button" Content="Create Card" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top" Width="115" Height="37" Click="CardEditorTab_CreateCard_Button_Click"/>
+        <Button x:Name="CardEditorTab_CreateCard_Button" Content="Create" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top" Width="115" Height="37" Click="CardEditorTab_CreateCard_Button_Click"/>
+        <Button Content="Create &#038; Exit" HorizontalAlignment="Left" Margin="130,340,0,0" VerticalAlignment="Top" Width="115" Height="37" Click="Button_Click">
+        </Button>
+        <Button Content="Exit" HorizontalAlignment="Left" Margin="518,340,0,0" VerticalAlignment="Top" Width="115" Height="37"/>
 
     </Grid>
 </Window>

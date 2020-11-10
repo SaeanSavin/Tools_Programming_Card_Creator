@@ -34,7 +34,6 @@ namespace Card_Creator
         Attack currentAttack2;
 
         List<Attack> attacks;
-        List<Attack> attacksForCurrentType;
 
         private int typeIndex = -1;
 
@@ -270,7 +269,7 @@ namespace Card_Creator
             {
                 return;
             }
-
+            Console.WriteLine(((Button)sender).Name);
 
             using (CardContext context = new CardContext())
             {
@@ -361,7 +360,6 @@ namespace Card_Creator
                     if(a.CardTypeID == currentType.ID)
                     {
                         attacks.Add(a);
-                        Console.WriteLine(a.Name);
                     }
                 }
 
@@ -428,5 +426,9 @@ namespace Card_Creator
             return isValid;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
