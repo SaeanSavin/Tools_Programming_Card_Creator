@@ -17,7 +17,7 @@
             <Border Name="borderColor" BorderThickness="5" HorizontalAlignment="Left" Height="248"  VerticalAlignment="Top" Width="173" Margin="1,1,0,0"></Border>
             <Label Name="name" Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="96"/>
             <Label Name="hp" Content="HP" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="114,10,0,0"/>
-            <Image Name="img" Source="/Card-Creator;Component/Images/no-image.png" Margin="10,36,10,118" Stretch="fill"></Image>
+            <Image Name="img" Source="/Card-Creator;Component/Images/no-image.png" Margin="20,36,20,118" Stretch="fill"></Image>
             
             <Label Name="attack1" Content="Attack1:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,137,0,0"/>
             <Label x:Name="Attack1_Damage" Content="0 " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="117,137,0,0"/>
