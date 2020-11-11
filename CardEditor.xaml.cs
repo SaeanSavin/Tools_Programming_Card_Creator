@@ -244,6 +244,7 @@ namespace Card_Creator
             attackEditor.Top = this.Top;
             attackEditor.ShowDialog();
             attacks = ReadDatabase.getListOfAttacks();
+            RefreshTypes();
             RefreshAttacks();
         }
 
@@ -255,6 +256,7 @@ namespace Card_Creator
             attackEditor.Top = this.Top;
             attackEditor.ShowDialog();
             attacks = ReadDatabase.getListOfAttacks();
+            RefreshTypes();
             RefreshAttacks();
         }
 
