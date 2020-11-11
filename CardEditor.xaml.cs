@@ -245,6 +245,7 @@ namespace Card_Creator
             attackEditor.Top = this.Top;
             attackEditor.ShowDialog();
             attacks = ReadDatabase.getListOfAttacks();
+            RefreshTypes();
             RefreshAttacks();
         }
 
@@ -256,6 +257,7 @@ namespace Card_Creator
             attackEditor.Top = this.Top;
             attackEditor.ShowDialog();
             attacks = ReadDatabase.getListOfAttacks();
+            RefreshTypes();
             RefreshAttacks();
         }
 
@@ -416,6 +418,9 @@ namespace Card_Creator
                         attacks.Add(a);
                     }
                 }
+
+                CardEditor_Attack1_Combobox.ItemsSource = attacks;
+                CardEditor_Attack2_Combobox.ItemsSource = attacks;
 
                 CardEditor_Attack1_Combobox.Items.Refresh();
                 CardEditor_Attack2_Combobox.Items.Refresh();
