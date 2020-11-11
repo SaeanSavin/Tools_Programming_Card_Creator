@@ -179,6 +179,8 @@ namespace Card_Creator
             if (selectedCard != null)
             {
                 CardEditor_Tab editCard = new CardEditor_Tab(true, selectedCard);
+                editCard.Left = this.Left;
+                editCard.Top = this.Top;
                 editCard.ShowDialog();
                 cards = ReadDatabase.getListOfCards();
                 cardTypes = ReadDatabase.getListOfCardTypes();

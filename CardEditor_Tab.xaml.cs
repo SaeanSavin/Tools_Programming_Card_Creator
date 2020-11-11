@@ -135,6 +135,8 @@ namespace Card_Creator
         private void CardEditor_NewType_Button_Click(object sender, RoutedEventArgs e)
         {
             TypeEditor typeEditor = new TypeEditor(false, null);
+            typeEditor.Left = this.Left;
+            typeEditor.Top = this.Top;
             typeEditor.ShowDialog();
             cardTypes = ReadDatabase.getListOfCardTypes();
             RefreshTypes();
@@ -144,6 +146,8 @@ namespace Card_Creator
         private void CardEditor_EditType_Button_Click(object sender, RoutedEventArgs e)
         {
             TypeEditor typeEditor = new TypeEditor(true, currentType);
+            typeEditor.Left = this.Left;
+            typeEditor.Top = this.Top;
             typeEditor.ShowDialog();
             cardTypes = ReadDatabase.getListOfCardTypes();
             RefreshTypes();
@@ -238,6 +242,8 @@ namespace Card_Creator
         private void CardEditor_Attack1Edit_Button_Click(object sender, RoutedEventArgs e)
         {
             AttackEditor attackEditor = new AttackEditor(true, currentAttack1);
+            attackEditor.Left = this.Left;
+            attackEditor.Top = this.Top;
             attackEditor.ShowDialog();
             attacks = ReadDatabase.getListOfAttacks();
             RefreshAttacks();
@@ -247,6 +253,8 @@ namespace Card_Creator
         private void CardEditor_Attack2Edit_Button_Click(object sender, RoutedEventArgs e)
         {
             AttackEditor attackEditor = new AttackEditor(true, currentAttack2);
+            attackEditor.Left = this.Left;
+            attackEditor.Top = this.Top;
             attackEditor.ShowDialog();
             attacks = ReadDatabase.getListOfAttacks();
             RefreshAttacks();
@@ -256,6 +264,8 @@ namespace Card_Creator
         private void CardEditor_NewAttack_Button_Click(object sender, RoutedEventArgs e)
         {
             AttackEditor attackEditor = new AttackEditor(false, null);
+            attackEditor.Left = this.Left;
+            attackEditor.Top = this.Top;
             attackEditor.ShowDialog();
             attacks = ReadDatabase.getListOfAttacks();
             RefreshAttacks();
@@ -270,7 +280,6 @@ namespace Card_Creator
                 MessageBox.Show("Some values are not valid!", "Invalid Input!");
                 return;
             }
-            Console.WriteLine(((Button)sender).Name);
 
             using (CardContext context = new CardContext())
             {
@@ -330,7 +339,23 @@ namespace Card_Creator
                     context.SaveChanges();
                 }
             }
-            Close();
+
+            if(((Button)sender).Name == CardEditorTab_CreateCard_Button.Name)
+            {
+                ClearAllTextBoxes(CardEditor_TabControl);
+                string popupText = "successfully created new Card";
+                if (editCard)
+                {
+                    popupText = "changes saved";
+                }
+                Popup popup = new Popup(popupText);
+                popup.Left = this.Left + (this.ActualWidth - popup.ActualWidth) / 2;
+                popup.Top = this.Top + (this.ActualHeight - popup.ActualHeight) / 2;
+                popup.ShowDialog();
+            }
+            else if (((Button)sender).Name == CardEditorTab_CreateCardAndExit_Button.Name) {
+                Close();
+            }
         }
 
 
@@ -427,9 +452,22 @@ namespace Card_Creator
             return isValid;
         }
 
+        private void ClearAllTextBoxes(Visual parent)
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var visualChild = (Visual)VisualTreeHelper.GetChild(parent, i);
+                if(visualChild is TextBox)
+                {
+                    ((TextBox)visualChild).Clear();
+                }
+                ClearAllTextBoxes(visualChild);
+            }
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
     }
 }
