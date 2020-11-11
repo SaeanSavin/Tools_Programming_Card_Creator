@@ -14,20 +14,20 @@
             <Rectangle Name="bgColor" Height="250" Width="175" Fill="LightYellow"/>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="250"  VerticalAlignment="Top" Width="175">
             </Border>
-            <Border Name="borderColor" BorderThickness="5" HorizontalAlignment="Left" Height="248"  VerticalAlignment="Top" Width="173" Margin="1,1,0,0">
+            <Border Name="BorderColor" BorderThickness="5" HorizontalAlignment="Left" Height="248"  VerticalAlignment="Top" Width="173" Margin="1,1,0,0">
 
             </Border>
-            <Label Name="name" Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="96"/>
-            <Label Name="hp" Content="HP" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="114,10,0,0"/>
-            <Image Name="img" Source="/Card-Creator;Component/Images/no-image.png" Margin="20,36,20,118" Stretch="fill"></Image>
+            <Label x:Name="Name" Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="96"/>
+            <Label x:Name="HP" Content="HP" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="114,10,0,0"/>
+            <Image x:Name="Image" Source="/Card-Creator;Component/Images/no-image.png" Margin="20,36,20,118" Stretch="fill"></Image>
 
-            <Label Name="attack1" Content="Attack1:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,137,0,0"/>
+            <Label Name="Attack1" Content="Attack1:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,137,0,0"/>
             <Label x:Name="Attack1_Damage" Content="0 " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="117,137,0,0"/>
 
-            <Label Name="attack2" Content="Attack2:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,168,0,0"/>
+            <Label Name="Attack2" Content="Attack2:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,168,0,0"/>
             <Label x:Name="Attack2_Damage" Content="0" HorizontalAlignment="Left" Margin="117,168,0,0" VerticalAlignment="Top"/>
 
-            <Label Name="type" Content="Type:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,214,0,0"/>
+            <Label Name="Type" Content="Type:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,214,0,0"/>
 
             <Label x:Name="UC_IsValid_Label" Height="27" Margin="30,250,30,-27" VerticalAlignment="Top" HorizontalAlignment="Center"/>
         </Grid>

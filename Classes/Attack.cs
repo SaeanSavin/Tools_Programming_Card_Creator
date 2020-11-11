@@ -16,5 +16,9 @@ namespace Card_Creator.Classes
 
         public int CardTypeID { get; set; }
 
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

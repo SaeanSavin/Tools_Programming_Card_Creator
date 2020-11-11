@@ -82,8 +82,8 @@
             </TabItem>
         </TabControl>
         <Label x:Name="CardEditor_Preview_Label" Content="Preview:" HorizontalAlignment="Left" Margin="395,10,0,0" VerticalAlignment="Top" FontSize="20" RenderTransformOrigin="0.305,0.676"/>
-        <Button x:Name="CardEditor_CreateCard_Button" Content="Create &#038; Reset" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top" Width="115" Height="37" Click="CardEditor_SaveCard_Button_Click"/>
-        <Button x:Name="CardEditor_CreateCardAndExit_Button" Content="Create &#038; Exit" HorizontalAlignment="Left" Margin="130,340,0,0" VerticalAlignment="Top" Width="115" Height="37" Click="CardEditor_SaveCard_Button_Click">
+        <Button x:Name="CardEditor_CreateCard_Button" Content="Create &#038; Reset" HorizontalAlignment="Left" Margin="150,340,0,0" VerticalAlignment="Top" Width="115" Height="37" Click="CardEditor_SaveCard_Button_Click"/>
+        <Button x:Name="CardEditor_CreateCardAndExit_Button" Content="Create &#038; Exit" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top" Width="115" Height="37" Click="CardEditor_SaveCard_Button_Click">
         </Button>
         <Button x:Name="CardEditor_Close_Button" Content="Close" HorizontalAlignment="Left" Margin="510,340,0,0" VerticalAlignment="Top" Width="115" Height="37" Click="CardEditor_Close_Button_Click"/>
 

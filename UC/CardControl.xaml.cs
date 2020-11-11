@@ -37,44 +37,44 @@ namespace Card_Creator.UC
 
             if(cardControl != null)
             {
-                cardControl.name.Content = (e.NewValue as Card).Name;
-                cardControl.hp.Content = (e.NewValue as Card).HP + " HP";
+                cardControl.Name.Content = (e.NewValue as Card).Name;
+                cardControl.HP.Content = (e.NewValue as Card).HP + " HP";
                 
                 using(CardContext context = new CardContext())
                 {
 
                     if(context.CardTypes.Find((e.NewValue as Card).CardTypeID) != null)
                     {
-                        cardControl.type.Content = context.CardTypes.Find((e.NewValue as Card).CardTypeID).Name;
+                        cardControl.Type.Content = context.CardTypes.Find((e.NewValue as Card).CardTypeID).Name;
                         string color = context.CardTypes.Find((e.NewValue as Card).CardTypeID).Cardcolor;
-                        cardControl.borderColor.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(color));
+                        cardControl.BorderColor.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(color));
                     }
                     else
                     {
-                        cardControl.type.Content = "No Type";
+                        cardControl.Type.Content = "No Type";
                         cardControl.UC_IsValid_Label.Content = "Not Valid for play";
                     }
                 
 
                     if(context.Attacks.Find((e.NewValue as Card).Attack1ID) != null)
                     {
-                        cardControl.attack1.Content = context.Attacks.Find((e.NewValue as Card).Attack1ID).Name;
+                        cardControl.Attack1.Content = context.Attacks.Find((e.NewValue as Card).Attack1ID).Name;
                         cardControl.Attack1_Damage.Content = context.Attacks.Find((e.NewValue as Card).Attack1ID).Damage;
                     }
                     else
                     {
-                        cardControl.attack1.Content = "";
+                        cardControl.Attack1.Content = "";
                         cardControl.Attack1_Damage.Content = "";
                     }
 
                     if(context.Attacks.Find((e.NewValue as Card).Attack2ID) != null)
                     {
-                        cardControl.attack2.Content = context.Attacks.Find((e.NewValue as Card).Attack2ID).Name;
+                        cardControl.Attack2.Content = context.Attacks.Find((e.NewValue as Card).Attack2ID).Name;
                         cardControl.Attack2_Damage.Content = context.Attacks.Find((e.NewValue as Card).Attack2ID).Damage;
                     }
                     else
                     {
-                        cardControl.attack2.Content = "";
+                        cardControl.Attack2.Content = "";
                         cardControl.Attack2_Damage.Content = "";
                     }
 
@@ -88,7 +88,7 @@ namespace Card_Creator.UC
                 }
 
                 ImageSourceConverter converter = new ImageSourceConverter();
-                cardControl.img.Source = (ImageSource)converter.ConvertFromString((e.NewValue as Card).ImagePath);
+                cardControl.Image.Source = (ImageSource)converter.ConvertFromString((e.NewValue as Card).ImagePath);
             }
 
         }

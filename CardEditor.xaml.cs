@@ -4,6 +4,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -45,17 +46,11 @@ namespace Card_Creator
 
             cardTypes = ReadDatabase.getListOfCardTypes();
             attacks = ReadDatabase.getListOfAttacks();
-            RefreshTypes();
-            RefreshAttacks();
-
+            
             this.editCard = editCard;
             currentCard = card;
-            
-            if(cardTypes.Count > 0)
-            {
-                CardEditor_Type_Combobox.SelectedIndex = 0;
-            }
-            else
+
+            if (CardEditor_Type_Combobox.SelectedIndex == -1)
             {
                 CardEditor_EditType_Button.IsEnabled = false;
             }
@@ -63,7 +58,7 @@ namespace Card_Creator
             if(editCard)
             {
                 CardEditor_Tab_Window.Title = "CardEditor - Edit mode";
-                CardEditor_CreateCard_Button.Content = "Save & Reset";
+                CardEditor_CreateCard_Button.Visibility = Visibility.Collapsed;
                 CardEditor_CreateCardAndExit_Button.Content = "Save & Close";
             }
 
@@ -74,7 +69,7 @@ namespace Card_Creator
                 CardEditor_HP_Textbox.Text = card.HP.ToString();
 
                 ImageSourceConverter converter = new ImageSourceConverter();
-                CardEditor_Card_Preview.img.Source = (ImageSource)converter.ConvertFromString(card.ImagePath);
+                CardEditor_Card_Preview.Image.Source = (ImageSource)converter.ConvertFromString(card.ImagePath);
 
                 foreach(CardType cardType in cardTypes)
                 {
@@ -97,9 +92,14 @@ namespace Card_Creator
                     }
                 }
 
+                RefreshTypes();
+                RefreshAttacks();
+
+                //Console.WriteLine(currentAttack1.Name + ", " + currentAttack2.Name);
+
                 CardEditor_Type_Combobox.SelectedItem = currentType;
-                CardEditor_Attack1_Combobox.SelectedItem = currentAttack1;
-                CardEditor_Attack2_Combobox.SelectedItem = currentAttack2;
+                //CardEditor_Attack1_Combobox.SelectedItem = currentAttack1;
+                //CardEditor_Attack2_Combobox.SelectedItem = currentAttack2;
             }
         }
 
@@ -117,12 +117,12 @@ namespace Card_Creator
                 ImageSourceConverter converter = new ImageSourceConverter();
                 try
                 {
-                    CardEditor_Card_Preview.img.Source = (ImageSource)converter.ConvertFromString(fullpath);
+                    CardEditor_Card_Preview.Image.Source = (ImageSource)converter.ConvertFromString(fullpath);
                     CardEditor_Error_Image_Label.Content = "";
                 }
                 catch(NotSupportedException)
                 {
-                    CardEditor_Card_Preview.img.Source = noImage;
+                    CardEditor_Card_Preview.Image.Source = noImage;
                     CardEditor_Error_Image_Label.Content = "Error! File not supported";
                 }
                 
@@ -149,7 +149,7 @@ namespace Card_Creator
             typeEditor.Top = this.Top;
             typeEditor.ShowDialog();
             cardTypes = ReadDatabase.getListOfCardTypes();
-            Console.WriteLine(currentType);
+
             RefreshTypes();
             RefreshAttacks();
         }
@@ -158,7 +158,6 @@ namespace Card_Creator
         private void CardEditor_Type_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             currentType = (CardType)CardEditor_Type_Combobox.SelectedItem;
-            
 
             if (CardEditor_Type_Combobox.SelectedIndex >= 0)
             {
@@ -169,8 +168,8 @@ namespace Card_Creator
             if (currentType != null)
             {
                 CardEditor_HP_Label.Content = "HP: " + ("( " + currentType.MinHP + " - " + currentType.MaxHP +" )");
-                CardEditor_Card_Preview.type.Content = "Type: " + currentType.Name;
-                CardEditor_Card_Preview.borderColor.BorderBrush = (Brush)new BrushConverter().ConvertFromString(currentType.Cardcolor);
+                CardEditor_Card_Preview.Type.Content = "Type: " + currentType.Name;
+                CardEditor_Card_Preview.BorderColor.BorderBrush = (Brush)new BrushConverter().ConvertFromString(currentType.Cardcolor);
             }
 
             RefreshAttacks();
@@ -179,7 +178,7 @@ namespace Card_Creator
 
         private void CardEditor_Name_Textbox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CardEditor_Card_Preview.name.Content = CardEditor_Name_Textbox.Text;
+            CardEditor_Card_Preview.Name.Content = CardEditor_Name_Textbox.Text;
         }
 
 
@@ -192,7 +191,7 @@ namespace Card_Creator
 
         private void CardEditor_HP_Textbox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CardEditor_Card_Preview.hp.Content = "HP: " + CardEditor_HP_Textbox.Text;
+            CardEditor_Card_Preview.HP.Content = "HP: " + CardEditor_HP_Textbox.Text;
         }
 
 
@@ -214,7 +213,7 @@ namespace Card_Creator
 
             if(currentAttack1 != null)
             {
-                CardEditor_Card_Preview.attack1.Content = currentAttack1.Name;
+                CardEditor_Card_Preview.Attack1.Content = currentAttack1.Name;
                 CardEditor_Card_Preview.Attack1_Damage.Content = currentAttack1.Damage;
             }
 
@@ -232,7 +231,7 @@ namespace Card_Creator
 
             if (currentAttack2 != null)
             {
-                CardEditor_Card_Preview.attack2.Content = currentAttack2.Name;
+                CardEditor_Card_Preview.Attack2.Content = currentAttack2.Name;
                 CardEditor_Card_Preview.Attack2_Damage.Content = currentAttack2.Damage;
             }
         }
@@ -299,7 +298,7 @@ namespace Card_Creator
                     }
                     
                     updatedCard.HP = int.Parse(CardEditor_HP_Textbox.Text);
-                    updatedCard.ImagePath = CardEditor_Card_Preview.img.Source.ToString();
+                    updatedCard.ImagePath = CardEditor_Card_Preview.Image.Source.ToString();
                     
                     if(CardEditor_Attack1_Combobox.SelectedIndex == -1)
                     {
@@ -328,7 +327,7 @@ namespace Card_Creator
                     {
                         Name = CardEditor_Name_Textbox.Text,
                         HP = int.Parse(CardEditor_HP_Textbox.Text),
-                        ImagePath = CardEditor_Card_Preview.img.Source.ToString()
+                        ImagePath = CardEditor_Card_Preview.Image.Source.ToString()
                     };
 
                     if (CardEditor_Type_Combobox.SelectedIndex == -1)
@@ -382,10 +381,12 @@ namespace Card_Creator
             }
         }
 
+
         private void CardEditor_Close_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+
 
         private void RefreshTypes()
         {
@@ -417,26 +418,43 @@ namespace Card_Creator
                     }
                 }
 
+                CardEditor_Attack1_Combobox.ItemsSource = attacks;
+                CardEditor_Attack2_Combobox.ItemsSource = attacks;
+
                 CardEditor_Attack1_Combobox.Items.Refresh();
                 CardEditor_Attack2_Combobox.Items.Refresh();
 
-                CardEditor_Attack1_Combobox.SelectedIndex = 0;
-                CardEditor_Attack2_Combobox.SelectedIndex = 0;
+                if(attacks.Count == 0)
+                {
+                    CardEditor_Attack1Edit_Button.IsEnabled = false;
+                    CardEditor_Attack2Edit_Button.IsEnabled = false;
+                    CardEditor_Card_Preview.Attack1.Content = "Attack1:";
+                    CardEditor_Card_Preview.Attack2.Content = "Attack2:";
+                    CardEditor_Card_Preview.Attack1_Damage.Content = "0";
+                    CardEditor_Card_Preview.Attack2_Damage.Content = "0";
 
+                }
+
+                CardEditor_Attack1_Combobox.SelectedItem = currentAttack1;
+                CardEditor_Attack2_Combobox.SelectedItem = currentAttack2;
+
+            }
+            else if(currentType == null)
+            {
+                attacks.Clear();
+                CardEditor_Card_Preview.Type.Content = "No type";
+
+                CardEditor_Attack1_Combobox.Items.Refresh();
+                CardEditor_Attack2_Combobox.Items.Refresh();
+
+                CardEditor_Attack1_Combobox.SelectedIndex = -1;
+                CardEditor_Attack2_Combobox.SelectedIndex = -1;
             }
             else if (attacks.Count > 0)
             {
                 CardEditor_Attack1_Combobox.ItemsSource = attacks;
                 CardEditor_Attack2_Combobox.ItemsSource = attacks;
 
-            }
-            else
-            {
-                CardEditor_Attack1_Combobox.ItemsSource = attacks;
-                CardEditor_Attack2_Combobox.ItemsSource = attacks;
-
-                CardEditor_Attack1_Combobox.SelectedIndex = -1;
-                CardEditor_Attack2_Combobox.SelectedIndex = -1;
             }
         }
 
@@ -483,7 +501,37 @@ namespace Card_Creator
 
         private void ClearAllTextBoxes(Visual parent)
         {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+
+            CardEditor_Name_Textbox.Text = "";
+            CardEditor_HP_Textbox.Text = "";
+
+            CardEditor_HP_Label.Content = "HP: ";
+
+            CardEditor_Card_Preview.Image.Source = noImage;
+            CardEditor_Card_Preview.Name.Content = "Name";
+            
+            CardEditor_Card_Preview.Attack1.Content = "Attack1:";
+            CardEditor_Card_Preview.Attack2.Content = "Attack2:";
+            CardEditor_Card_Preview.Attack1_Damage.Content = "0";
+            CardEditor_Card_Preview.Attack2_Damage.Content = "0";
+
+            CardEditor_Card_Preview.Type.Content = "No type";
+
+            CardEditor_Card_Preview.BorderColor.BorderBrush = Brushes.Transparent;
+
+            CardEditor_Type_Combobox.SelectedIndex = -1;
+            CardEditor_Attack1_Combobox.SelectedIndex = -1;
+            CardEditor_Attack2_Combobox.SelectedIndex = -1;
+
+            currentType = null;
+            currentAttack1 = null;
+            currentAttack2 = null;
+
+            RefreshAttacks();
+
+
+            /*
+              for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
             {
                 var visualChild = (Visual)VisualTreeHelper.GetChild(parent, i);
                 if(visualChild is TextBox)
@@ -492,6 +540,8 @@ namespace Card_Creator
                 }
                 ClearAllTextBoxes(visualChild);
             }
+             */
+
         }
 
     }
