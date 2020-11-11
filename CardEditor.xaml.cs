@@ -55,11 +55,15 @@ namespace Card_Creator
                 CardEditor_EditType_Button.IsEnabled = false;
             }
 
-            if(editCard)
+            if (editCard)
             {
                 CardEditor_Tab_Window.Title = "CardEditor - Edit mode";
                 CardEditor_CreateCard_Button.Visibility = Visibility.Collapsed;
                 CardEditor_CreateCardAndExit_Button.Content = "Save & Close";
+
+                CardEditor_Type_Combobox.SelectedItem = cardTypes.Find(i => i.ID == card.CardTypeID);
+                CardEditor_Attack1_Combobox.SelectedItem = attacks.Find(i => i.ID == card.Attack1ID);
+                CardEditor_Attack2_Combobox.SelectedItem = attacks.Find(i => i.ID == card.Attack2ID);
             }
 
             if(card != null)
@@ -71,35 +75,17 @@ namespace Card_Creator
                 ImageSourceConverter converter = new ImageSourceConverter();
                 CardEditor_Card_Preview.Image.Source = (ImageSource)converter.ConvertFromString(card.ImagePath);
 
-                foreach(CardType cardType in cardTypes)
-                {
-                    if(cardType.ID == card.CardTypeID)
-                    {
-                        currentType = cardType;
-                        break;
-                    }
-                }
-
-                foreach(Attack attack in attacks)
-                {
-                    if(attack.ID == card.Attack1ID)
-                    {
-                        currentAttack1 = attack;
-                    }
-                    if(attack.ID == card.Attack2ID)
-                    {
-                        currentAttack2 = attack;
-                    }
-                }
+                currentType = cardTypes.Find(t => t.ID == card.CardTypeID);
+                currentAttack1 = attacks.Find(i => i.ID == card.Attack1ID);
+                currentAttack2 = attacks.Find(i => i.ID == card.Attack2ID);
 
                 RefreshTypes();
-                RefreshAttacks();
-
-                //Console.WriteLine(currentAttack1.Name + ", " + currentAttack2.Name);
 
                 CardEditor_Type_Combobox.SelectedItem = currentType;
-                //CardEditor_Attack1_Combobox.SelectedItem = currentAttack1;
-                //CardEditor_Attack2_Combobox.SelectedItem = currentAttack2;
+                if (currentAttack1 != null)
+                    CardEditor_Attack1_Combobox.SelectedItem = attacks.Find(a => a.ID == currentAttack1.ID);
+                if (currentAttack2 != null)
+                    CardEditor_Attack2_Combobox.SelectedItem = attacks.Find(a => a.ID == currentAttack2.ID);
             }
         }
 
@@ -426,7 +412,12 @@ namespace Card_Creator
                 CardEditor_Attack1_Combobox.Items.Refresh();
                 CardEditor_Attack2_Combobox.Items.Refresh();
 
-                if(attacks.Count == 0)
+                if(currentAttack1 != null)
+                    CardEditor_Attack1_Combobox.SelectedItem = attacks.Find(a => a.ID == currentAttack1.ID);
+                if(currentAttack2 != null)
+                    CardEditor_Attack2_Combobox.SelectedItem = attacks.Find(a => a.ID == currentAttack2.ID);
+
+                if (attacks.Count == 0)
                 {
                     CardEditor_Attack1Edit_Button.IsEnabled = false;
                     CardEditor_Attack2Edit_Button.IsEnabled = false;
@@ -436,9 +427,6 @@ namespace Card_Creator
                     CardEditor_Card_Preview.Attack2_Damage.Content = "0";
 
                 }
-
-                CardEditor_Attack1_Combobox.SelectedItem = currentAttack1;
-                CardEditor_Attack2_Combobox.SelectedItem = currentAttack2;
 
             }
             else if(currentType == null)
