@@ -316,16 +316,41 @@ namespace Card_Creator
                 }
                 else
                 {
-                    Card newCard = new Card()
+                    Card newCard = new Card
                     {
                         Name = CardEditor_Name_Textbox.Text,
-                        CardTypeID = ((CardType)CardEditor_Type_Combobox.SelectedItem).ID,
                         HP = int.Parse(CardEditor_HP_Textbox.Text),
-                        ImagePath = CardEditor_Card_Preview.img.Source.ToString(),
-                        Attack1ID = ((Attack)CardEditor_Attack1_Combobox.SelectedItem).ID,
-                        Attack2ID = ((Attack)CardEditor_Attack2_Combobox.SelectedItem).ID
+                        ImagePath = CardEditor_Card_Preview.img.Source.ToString()
                     };
 
+                    if (CardEditor_Type_Combobox.SelectedIndex == -1)
+                    {
+                        newCard.CardTypeID = 0;
+                    }
+                    else
+                    {
+                        newCard.CardTypeID = ((CardType)CardEditor_Type_Combobox.SelectedItem).ID;
+                    }
+
+                    if (CardEditor_Attack1_Combobox.SelectedIndex == -1)
+                    {
+                        newCard.Attack1ID = 0;
+                    }
+                    else
+                    {
+                        newCard.Attack1ID = ((Attack)CardEditor_Attack1_Combobox.SelectedItem).ID;
+                    }
+
+
+                    if (CardEditor_Attack2_Combobox.SelectedIndex == -1)
+                    {
+                        newCard.Attack2ID = 0;
+                    }
+                    else
+                    {
+                        newCard.Attack2ID = ((Attack)CardEditor_Attack2_Combobox.SelectedItem).ID;
+                    }
+    
                     context.Cards.Add(newCard);
                     context.SaveChanges();
                 }

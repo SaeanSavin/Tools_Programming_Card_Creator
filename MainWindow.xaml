@@ -48,7 +48,7 @@
                 </Menu.ItemsPanel>
                 <MenuItem Header="Card">
                     <MenuItem Header="New card" Click="MainWindow_CreateCard_Button_Click"/>
-                    <MenuItem Header="Edit card" Click="Load_Card_Button_Click"/>
+                    <MenuItem Header="Edit card" Click="MainWindow__LoadCard_Button_Click"/>
                 </MenuItem>
                 <MenuItem Header="External">
                     <MenuItem Header="Import from JSON" Click="MainWindow_ImportFromJSON"/>

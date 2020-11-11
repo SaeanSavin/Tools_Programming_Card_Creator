@@ -64,7 +64,7 @@ namespace Card_Creator
             RefreshListView();
         }
 
-        private void Load_Card_Button_Click(object sender, RoutedEventArgs e)
+        private void MainWindow__LoadCard_Button_Click(object sender, RoutedEventArgs e)
         {
             Card selectedCard = (Card)Cards_ListView_Main.SelectedItem;
 
@@ -128,6 +128,12 @@ namespace Card_Creator
 
         private void MainWindow_ExportFromJSON(object sender, RoutedEventArgs e)
         {
+            if(currentCard == null)
+            {
+                MessageBox.Show("No card selected for exporting", "No card Selected");
+                return;
+            }
+
             SaveFileDialog saveJSON = new SaveFileDialog();
             saveJSON.Filter = "JSON file (*.JSON)|*.JSON";
 

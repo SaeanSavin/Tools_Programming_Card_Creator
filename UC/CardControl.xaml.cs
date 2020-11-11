@@ -52,6 +52,7 @@ namespace Card_Creator.UC
                     else
                     {
                         cardControl.type.Content = "No Type";
+                        cardControl.UC_IsValid_Label.Content = "Not Valid for play";
                     }
                 
 
@@ -76,6 +77,14 @@ namespace Card_Creator.UC
                         cardControl.attack2.Content = "";
                         cardControl.Attack2_Damage.Content = "";
                     }
+
+
+                    if(context.Attacks.Find((e.NewValue as Card).Attack1ID) == null && context.Attacks.Find((e.NewValue as Card).Attack2ID) == null)
+                    {
+                        cardControl.UC_IsValid_Label.Content = "Not Valid for play";
+                        cardControl.UC_IsValid_Label.Foreground = Brushes.Red;
+                    }
+
                 }
 
                 ImageSourceConverter converter = new ImageSourceConverter();
