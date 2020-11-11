@@ -34,6 +34,8 @@ namespace Card_Creator
             types = ReadDatabase.getListOfCardTypes();
             RefreshTypes();
 
+            UpdateSettings.UpdateDarkMode(this);
+
             if (editMode)
             {
                 editAttack = true;
