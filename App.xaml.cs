@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Card_Creator.Classes.Db;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,6 +14,9 @@ namespace Card_Creator
 
     public partial class App : Application
     {
-        
+        void App_Startup(object sender, StartupEventArgs e)
+        {
+            ReadDatabase.MigrateDatabase();
+        }
     }
 }

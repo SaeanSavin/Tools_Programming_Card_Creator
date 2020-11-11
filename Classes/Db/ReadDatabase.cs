@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -30,6 +31,17 @@ namespace Card_Creator.Classes.Db
             using(CardContext context = new CardContext())
             {
                 return context.Attacks.ToList();
+            }
+        }
+
+        public static void MigrateDatabase()
+        {
+            using (CardContext context = new CardContext())
+            {
+                if(context.Database.EnsureCreated())
+                {
+                    context.Database.Migrate();
+                }
             }
         }
     }
