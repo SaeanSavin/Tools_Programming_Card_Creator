@@ -70,7 +70,7 @@ namespace Card_Creator
 
             if (selectedCard != null)
             {
-                CardEditor_Tab editCard = new CardEditor_Tab(true, selectedCard);
+                CardEditor editCard = new CardEditor(true, selectedCard);
                 editCard.ShowDialog();
                 cards = ReadDatabase.getListOfCards();
                 cardsToView = cards.ToList();
@@ -84,7 +84,7 @@ namespace Card_Creator
 
         private void MainWindow_CreateCard_Button_Click(object sender, RoutedEventArgs e)
         {
-            CardEditor_Tab cardEditor = new CardEditor_Tab(false, null);
+            CardEditor cardEditor = new CardEditor(false, null);
             cardEditor.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             cardEditor.ShowDialog();
             cards = ReadDatabase.getListOfCards();
@@ -118,7 +118,7 @@ namespace Card_Creator
 
                         Card importedCard = JsonConvert.DeserializeObject<Card>(json);
 
-                        CardEditor_Tab cardEditor = new CardEditor_Tab(true, importedCard);
+                        CardEditor cardEditor = new CardEditor(true, importedCard);
                         cardEditor.ShowDialog();
                     }
                 }
@@ -184,7 +184,7 @@ namespace Card_Creator
 
             if (selectedCard != null)
             {
-                CardEditor_Tab editCard = new CardEditor_Tab(true, selectedCard);
+                CardEditor editCard = new CardEditor(true, selectedCard);
                 editCard.Left = this.Left;
                 editCard.Top = this.Top;
                 editCard.ShowDialog();

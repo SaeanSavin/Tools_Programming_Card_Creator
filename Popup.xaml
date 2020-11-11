@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Card_Creator"
         mc:Ignorable="d"
-        Title="Popup" MinHeight="100" MinWidth="100" SizeToContent="WidthAndHeight">
+        Title="Popup" MinHeight="100" MinWidth="100" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
     <Grid>
         <Button Name="Popup_Close_Button" Content="Close" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,5" Width="75" Click="Popup_Close_Button_Click"/>
         <Label Name="Popup_Label"  Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0"/>
