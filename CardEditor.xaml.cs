@@ -37,9 +37,6 @@ namespace Card_Creator
 
         private int typeIndex = -1;
 
-        private int attack1Index = -1;
-        private int attack2Index = -1;
-
         public CardEditor(bool editCard, Card card)
         {
             InitializeComponent();
@@ -141,6 +138,7 @@ namespace Card_Creator
             typeEditor.ShowDialog();
             cardTypes = ReadDatabase.getListOfCardTypes();
             RefreshTypes();
+            RefreshAttacks();
         }
 
 
@@ -151,7 +149,9 @@ namespace Card_Creator
             typeEditor.Top = this.Top;
             typeEditor.ShowDialog();
             cardTypes = ReadDatabase.getListOfCardTypes();
+            Console.WriteLine(currentType);
             RefreshTypes();
+            RefreshAttacks();
         }
 
        
@@ -209,7 +209,6 @@ namespace Card_Creator
 
             if(CardEditor_Attack1_Combobox.SelectedIndex >= 0)
             {
-                attack1Index = CardEditor_Attack1_Combobox.SelectedIndex;
                 CardEditor_Attack1Edit_Button.IsEnabled = true;
             }
 
@@ -228,7 +227,6 @@ namespace Card_Creator
 
             if (CardEditor_Attack2_Combobox.SelectedIndex >= 0)
             {
-                attack2Index = CardEditor_Attack2_Combobox.SelectedIndex;
                 CardEditor_Attack2Edit_Button.IsEnabled = true;
             }
 
@@ -384,12 +382,10 @@ namespace Card_Creator
             }
         }
 
-
         private void CardEditor_Close_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-
 
         private void RefreshTypes()
         {
@@ -410,7 +406,7 @@ namespace Card_Creator
 
         private void RefreshAttacks()
         {
-            if (currentType != null)
+            if (currentType != null && ((Attack)CardEditor_Attack1_Combobox.SelectedItem).CardTypeID != currentType.ID)
             {
                 attacks.Clear();
                 foreach(Attack a in ReadDatabase.getListOfAttacks())
@@ -424,14 +420,14 @@ namespace Card_Creator
                 CardEditor_Attack1_Combobox.Items.Refresh();
                 CardEditor_Attack2_Combobox.Items.Refresh();
 
+                CardEditor_Attack1_Combobox.SelectedIndex = 0;
+                CardEditor_Attack2_Combobox.SelectedIndex = 0;
+
             }
             else if (attacks.Count > 0)
             {
                 CardEditor_Attack1_Combobox.ItemsSource = attacks;
                 CardEditor_Attack2_Combobox.ItemsSource = attacks;
-
-                CardEditor_Attack1_Combobox.SelectedIndex = attack1Index;
-                CardEditor_Attack2_Combobox.SelectedIndex = attack2Index;
 
             }
             else
