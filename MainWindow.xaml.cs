@@ -48,12 +48,12 @@ namespace Card_Creator
             cardTypes = ReadDatabase.getListOfCardTypes();
             cardsToView = cards.ToList();
             selectedTypes = cardTypes.ToList();
-            Cards_ListView_Main.ItemsSource = cardsToView;
+            MainWindow_Cards_ListView.ItemsSource = cardsToView;
 
-            SortBy_ComboBox.ItemsSource = Enum.GetNames(typeof(CardSortBy));
-            SortBy_ComboBox.SelectedIndex = 0;
+            MainWindow_SortBy_ComboBox.ItemsSource = Enum.GetNames(typeof(CardSortBy));
+            MainWindow_SortBy_ComboBox.SelectedIndex = 0;
 
-            FilterBy_Type_ListBox.ItemsSource = cardTypes;
+            MainWindow_FilterBy_Type_ListBox.ItemsSource = cardTypes;
 
             UpdateSettings.UpdateDarkMode(this);
             if (Settings.Default.darkmode)
@@ -64,9 +64,10 @@ namespace Card_Creator
             RefreshListView();
         }
 
-        private void MainWindow__LoadCard_Button_Click(object sender, RoutedEventArgs e)
+
+        private void MainWindow_LoadCard_Button_Click(object sender, RoutedEventArgs e)
         {
-            Card selectedCard = (Card)Cards_ListView_Main.SelectedItem;
+            Card selectedCard = (Card)MainWindow_Cards_ListView.SelectedItem;
 
             if (selectedCard != null)
             {
@@ -75,8 +76,8 @@ namespace Card_Creator
                 cards = ReadDatabase.getListOfCards();
                 cardsToView = cards.ToList();
                 cardTypes = ReadDatabase.getListOfCardTypes();
-                FilterBy_Type_ListBox.ItemsSource = cardTypes;
-                Cards_ListView_Main.ItemsSource = cards;
+                MainWindow_FilterBy_Type_ListBox.ItemsSource = cardTypes;
+                MainWindow_Cards_ListView.ItemsSource = cards;
                 RefreshListView();
             }
         }
@@ -90,8 +91,8 @@ namespace Card_Creator
             cards = ReadDatabase.getListOfCards();
             cardsToView = cards.ToList();
             cardTypes = ReadDatabase.getListOfCardTypes();
-            FilterBy_Type_ListBox.ItemsSource = cardTypes;
-            Cards_ListView_Main.ItemsSource = cards;
+            MainWindow_FilterBy_Type_ListBox.ItemsSource = cardTypes;
+            MainWindow_Cards_ListView.ItemsSource = cards;
             RefreshListView();
         }
 
@@ -172,15 +173,15 @@ namespace Card_Creator
         }
 
 
-        private void Cards_ListView_Main_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void MainWindow_Cards_ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            currentCard = (Card)Cards_ListView_Main.SelectedItem;
+            currentCard = (Card)MainWindow_Cards_ListView.SelectedItem;
         }
 
 
-        private void Cards_ListView_Main_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void MainWindow_Cards_ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Card selectedCard = (Card)Cards_ListView_Main.SelectedItem;
+            Card selectedCard = (Card)MainWindow_Cards_ListView.SelectedItem;
 
             if (selectedCard != null)
             {
@@ -190,8 +191,8 @@ namespace Card_Creator
                 editCard.ShowDialog();
                 cards = ReadDatabase.getListOfCards();
                 cardTypes = ReadDatabase.getListOfCardTypes();
-                FilterBy_Type_ListBox.ItemsSource = cardTypes;
-                Cards_ListView_Main.ItemsSource = cards;
+                MainWindow_FilterBy_Type_ListBox.ItemsSource = cardTypes;
+                MainWindow_Cards_ListView.ItemsSource = cards;
                 RefreshListView();
             }
         }
@@ -209,7 +210,7 @@ namespace Card_Creator
         }
 
 
-        private void SearchBox_GotFocus(object sender, EventArgs e)
+        private void MainWindow_SearchBox_GotFocus(object sender, EventArgs e)
         {
             if (SearchBox.Text == "Search...")
             {
@@ -218,7 +219,7 @@ namespace Card_Creator
         }
 
 
-        private void SearchBox_LostFocus(object sender, EventArgs e)
+        private void MainWindow_SearchBox_LostFocus(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(SearchBox.Text))
             {
@@ -227,9 +228,9 @@ namespace Card_Creator
         }
 
         
-        private void FilterBy_Type_ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void MainWindow_FilterBy_Type_ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            selectedTypes = FilterBy_Type_ListBox.SelectedItems.Cast<CardType>().ToList();
+            selectedTypes = MainWindow_FilterBy_Type_ListBox.SelectedItems.Cast<CardType>().ToList();
             RefreshListView();
         }
 
@@ -282,9 +283,9 @@ namespace Card_Creator
             }
 
             //3: sort by current sorting criteria
-            if (SortBy_ComboBox != null)
+            if (MainWindow_SortBy_ComboBox != null)
             {
-                switch (Enum.Parse(typeof(CardSortBy), SortBy_ComboBox.SelectedItem.ToString()))
+                switch (Enum.Parse(typeof(CardSortBy), MainWindow_SortBy_ComboBox.SelectedItem.ToString()))
                 {
                     case CardSortBy.ID:
                         cardsToView = cardsToView.OrderBy(c => c.ID).ToList();
@@ -301,8 +302,8 @@ namespace Card_Creator
                 }
             }
 
-            Cards_ListView_Main.ItemsSource = cardsToView;
-            Cards_ListView_Main.Items.Refresh();
+            MainWindow_Cards_ListView.ItemsSource = cardsToView;
+            MainWindow_Cards_ListView.Items.Refresh();
         }
     }
 }

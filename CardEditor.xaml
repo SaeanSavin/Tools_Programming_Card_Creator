@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Card_Creator"
         xmlns:uc="clr-namespace:Card_Creator.UC"
         mc:Ignorable="d"
-        Title="CardEditor_Tab" Height="421" Width="649" ResizeMode="NoResize">
+        Title="CardEditor - Create mode" Height="421" Width="649" ResizeMode="NoResize">
     <Grid>
         <uc:CardControl x:Name="CardEditor_Card_Preview" Margin="385,52,58,65" Card="{Binding}"/>
         <TabControl x:Name="CardEditor_TabControl" HorizontalAlignment="Left" Height="335" VerticalAlignment="Top" Width="325" Margin="10,0,0,0">
@@ -41,7 +41,7 @@
                         <ColumnDefinition Width="26*"/>
                         <ColumnDefinition Width="293*"/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="Type_Label" Content="Type:" HorizontalAlignment="Left" Margin="17,12,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Label x:Name="CardEditor_Type_Label" Content="Type:" HorizontalAlignment="Left" Margin="17,12,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                     <ComboBox x:Name="CardEditor_Type_Combobox" HorizontalAlignment="Left" Margin="20,38,0,0" VerticalAlignment="Top" Width="137" SelectionChanged="CardEditor_Type_Combobox_SelectionChanged" Grid.ColumnSpan="2">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -81,11 +81,11 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Label x:Name="CardEditorTab_Preview_Label" Content="Preview:" HorizontalAlignment="Left" Margin="395,10,0,0" VerticalAlignment="Top" FontSize="20" RenderTransformOrigin="0.305,0.676"/>
-        <Button x:Name="CardEditorTab_CreateCard_Button" Content="Create &#038; Reset" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top" Width="115" Height="37" Click="CardEditor_CreateCard_Button_Click"/>
-        <Button x:Name="CardEditorTab_CreateCardAndExit_Button" Content="Create &#038; Exit" HorizontalAlignment="Left" Margin="130,340,0,0" VerticalAlignment="Top" Width="115" Height="37" Click="CardEditor_CreateCard_Button_Click">
+        <Label x:Name="CardEditor_Preview_Label" Content="Preview:" HorizontalAlignment="Left" Margin="395,10,0,0" VerticalAlignment="Top" FontSize="20" RenderTransformOrigin="0.305,0.676"/>
+        <Button x:Name="CardEditor_CreateCard_Button" Content="Create &#038; Reset" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top" Width="115" Height="37" Click="CardEditor_SaveCard_Button_Click"/>
+        <Button x:Name="CardEditor_CreateCardAndExit_Button" Content="Create &#038; Exit" HorizontalAlignment="Left" Margin="130,340,0,0" VerticalAlignment="Top" Width="115" Height="37" Click="CardEditor_SaveCard_Button_Click">
         </Button>
-        <Button Content="Close" HorizontalAlignment="Left" Margin="510,340,0,0" VerticalAlignment="Top" Width="115" Height="37" Click="CardEditor_Cancel_Button_Click"/>
+        <Button x:Name="CardEditor_Close_Button" Content="Close" HorizontalAlignment="Left" Margin="510,340,0,0" VerticalAlignment="Top" Width="115" Height="37" Click="CardEditor_Close_Button_Click"/>
 
     </Grid>
 </Window>

@@ -66,8 +66,8 @@ namespace Card_Creator
             if(editCard)
             {
                 CardEditor_Tab_Window.Title = "CardEditor - Edit mode";
-                CardEditorTab_CreateCard_Button.Content = "Save & Reset";
-                CardEditorTab_CreateCardAndExit_Button.Content = "Save & Close";
+                CardEditor_CreateCard_Button.Content = "Save & Reset";
+                CardEditor_CreateCardAndExit_Button.Content = "Save & Close";
             }
 
             if(card != null)
@@ -273,7 +273,7 @@ namespace Card_Creator
         }
 
 
-        private void CardEditor_CreateCard_Button_Click(object sender, RoutedEventArgs e)
+        private void CardEditor_SaveCard_Button_Click(object sender, RoutedEventArgs e)
         {
 
             if (!CheckValidInput())
@@ -366,7 +366,7 @@ namespace Card_Creator
                 }
             }
 
-            if(((Button)sender).Name == CardEditorTab_CreateCard_Button.Name)
+            if(((Button)sender).Name == CardEditor_CreateCard_Button.Name)
             {
                 ClearAllTextBoxes(CardEditor_TabControl);
                 string popupText = "successfully created new Card";
@@ -379,13 +379,13 @@ namespace Card_Creator
                 popup.Top = this.Top + (this.ActualHeight - popup.ActualHeight) / 2;
                 popup.ShowDialog();
             }
-            else if (((Button)sender).Name == CardEditorTab_CreateCardAndExit_Button.Name) {
+            else if (((Button)sender).Name == CardEditor_CreateCardAndExit_Button.Name) {
                 Close();
             }
         }
 
 
-        private void CardEditor_Cancel_Button_Click(object sender, RoutedEventArgs e)
+        private void CardEditor_Close_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
