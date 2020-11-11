@@ -191,8 +191,8 @@
     <Compile Include="AttackEditor.xaml.cs">
       <DependentUpon>AttackEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CardEditor_Tab.xaml.cs">
-      <DependentUpon>CardEditor_Tab.xaml</DependentUpon>
+    <Compile Include="CardEditor.xaml.cs">
+      <DependentUpon>CardEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Db\ReadDatabase.cs" />
     <Compile Include="Migrations\20201110212039_SetupProject.cs" />
@@ -205,9 +205,6 @@
     </Compile>
     <Compile Include="Classes\Attack.cs" />
     <Compile Include="Classes\UpdateSettings.cs" />
-    <Compile Include="Load_Card_Window.xaml.cs">
-      <DependentUpon>Load_Card_Window.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UC\CardControl.xaml.cs">
       <DependentUpon>CardControl.xaml</DependentUpon>
     </Compile>
@@ -218,19 +215,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CardEditor_Tab.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TypeEditor.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="CardEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Load_Card_Window.xaml">
+    <Page Include="TypeEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -245,9 +234,6 @@
     <Compile Include="Classes\Card.cs" />
     <Compile Include="Classes\CardType.cs" />
     <Compile Include="Classes\Db\CardContext.cs" />
-    <Compile Include="CardEditor.xaml.cs">
-      <DependentUpon>CardEditor.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

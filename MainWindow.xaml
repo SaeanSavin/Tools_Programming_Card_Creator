@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:uc="clr-namespace:Card_Creator.UC"
         mc:Ignorable="d"
-        Title="MainWindow-Cards" Height="631" MinHeight="600" Width="748" MinWidth="700">
+        Title="Card collection" Height="631" MinHeight="600" Width="748" MinWidth="700">
     <Window.Resources>
         <Style x:Key="checkmarkItem" TargetType="ListBoxItem">
             <Setter Property="SnapsToDevicePixels" Value="true"/>
@@ -48,7 +48,7 @@
                 </Menu.ItemsPanel>
                 <MenuItem Header="Card">
                     <MenuItem Header="New card" Click="MainWindow_CreateCard_Button_Click"/>
-                    <MenuItem Header="Edit card" Click="MainWindow__LoadCard_Button_Click"/>
+                    <MenuItem Header="Edit card" Click="MainWindow_LoadCard_Button_Click"/>
                 </MenuItem>
                 <MenuItem Header="External">
                     <MenuItem Header="Import from JSON" Click="MainWindow_ImportFromJSON"/>
@@ -59,7 +59,7 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <ListView x:Name="Cards_ListView_Main" SelectionChanged="Cards_ListView_Main_SelectionChanged" MouseDoubleClick="Cards_ListView_Main_MouseDoubleClick" Background="Gray" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0">
+        <ListView x:Name="MainWindow_Cards_ListView" SelectionChanged="MainWindow_Cards_ListView_SelectionChanged" MouseDoubleClick="MainWindow_Cards_ListView_MouseDoubleClick" Background="Gray" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel></WrapPanel>
@@ -77,11 +77,11 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <TextBox Name="SearchBox" HorizontalAlignment="Left" Height="24" Margin="10,10,0,0" TextWrapping="NoWrap" Text="Search..." VerticalAlignment="Top" Width="120" TextChanged="MainWindow_Searchbox_TextBox_TextChanged" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus"/>
+            <TextBox Name="SearchBox" HorizontalAlignment="Left" Height="24" Margin="10,10,0,0" TextWrapping="NoWrap" Text="Search..." VerticalAlignment="Top" Width="120" TextChanged="MainWindow_Searchbox_TextBox_TextChanged" GotFocus="MainWindow_SearchBox_GotFocus" LostFocus="MainWindow_SearchBox_LostFocus"/>
             <Label Content="Sort by:" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-            <ComboBox Name="SortBy_ComboBox" SelectionChanged="MainWindow_SortBy_ComboBox_SelectionChanged" HorizontalAlignment="Left" Margin="10,41,0,-2" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+            <ComboBox Name="MainWindow_SortBy_ComboBox" SelectionChanged="MainWindow_SortBy_ComboBox_SelectionChanged" HorizontalAlignment="Left" Margin="10,41,0,-2" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
             <Label Content="Filter by type:&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,31,0,-13" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="0.172,0.359" Height="30"/>
-            <ListBox Name="FilterBy_Type_ListBox" SelectionChanged="FilterBy_Type_ListBox_SelectionChanged" ItemContainerStyle="{StaticResource checkmarkItem}" SelectionMode="Multiple" HorizontalAlignment="Left" Margin="10,64,0,-145" Grid.Row="2" VerticalAlignment="Stretch" Width="120" ScrollViewer.HorizontalScrollBarVisibility="Hidden" RenderTransformOrigin="0.5,0.5">
+            <ListBox Name="MainWindow_FilterBy_Type_ListBox" SelectionChanged="MainWindow_FilterBy_Type_ListBox_SelectionChanged" ItemContainerStyle="{StaticResource checkmarkItem}" SelectionMode="Multiple" HorizontalAlignment="Left" Margin="10,64,0,-145" Grid.Row="2" VerticalAlignment="Stretch" Width="120" ScrollViewer.HorizontalScrollBarVisibility="Hidden" RenderTransformOrigin="0.5,0.5">
                 <ListBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
