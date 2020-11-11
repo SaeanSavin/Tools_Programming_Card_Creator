@@ -406,7 +406,7 @@ namespace Card_Creator
 
         private void RefreshAttacks()
         {
-            if (currentType != null && ((Attack)CardEditor_Attack1_Combobox.SelectedItem).CardTypeID != currentType.ID)
+            if (currentType != null)
             {
                 attacks.Clear();
                 foreach(Attack a in ReadDatabase.getListOfAttacks())
