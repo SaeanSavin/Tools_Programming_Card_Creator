@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Card_Creator"
         mc:Ignorable="d"
-        Title="ConfirmDelete" Height="150" Width="250">
+        Title="ConfirmDelete" Height="156" Width="250" ResizeMode="NoResize">
     <Grid>
-        <TextBlock Name="ConfirmDelete_TextBox" HorizontalAlignment="Center" Text="Are you sure you want to delete this type? This will also delete all attacks of this type!" FontSize="10" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,10,0,0" Height="44"/>
-        <Button Name="ConfirmDelete_Delete_Button" Content="Delete" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" Width="75" Click="ConfirmDelete_Delete_Button_Click"/>
-        <Button Name="ConfirmDelete_Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="158,89,0,0" VerticalAlignment="Top" Width="74" Click="ConfirmDelete_Cancel_Button_Click"/>
+        <TextBlock Name="ConfirmDelete_TextBox" HorizontalAlignment="Center" Text="Are you sure you want to delete this type? This will also delete all attacks of this type!" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,20,10,0" Height="65"/>
+        <Button Name="ConfirmDelete_Delete_Button" Content="Delete" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Width="75" Click="ConfirmDelete_Delete_Button_Click"/>
+        <Button Name="ConfirmDelete_Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="151,90,0,0" VerticalAlignment="Top" Width="74" Click="ConfirmDelete_Cancel_Button_Click"/>
 
     </Grid>
 </Window>
