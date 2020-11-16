@@ -141,6 +141,15 @@ namespace Card_Creator
         private void TypeEditor_Delete_Button_Click(object sender, RoutedEventArgs e)
         {
 
+            ConfirmDelete confirmDelete = new ConfirmDelete(currentType.Name);
+            confirmDelete.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            bool? confirmedDelete = confirmDelete.ShowDialog();
+            if(confirmedDelete == false)
+            {
+                return;
+            }
+
+
             using(CardContext context = new CardContext())
             {
                 

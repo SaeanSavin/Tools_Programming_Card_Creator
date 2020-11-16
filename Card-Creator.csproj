@@ -195,6 +195,9 @@
       <DependentUpon>CardEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Db\ReadDatabase.cs" />
+    <Compile Include="ConfirmDelete.xaml.cs">
+      <DependentUpon>ConfirmDelete.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\20201110212039_SetupProject.cs" />
     <Compile Include="Migrations\20201110212039_SetupProject.designer.cs">
       <DependentUpon>20201110212039_SetupProject.cs</DependentUpon>
@@ -216,6 +219,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CardEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfirmDelete.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
