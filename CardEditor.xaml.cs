@@ -49,6 +49,7 @@ namespace Card_Creator
             
             this.editCard = editCard;
             currentCard = card;
+            RefreshTypes();
 
             if (CardEditor_Type_Combobox.SelectedIndex == -1)
             {
@@ -79,7 +80,7 @@ namespace Card_Creator
                 currentAttack1 = attacks.Find(i => i.ID == card.Attack1ID);
                 currentAttack2 = attacks.Find(i => i.ID == card.Attack2ID);
 
-                RefreshTypes();
+                
 
                 CardEditor_Type_Combobox.SelectedItem = currentType;
                 if (currentAttack1 != null)
