@@ -1,19 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Card_Creator.Classes;
 using Card_Creator.Classes.Db;
 
@@ -25,6 +16,8 @@ namespace Card_Creator
     {
         private readonly CardType currentType;
         private readonly bool editType = false;
+
+        List<Attack> attacks;
 
         public TypeEditor(bool editMode, CardType type)
         {
@@ -39,6 +32,8 @@ namespace Card_Creator
                 TypeEditor_Window.Title = "TypeEditor - Edit mode";
                 TypeEditor_Save_Button.Content = "Save";
                 TypeEditor_Delete_Button.Visibility = Visibility.Visible;
+
+                attacks = ReadDatabase.getListOfAttacks();
             }
 
             if(type != null)
@@ -145,8 +140,17 @@ namespace Card_Creator
 
         private void TypeEditor_Delete_Button_Click(object sender, RoutedEventArgs e)
         {
+
             using(CardContext context = new CardContext())
             {
+                
+                foreach(Attack attack in attacks)
+                {
+                    if(attack.CardTypeID == currentType.ID) {
+                        context.Attacks.Remove(attack);
+                    }
+                }
+
                 context.CardTypes.Remove(context.CardTypes.Find(currentType.ID));
                 context.SaveChanges();
             }

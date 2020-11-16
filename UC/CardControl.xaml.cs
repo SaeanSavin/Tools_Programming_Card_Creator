@@ -84,7 +84,6 @@ namespace Card_Creator.UC
                         cardControl.UC_IsValid_Label.Content = "Not Valid for play";
                         cardControl.UC_IsValid_Label.Foreground = Brushes.Red;
                     }
-
                 }
 
                 ImageSourceConverter converter = new ImageSourceConverter();

@@ -1,4 +1,5 @@
-﻿namespace Card_Creator.Classes
+﻿
+namespace Card_Creator.Classes
 {
     public class CardType
     {

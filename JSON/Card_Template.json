@@ -4,5 +4,5 @@
   "Name": "Card Name",
   "HP": 100,
   "CardTypeID": 1,
-  "ImagePath": "images/hamstercam.png"
+  "ImagePath": "path to image"
 }

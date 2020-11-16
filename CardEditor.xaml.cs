@@ -158,6 +158,8 @@ namespace Card_Creator
                 CardEditor_Card_Preview.BorderColor.BorderBrush = (Brush)new BrushConverter().ConvertFromString(currentType.Cardcolor);
             }
 
+            CardEditor_Attack1Edit_Button.IsEnabled = false;
+            CardEditor_Attack2Edit_Button.IsEnabled = false;
             RefreshAttacks();
         }
 
@@ -353,7 +355,7 @@ namespace Card_Creator
 
             if(((Button)sender).Name == CardEditor_CreateCard_Button.Name)
             {
-                ClearAllTextBoxes(CardEditor_TabControl);
+                ClearAllTextBoxes();
                 string popupText = "successfully created new Card";
                 if (editCard)
                 {
@@ -489,7 +491,7 @@ namespace Card_Creator
         }
 
 
-        private void ClearAllTextBoxes(Visual parent)
+        private void ClearAllTextBoxes()
         {
 
             CardEditor_Name_Textbox.Text = "";
@@ -518,20 +520,6 @@ namespace Card_Creator
             currentAttack2 = null;
 
             RefreshAttacks();
-
-
-            /*
-              for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
-            {
-                var visualChild = (Visual)VisualTreeHelper.GetChild(parent, i);
-                if(visualChild is TextBox)
-                {
-                    ((TextBox)visualChild).Clear();
-                }
-                ClearAllTextBoxes(visualChild);
-            }
-             */
-
         }
 
     }
