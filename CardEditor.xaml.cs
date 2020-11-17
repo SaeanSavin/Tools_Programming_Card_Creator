@@ -272,7 +272,7 @@ namespace Card_Creator
 
             using (CardContext context = new CardContext())
             {
-                if (editCard)
+                if (editCard && context.Cards.Find(currentCard.ID) != null)
                 {
 
                     Card updatedCard = context.Cards.Find(currentCard.ID);

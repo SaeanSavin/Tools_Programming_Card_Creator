@@ -76,6 +76,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <TextBox Name="SearchBox" HorizontalAlignment="Left" Height="24" Margin="10,10,0,0" TextWrapping="NoWrap" Text="Search..." VerticalAlignment="Top" Width="120" TextChanged="MainWindow_Searchbox_TextBox_TextChanged" GotFocus="MainWindow_SearchBox_GotFocus" LostFocus="MainWindow_SearchBox_LostFocus"/>
             <Label Content="Sort by:" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"/>
@@ -91,6 +92,7 @@
                     </TransformGroup>
                 </ListBox.RenderTransform>
             </ListBox>
+            <Button Name="MainWindow_Delete_Button" Content="Delete Card" IsEnabled="False" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Bottom" Width="88" Height="31" Margin="10,0,0,-421" Click="MainWindow_Delete_Button_Click"/>
 
         </Grid>
     </Grid>

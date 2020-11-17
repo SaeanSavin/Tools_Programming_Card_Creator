@@ -102,7 +102,6 @@ namespace Card_Creator
 
         private void MainWindow_ImportFromJSON(object sender, RoutedEventArgs e)
         {
-
             OpenFileDialog openJSON = new OpenFileDialog
             {
                 Filter = "Json files (*.json)|*.json"
@@ -117,11 +116,19 @@ namespace Card_Creator
                     {
                         string json = sr.ReadToEnd();
 
-                        Card importedCard = JsonConvert.DeserializeObject<Card>(json);
+                        List<Card> importedCards = JsonConvert.DeserializeObject<List<Card>>(json);
 
-                        CardEditor cardEditor = new CardEditor(true, importedCard);
-                        cardEditor.ShowDialog();
+                        using (CardContext context = new CardContext())
+                        {
+                            foreach (Card newCard in importedCards)
+                            {
+                                newCard.ID = 0;
+                                context.Cards.Add(newCard);
+                                context.SaveChanges();
+                            }
+                        }
                     }
+                    RefreshListView();
                 }
             }
         }
@@ -129,7 +136,7 @@ namespace Card_Creator
 
         private void MainWindow_ExportFromJSON(object sender, RoutedEventArgs e)
         {
-            if(currentCard == null)
+            if(MainWindow_Cards_ListView.SelectedItems.Count <= 0)
             {
                 MessageBox.Show("No card selected for exporting", "No card Selected");
                 return;
@@ -141,7 +148,7 @@ namespace Card_Creator
 
             if (saveJSON.ShowDialog() == true)
             {
-                string output = JsonConvert.SerializeObject(currentCard, Formatting.Indented);
+                string output = JsonConvert.SerializeObject(MainWindow_Cards_ListView.SelectedItems, Formatting.Indented);
 
                 File.WriteAllText(saveJSON.FileName, output);
             }
@@ -176,6 +183,15 @@ namespace Card_Creator
         private void MainWindow_Cards_ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             currentCard = (Card)MainWindow_Cards_ListView.SelectedItem;
+
+            if(MainWindow_Cards_ListView.SelectedItems.Count > 0)
+            {
+                MainWindow_Delete_Button.IsEnabled = true;
+            }
+            else
+            {
+                MainWindow_Delete_Button.IsEnabled = false;
+            }
         }
 
 
@@ -237,6 +253,7 @@ namespace Card_Creator
 
         private void RefreshListView()
         {
+            cards = ReadDatabase.getListOfCards();
 
             //1: add matching searches if search has input
             if (cards != null)
@@ -304,6 +321,19 @@ namespace Card_Creator
 
             MainWindow_Cards_ListView.ItemsSource = cardsToView;
             MainWindow_Cards_ListView.Items.Refresh();
+        }
+
+        private void MainWindow_Delete_Button_Click(object sender, RoutedEventArgs e)
+        {
+            using (CardContext context = new CardContext())
+            {
+                foreach (Card c in MainWindow_Cards_ListView.SelectedItems)
+                {
+                    context.Cards.Remove(context.Cards.Find(c.ID));
+                }
+                context.SaveChanges();context.SaveChanges();
+            }
+            RefreshListView();
         }
     }
 }
