@@ -10,6 +10,8 @@ namespace Card_Creator.Classes.Db
     public class CardContext : DbContext
     {
 
+        private object _lock = new object();
+
         public DbSet<Card> Cards { get; set; }
 
         public DbSet<CardType> CardTypes { get; set; }

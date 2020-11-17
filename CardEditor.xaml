@@ -80,6 +80,23 @@
                     <Button x:Name="CardEditor_NewAttack_Button" Content="New Attack" HorizontalAlignment="Left" Margin="20,260,0,0" VerticalAlignment="Top" Width="75" Height="27" Click="CardEditor_NewAttack_Button_Click" Grid.ColumnSpan="2"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="Extra">
+                <Grid Name="CardEditor_Extra_Grid" Background="#FFE5E5E5">
+                    <Button Name="CardEditor_Randomize_Button" Content="Randomize" Foreground="White" FontWeight="Bold"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="110" Height="40" Click="CardEditor_Randomize_Button_Click">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                                <GradientStop Color="DarkRed" Offset="0.0"/>
+                                <GradientStop Color="DarkOrange" Offset="0.17"/>
+                                <GradientStop Color="DarkGoldenrod" Offset="0.33"/>
+                                <GradientStop Color="DarkGreen" Offset="0.5"/>
+                                <GradientStop Color="DarkBlue" Offset="0.67"/>
+                                <GradientStop Color="Indigo" Offset="0.83"/>
+                                <GradientStop Color="DarkViolet" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </Grid>
+            </TabItem>
         </TabControl>
         <Label x:Name="CardEditor_Preview_Label" Content="Preview:" HorizontalAlignment="Left" Margin="395,10,0,0" VerticalAlignment="Top" FontSize="20" RenderTransformOrigin="0.305,0.676"/>
         <Button x:Name="CardEditor_CreateCard_Button" Content="Create &#038; Reset" HorizontalAlignment="Left" Margin="150,340,0,0" VerticalAlignment="Top" Width="115" Height="37" Click="CardEditor_SaveCard_Button_Click"/>

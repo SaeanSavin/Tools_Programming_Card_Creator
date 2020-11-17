@@ -523,5 +523,29 @@ namespace Card_Creator
             RefreshAttacks();
         }
 
+        private void CardEditor_Randomize_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Random random = new Random();
+            int i = 0;
+
+            i = random.Next(cardTypes.Count);
+            CardEditor_Type_Combobox.SelectedItem = cardTypes[i];
+            currentType = cardTypes[i];
+
+            RefreshTypes();
+            RefreshAttacks();
+
+            i = random.Next(attacks.Count);
+            CardEditor_Attack1_Combobox.SelectedItem = attacks[i];
+            i = random.Next(attacks.Count);
+            CardEditor_Attack2_Combobox.SelectedItem = attacks[i];
+
+            i = random.Next(currentType.MinHP, currentType.MaxHP);
+            CardEditor_HP_Textbox.Text = i.ToString();
+
+            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            CardEditor_Name_Textbox.Text = new string(Enumerable.Repeat(chars, 10)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
     }
 }
